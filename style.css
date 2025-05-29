@@ -1568,12 +1568,7 @@ tr:last-child td {
   transform: translateY(-1px);
 }
 
-.nav-links a.active {
-  color: var(--text-white);
-  background: var(--primary-blue);
-  box-shadow: var(--shadow-sm);
-  transform: translateY(-1px);
-}
+
 
 .nav-links a.active::before {
   opacity: 0;
