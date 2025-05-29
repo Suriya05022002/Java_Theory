@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Programming Tutorial - Complete Guide</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+   <nav class="topnav">
+    <div class="nav-container">
+        <div class="logo">Java Tutorial</div><br>
+        <div class="nav-links" id="navLinks">
+            <a href="index.html" class="active">Home</a>
+            <a href="chapter1.html">Variables</a>
+            <a href="chapter2.html">Operators</a>
+            <a href="chapter3.html">Strings</a>
+            <a href="chapter4.html">Conditionals</a>
+            <a href="chapter5.html">Loops</a>
+            <a href="chapter6.html">Arrays</a>
+            <a href="chapter7.html">Methods</a>
+            <a href="chapter8.html">OOPs Intro</a>
+            <a href="chapter9.html">Constructors</a>
+            <a href="chapter10.html">Inheritance</a>
+            <a href="chapter11.html">Abstract & Interfaces</a>
+            <a href="chapter12.html">Packages</a>
+            <a href="chapter13.html">Multithreading</a>
+            <a href="chapter14.html">Exceptions</a>
+        </div>
+        
+        <!-- FIXED: Spans are now INSIDE the button -->
+        <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+</nav>
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-section">
+            <div class="sidebar-title">Getting Started</div>
+            <a href="#introduction">Introduction</a>
+            <a href="#what-is-java">What is Java?</a>
+            <a href="#how-java-works">How Java Works</a>
+            <a href="#installation">Installation</a>
+            <a href="#first-program">First Program</a>
+            <a href="#course-overview">Course Overview</a>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <!-- <div class="hero-section">
+            <div class="hero-content">
+                <h1>Complete Java Programming Tutorial</h1>
+                <p class="hero-subtitle">Master Java from Basics to Advanced Concepts with Handwritten Notes Style</p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">5</span>
+                        <span class="stat-label">Chapters</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">Examples</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">30+</span>
+                        <span class="stat-label">Exercises</span>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        
+        <div class="intro-card">
+            <p>Welcome to the most comprehensive Java Programming Tutorial. Learn Java from absolute basics with practical examples, exercises, and real-world projects.</p>
+        </div>
+
+        <section id="introduction">
+            <h2>Introduction to Java Programming</h2>
+            <div class="definition-box">
+                <p><strong>Java is an Object Oriented programming language developed by "Sun Microsystems of USA" in 1991.</strong></p>
+                <p>It was originally called <span class="highlight">Oak</span> by <span class="highlight">James Gosling</span> - one of the inventors of Java!</p>
+                <p><strong>JAVA = Purely object oriented</strong></p>
+            </div>
+        </section>
+
+        <section id="what-is-java">
+            <h2>What is Java?</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">1991</div>
+                    <div class="timeline-content">
+                        <h3>Project Oak</h3>
+                        <p>James Gosling starts developing Oak at Sun Microsystems</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">1995</div>
+                    <div class="timeline-content">
+                        <h3>Java 1.0</h3>
+                        <p>First public release of Java</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2010</div>
+                    <div class="timeline-content">
+                        <h3>Oracle Acquisition</h3>
+                        <p>Oracle acquires Sun Microsystems and Java</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="how-java-works">
+            <h2>How Java Works?</h2>
+            <div class="process-flow">
+                <div class="process-step">
+                    <div class="step-icon">📝</div>
+                    <div class="step-title">Source Code</div>
+                    <div class="step-desc">Write Java code in .java files</div>
+                </div>
+                <div class="process-step">
+                    <div class="step-icon">⚙️</div>
+                    <div class="step-title">Compiled</div>
+                    <div class="step-desc">javac compiles to bytecode</div>
+                </div>
+                <div class="process-step">
+                    <div class="step-icon">🔧</div>
+                    <div class="step-title">Bytecode</div>
+                    <div class="step-desc">Platform-independent .class files</div>
+                </div>
+                <div class="process-step">
+                    <div class="step-icon">🖥️</div>
+                    <div class="step-title">Interpreted</div>
+                    <div class="step-desc">JVM interprets bytecode</div>
+                </div>
+                <div class="process-step">
+                    <div class="step-icon">⚡</div>
+                    <div class="step-title">Machine Code</div>
+                    <div class="step-desc">Executes on target machine</div>
+                </div>
+            </div>
+            
+            <div class="definition-box">
+                <p>Java is <strong>compiled into bytecode</strong> and then it is <strong>interpreted to machine code</strong> for a given machine.</p>
+                <p>This makes Java <span class="highlight">platform independent</span> - "Write Once, Run Everywhere"</p>
+            </div>
+        </section>
+
+        <section id="installation">
+            <h2>Java Installation Guide</h2>
+            <div class="installation-guide">
+                <div class="install-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Install JDK (Java Development Kit)</h3>
+                        <p>Go to Google & type <span class="highlight">"Install JDK"</span> or visit Oracle's official website</p>
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="file-name">Terminal Commands</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            </div>
+                            <pre><code># Verify installation 
+java -version  javac -version 
+</code></pre>
+                        </div>
+                        <div class="info-box">
+                            <p><strong>JDK</strong> → Java Development Kit = Collection of tools used for developing and running Java programs</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="install-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Install IDE (Integrated Development Environment)</h3>
+                        <p>Go to Google & type <span class="highlight">"Install IntelliJ IDEA"</span> or choose your preferred IDE</p>
+                        <div class="info-box">
+                            <p><strong>JRE</strong> → Java Runtime Environment = Helps in executing programs developed in Java</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="first-program">
+            <h2>Your First Java Program</h2>
+            <div class="program-section">
+                <h3>Hello World Program</h3>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="file-name">HelloWorld.java</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code>public class HelloWorld {
+    public static void main(String[]  args) {
+        System.out.println("Hello, World!");
+        System.out.println("Welcome to Java Programming!");
+    }
+}</code></pre>
+                </div>
+                
+                <div class="compilation-steps">
+                    <h4>How to Run:</h4>
+                    <div class="step-list">
+                        <div class="run-step">
+                            <span class="step-num">1</span>
+                            <div class="step-detail">
+                                <strong>Compile:</strong>
+                                <code>javac HelloWorld.java</code>
+                            </div>
+                        </div>
+                        <div class="run-step">
+                            <span class="step-num">2</span>
+                            <div class="step-detail">
+                                <strong>Run:</strong>
+                                <code>java HelloWorld</code>
+                            </div>
+                        </div>
+                        <div class="run-step">
+                            <span class="step-num">3</span>
+                            <div class="step-detail">
+                                <strong>Output:</strong>
+                                <code>Hello, World!<br>Welcome to Java Programming!</code>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+       <section id="course-overview">
+    <h2>Course Overview</h2>
+    <div class="course-modules grid grid-2">
+        <!-- Chapter 1 -->
+        <div class="module-card">
+            <div class="module-number">01</div>
+            <div class="module-content">
+                <h3>Variables & Data Types</h3>
+                <p>Keywords, variables, primitive types, and literals. Learn the foundation of Java programming.</p>
+                <a href="chapter1.html" class="btn btn-primary">Start Learning</a>
+            </div>
+        </div>
+        
+        <!-- Chapter 2 -->
+        <div class="module-card">
+            <div class="module-number">02</div>
+            <div class="module-content">
+                <h3>Operators & Expressions</h3>
+                <p>Arithmetic, logical, comparison, and assignment operators with practical examples.</p>
+                <a href="chapter2.html" class="btn btn-primary">Start Learning</a>
+            </div>
+        </div>
+        
+        <!-- Chapter 3 -->
+        <div class="module-card">
+            <div class="module-number">03</div>
+            <div class="module-content">
+                <h3>Strings</h3>
+                <p>String manipulation, methods, formatting, and advanced string operations.</p>
+                <a href="chapter3.html" class="btn btn-primary">Start Learning</a>
+            </div>
+        </div>
+        
+        <!-- Chapter 4 -->
+        <div class="module-card">
+            <div class="module-number">04</div>
+            <div class="module-content">
+                <h3>Conditionals</h3>
+                <p>If-else statements, switch-case, and decision making structures in Java.</p>
+                <a href="chapter4.html" class="btn btn-primary">Start Learning</a>
+            </div>
+        </div>
+        
+        <!-- Chapter 5 -->
+        <div class="module-card">
+            <div class="module-number">05</div>
+            <div class="module-content">
+                <h3>Loops</h3>
+                <p>For, while, do-while loops and loop control statements for iteration.</p>
+                <a href="chapter5.html" class="btn btn-primary">Start Learning</a>
+            </div>
+        </div>
+        
+        <!-- Chapter 6 -->
+        <div class="module-card">
+            <div class="module-number">06</div>
+            <div class="module-content">
+                <h3>Arrays</h3>
+                <p>Single and multi-dimensional arrays, array methods, and memory management.</p>
+                <a href="chapter6.html" class="btn btn-primary">Start Learning</a>
+            </div>
+        </div>
+        
+        <!-- Chapter 7 -->
+        <div class="module-card">
+            <div class="module-number">07</div>
+            <div class="module-content">
+                <h3>Methods</h3>
+                <p>Method creation, parameters, return types, method overloading, and scope.</p>
+                <a href="chapter7.html" class="btn btn-primary">Start Learning</a>
+            </div>
+        </div>
+        
+        <!-- Chapter 8 -->
+        <div class="module-card">
+            <div class="module-number">08</div>
+            <div class="module-content">
+                <h3>OOP Introduction</h3>
+                <p>Object-Oriented Programming concepts, classes, objects, and encapsulation.</p>
+                <a href="chapter8.html" class="btn btn-primary">Start Learning</a>
+            </div>
+        </div>
+        
+        <!-- Chapter 9 -->
+        <div class="module-card">
+            <div class="module-number">09</div>
+            <div class="module-content">
+                <h3>Constructors</h3>
+                <p>Default and parameterized constructors, constructor overloading, and this keyword.</p>
+                <a href="chapter9.html" class="btn btn-primary">Start Learning</a>
+            </div>
+        </div>
+        
+        <!-- Chapter 10 -->
+        <div class="module-card">
+            <div class="module-number">10</div>
+            <div class="module-content">
+                <h3>Inheritance</h3>
+                <p>Class inheritance, super keyword, method overriding, and polymorphism basics.</p>
+                <a href="chapter10.html" class="btn btn-primary">Start Learning</a>
+            </div>
+        </div>
+        
+        <!-- Chapter 11 -->
+        <div class="module-card">
+            <div class="module-number">11</div>
+            <div class="module-content">
+                <h3>Abstract & Interfaces</h3>
+                <p>Abstract classes, interfaces, multiple inheritance, and advanced OOP concepts.</p>
+                <a href="chapter11.html" class="btn btn-primary">Start Learning</a>
+            </div>
+        </div>
+        
+        <!-- Chapter 12 -->
+        <div class="module-card">
+            <div class="module-number">12</div>
+            <div class="module-content">
+                <h3>Packages</h3>
+                <p>Package creation, import statements, access modifiers, and code organization.</p>
+                <a href="chapter12.html" class="btn btn-primary">Start Learning</a>
+            </div>
+        </div>
+        
+        <!-- Chapter 13 -->
+        <div class="module-card">
+            <div class="module-number">13</div>
+            <div class="module-content">
+                <h3>Multithreading</h3>
+                <p>Thread creation, synchronization, concurrent programming, and thread safety.</p>
+                <a href="chapter13.html" class="btn btn-primary">Start Learning</a>
+            </div>
+        </div>
+        
+        <!-- Chapter 14 -->
+        <div class="module-card">
+            <div class="module-number">14</div>
+            <div class="module-content">
+                <h3>Exception Handling</h3>
+                <p>Try-catch blocks, custom exceptions, throws keyword, and error management.</p>
+                <a href="chapter14.html" class="btn btn-primary">Start Learning</a>
+            </div>
+        </div>
+    </div>
+    
+   
+</section>
+
+        <div class="cta-section">
+            <h2>Ready to Start Learning Java?</h2>
+            <p>Begin your journey with Java fundamentals and build your programming skills step by step.</p>
+            <a href="chapter1.html" class="btn btn-primary btn-large">Start Learning Now →</a>
+        </div>
+    </main>
+
+   
+
+  
+    <script src="script.js"></script>
+</body>
+</html>

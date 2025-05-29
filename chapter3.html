@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 3: Strings - Java Tutorial</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="topnav">
+        <div class="nav-container">
+          <div class="logo">Java Tutorial</div><br>
+            <div class="nav-links" id="navLinks">
+               <a href="index.html">Home</a>
+                <a href="chapter1.html">Variables</a>
+                <a href="chapter2.html">Operators</a>
+                <a href="chapter3.html"  class="active">Strings</a>
+                <a href="chapter4.html">Conditionals</a>
+                <a href="chapter5.html">Loops</a>
+                <a href="chapter6.html">Arrays</a>
+                <a href="chapter7.html">Methods</a>
+                <a href="chapter8.html">OOPs Intro</a>
+                <a href="chapter9.html">Constructors</a>
+                <a href="chapter10.html">Inheritance</a>
+                <a href="chapter11.html">Abstract & Interfaces</a>
+                <a href="chapter12.html">Packages</a>
+                <a href="chapter13.html">Multithreading</a>
+                <a href="chapter14.html">Exceptions</a>
+    </div>
+           <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-section">
+            <div class="sidebar-title">Chapter 3 Topics</div>
+            <a href="#strings-intro" class="active">Introduction</a>
+            <a href="#string-creation">String Creation</a>
+            <a href="#printing-methods">Printing Methods</a>
+            <a href="#string-methods">String Methods</a>
+            <a href="#escape-sequences">Escape Sequences</a>
+            <a href="#practice">Practice Set</a>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <h1>Chapter 3: Strings in Java</h1>
+        
+        <section id="strings-intro">
+            <h2>Introduction to Strings</h2>
+            <div class="definition-box">
+                <p><strong>A string is a sequence of characters.</strong></p>
+                <p>String is a class but can be used like a data type.</p>
+                <p><span class="highlight">Strings are immutable and cannot be changed.</span></p>
+            </div>
+        </section>
+
+        <section id="string-creation">
+            <h2>String Creation</h2>
+            <div class="string-creation-methods grid grid-2">
+                <div class="creation-method card">
+                    <h3>Method 1: Using new keyword</h3>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span class="file-name">StringCreation1.java</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code>String name;
+name = new String("Harry");</code></pre>
+                    </div>
+                </div>
+                
+                <div class="creation-method card">
+                    <h3>Method 2: Direct assignment (Recommended)</h3>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span class="file-name">StringCreation2.java</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code>String name = "Harry";</code></pre>
+                    </div>
+                    <div class="reference-diagram card">
+                        <div class="reference-box">
+                            <span>name</span>
+                            <div class="arrow">→</div>
+                            <span>Reference</span>
+                        </div>
+                        <div class="object-box">
+                            <span>"Harry"</span>
+                            <div class="arrow">→</div>
+                            <span>Object</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="printing-methods">
+            <h2>Different Ways to Print in Java</h2>
+            <div class="printing-methods grid grid-2">
+                <div class="print-method card">
+                    <h3>1. System.out.print()</h3>
+                    <p>No newline at the end</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span class="file-name">Print.java</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code>System.out.print("Hello ");
+System.out.print("World");
+// Output: Hello World</code></pre>
+                    </div>
+                </div>
+                
+                <div class="print-method card">
+                    <h3>2. System.out.println()</h3>
+                    <p>Prints a newline at the end</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span class="file-name">Println.java</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code>System.out.println("Hello");
+System.out.println("World");
+// Output: 
+// Hello
+// World</code></pre>
+                    </div>
+                </div>
+                
+                <div class="print-method card">
+                    <h3>3. System.out.printf()</h3>
+                    <p>Formatted printing</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span class="file-name">Printf.java</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code>System.out.printf("Name: %s, Age: %d", "John", 25);
+// Output: Name: John, Age: 25</code></pre>
+                    </div>
+                    <div class="format-specifiers card">
+                        <h4>Format Specifiers:</h4>
+                        <ul>
+                            <li><code>%d</code> for int</li>
+                            <li><code>%f</code> for float</li>
+                            <li><code>%c</code> for char</li>
+                            <li><code>%s</code> for string</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="print-method card">
+                    <h3>4. System.out.format()</h3>
+                    <p>Same as printf()</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="string-methods">
+            <h2>String Methods</h2>
+            <p>String methods operate on Java Strings. They can be used to find length, convert to lowercase, etc.</p>
+            
+            <div class="string-example card">
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="file-name">StringExample.java</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code>String name = "Harry";
+//           01234 (index positions)</code></pre>
+                </div>
+            </div>
+            
+            <div class="methods-grid grid grid-3">
+                <div class="method-item card">
+                    <h3>1. length()</h3>
+                    <p>Returns length of String</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span class="file-name">Length.java</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code>name.length() // Returns 5</code></pre>
+                    </div>
+                </div>
+                
+                <div class="method-item card">
+                    <h3>2. toLowerCase()</h3>
+                    <p>Returns new String with lowercase characters</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span class="file-name">ToLowerCase.java</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code>name.toLowerCase() // Returns "harry"</code></pre>
+                    </div>
+                </div>
+                
+                <div class="method-item card">
+                    <h3>3. toUpperCase()</h3>
+                    <p>Returns new String with uppercase characters</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span class="file-name">ToUpperCase.java</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code>name.toUpperCase() // Returns "HARRY"</code></pre>
+                    </div>
+                </div>
+                
+                <div class="method-item card">
+                    <h3>4. trim()</h3>
+                    <p>Removes leading and trailing spaces</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span class="file-name">Trim.java</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code>String str = "  Harry  ";
+str.trim() // Returns "Harry"</code></pre>
+                    </div>
+                </div>
+                
+                <div class="method-item card">
+                    <h3>5. substring(int start)</h3>
+                    <p>Returns substring from start to end</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span class="file-name">Substring1.java</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code>name.substring(3) // Returns "ry"</code></pre>
+                    </div>
+                </div>
+                
+                <div class="method-item card">
+                    <h3>6. substring(int start, int end)</h3>
+                    <p>Returns substring from start to end (exclusive)</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span class="file-name">Substring2.java</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code>name.substring(1, 4) // Returns "arr"</code></pre>
+                    </div>
+                </div>
+                
+                <div class="method-item card">
+                    <h3>7. replace(char old, char new)</h3>
+                    <p>Returns new string after replacing characters</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span class="file-name">Replace.java</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code>name.replace('r', 'p') // Returns "Happy"</code></pre>
+                    </div>
+                </div>
+                
+                <div class="method-item card">
+                    <h3>8. startsWith(String prefix)</h3>
+                    <p>Returns true if string starts with prefix</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span class="file-name">StartsWith.java</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code>name.startsWith("Ha") // Returns true</code></pre>
+                    </div>
+                </div>
+                
+                <div class="method-item card">
+                    <h3>9. endsWith(String suffix)</h3>
+                    <p>Returns true if string ends with suffix</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span class="file-name">EndsWith.java</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code>name.endsWith("ry") // Returns true</code></pre>
+                    </div>
+                </div>
+                
+                <div class="method-item card">
+                    <h3>10. charAt(int index)</h3>
+                    <p>Returns character at given index</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span class="file-name">CharAt.java</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code>name.charAt(2) // Returns 'r'</code></pre>
+                    </div>
+                </div>
+                
+                <div class="method-item card">
+                    <h3>11. indexOf(String str)</h3>
+                    <p>Returns index of first occurrence</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span class="file-name">IndexOf.java</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code>name.indexOf("ar") // Returns 1
+name.indexOf("z") // Returns -1</code></pre>
+                    </div>
+                </div>
+                
+                <div class="method-item card">
+                    <h3>12. equals(String str)</h3>
+                    <p>Returns true if strings are equal (case sensitive)</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span class="file-name">Equals.java</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code>name.equals("Harry") // Returns true
+name.equals("harry") // Returns false</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="escape-sequences">
+            <h2>Escape Sequence Characters</h2>
+            <div class="definition-box">
+                <p><strong>Sequence of characters after backslash '\' = Escape sequence characters.</strong></p>
+                <p>Escape sequence characters consist of more than one character but represent one character when used within strings.</p>
+            </div>
+            
+            <div class="escape-sequences-table">
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Escape Sequence</th>
+                                <th>Description</th>
+                                <th>Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>\n</code></td>
+                                <td>Newline</td>
+                                <td><code>"Hello\nWorld"</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>\t</code></td>
+                                <td>Tab</td>
+                                <td><code>"Hello\tWorld"</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>\'</code></td>
+                                <td>Single quote</td>
+                                <td><code>"It\'s working"</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>\"</code></td>
+                                <td>Double quote</td>
+                                <td><code>"He said \"Hello\""</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>\\</code></td>
+                                <td>Backslash</td>
+                                <td><code>"C:\\Users\\Name"</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="practice">
+            <h2>Practice Set</h2>
+            <div class="practice-exercises">
+                <div class="exercise card">
+                    <h3>1. Convert string to lowercase</h3>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span class="file-name">StringLowercase.java</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code>public class StringLowercase {
+    public static void main(String[] args) {
+        String str = "HELLO WORLD";
+        System.out.println(str.toLowerCase());
+    }
+}</code></pre>
+                    </div>
+                </div>
+                
+                <div class="exercise card">
+                    <h3>2. Replace spaces with underscores</h3>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span class="file-name">ReplaceSpaces.java</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code>public class ReplaceSpaces {
+    public static void main(String[] args) {
+        String str = "Hello World Java";
+        String result = str.replace(' ', '_');
+        System.out.println(result); // Hello_World_Java
+    }
+}</code></pre>
+                    </div>
+                </div>
+                
+                <div class="exercise card">
+                    <h3>3. Fill letter template</h3>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span class="file-name">LetterTemplate.java</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code>public class LetterTemplate {
+    public static void main(String[] args) {
+        String letter = "Dear &lt;|name|&gt;, Thanks a lot";
+        String name = "Harry";
+        String result = letter.replace("&lt;|name|&gt;", name);
+        System.out.println(result);
+    }
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="practice-set">
+                <h3>Chapter 3 - Practice Set</h3>
+                <div class="practice-problems grid grid-2">
+                    <div class="problem-item card">
+                        <h4>1. String to Lowercase</h4>
+                        <p>Write a Java program to convert a string to lowercase.</p>
+                    </div>
+                    
+                    <div class="problem-item card">
+                        <h4>2. Replace Spaces</h4>
+                        <p>Write a Java program to replace spaces with underscores.</p>
+                    </div>
+                    
+                    <div class="problem-item card">
+                        <h4>3. Letter Template</h4>
+                        <p>Write a Java program to fill in a letter template which looks like: letter = "Dear &lt;|name|&gt;, Thanks a lot". Replace &lt;|name|&gt; with a string (some name).</p>
+                    </div>
+                    
+                    <div class="problem-item card">
+                        <h4>4. Detect Multiple Spaces</h4>
+                        <p>Write a Java program to detect double and triple spaces in a string.</p>
+                    </div>
+                    
+                    <div class="problem-item card">
+                        <h4>5. Format with Escape Sequences</h4>
+                        <p>Write a program to format the following letter using escape sequence characters: letter = "Dear Harry, This Java Course is nice. Thanks"</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="chapter-nav">
+            <a href="chapter2.html" class="btn btn-secondary">← Previous: Operators</a>
+            <a href="chapter4.html" class="btn btn-primary">Next: Conditionals →</a>
+        </div>
+    </main>
+
+    
+
+    <script src="script.js"></script>
+</body>
+</html>

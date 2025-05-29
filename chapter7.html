@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 7: Methods in Java - Java Tutorial</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="topnav">
+        <div class="nav-container">
+            <div class="logo">Java Tutorial</div><br>
+            <div class="nav-links" id="navLinks">
+               <a href="index.html">Home</a>
+                <a href="chapter1.html">Variables</a>
+                <a href="chapter2.html">Operators</a>
+                <a href="chapter3.html">Strings</a>
+                <a href="chapter4.html">Conditionals</a>
+                <a href="chapter5.html">Loops</a>
+                <a href="chapter6.html">Arrays</a>
+                <a href="chapter7.html"  class="active">Methods</a>
+                <a href="chapter8.html">OOPs Intro</a>
+                <a href="chapter9.html">Constructors</a>
+                <a href="chapter10.html">Inheritance</a>
+                <a href="chapter11.html">Abstract & Interfaces</a>
+                <a href="chapter12.html">Packages</a>
+                <a href="chapter13.html">Multithreading</a>
+                <a href="chapter14.html">Exceptions</a>
+
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+           </button>
+        </div>
+    </nav>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-section">
+            <div class="sidebar-title">Chapter 7 Topics</div>
+            <a href="#introduction" class="active">Introduction</a>
+            <a href="#method-syntax">Method Syntax</a>
+            <a href="#method-calling">Method Calling</a>
+            <a href="#static-keyword">Static Keyword</a>
+            <a href="#method-overloading">Method Overloading</a>
+            <a href="#varargs">Variable Arguments</a>
+            <a href="#recursion">Recursion</a>
+            <a href="#practice">Practice Set</a>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <h1>Chapter 7: Methods in Java</h1>
+        
+        <section id="introduction">
+            <h2>Introduction to Methods</h2>
+            <div class="definition-box">
+                <p><strong>Sometimes our program grows in size and we want to separate the logic of main method to other methods.</strong></p>
+                <p>For instance - If we are calculating average of a number pair 5 times, we can use methods to avoid repeating the logic.</p>
+                <p><strong>DRY = Don't Repeat Yourself!</strong></p>
+            </div>
+            
+            <div class="benefits-grid grid grid-3">
+                <div class="benefit-item card">
+                    <h3>🔄 Code Reusability</h3>
+                    <p>Write once, use multiple times</p>
+                </div>
+                <div class="benefit-item card">
+                    <h3>📝 Better Organization</h3>
+                    <p>Separate logic into manageable chunks</p>
+                </div>
+                <div class="benefit-item card">
+                    <h3>🐛 Easier Debugging</h3>
+                    <p>Isolate and fix issues quickly</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="method-syntax">
+            <h2>Syntax of a Method</h2>
+            <div class="definition-box">
+                <p><strong>A method is a function written inside a class.</strong></p>
+                <p>Since Java is an Object Oriented language, we need to write the method inside some class.</p>
+            </div>
+            
+            <div class="syntax-box">
+                <h3>Method Structure:</h3>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="file-name">Method Syntax</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code>returnType methodName(parameters) {
+    // Method body
+    return value; // if return type is not void
+}</code></pre>
+                </div>
+            </div>
+
+            <h3>Example: Sum of Two Numbers</h3>
+            <div class="code-container">
+                <div class="code-header">
+                    <span class="file-name">Calculator.java</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                </div>
+                <pre><code>public class Calculator {
+    // Method that returns sum of two numbers
+    int mySum(int a, int b) {
+        int c = a + b;
+        return c;
+    }
+    
+    // Method with void return type
+    void printMessage() {
+        System.out.println("Hello from method!");
+    }
+    
+    public static void main(String[] args) {
+        Calculator calc = new Calculator();
+        
+        int result = calc.mySum(5, 3);
+        System.out.println("Sum: " + result);
+        
+        calc.printMessage();
+    }
+}</code></pre>
+            </div>
+        </section>
+
+        <section id="method-calling">
+            <h2>Calling a Method</h2>
+            <div class="definition-box">
+                <p><strong>A method can be called by creating an object of the class in which the method exists followed by the method call.</strong></p>
+            </div>
+
+            <div class="process-flow">
+                <div class="process-step">
+                    <div class="step-icon">🏗️</div>
+                    <div class="step-title">Object Creation</div>
+                    <div class="step-desc">Calc obj = new Calc();</div>
+                </div>
+                <div class="process-step">
+                    <div class="step-icon">📞</div>
+                    <div class="step-title">Method Call</div>
+                    <div class="step-desc">obj.mySum(a, b);</div>
+                </div>
+                <div class="process-step">
+                    <div class="step-icon">📋</div>
+                    <div class="step-title">Value Copy</div>
+                    <div class="step-desc">Parameters are copied</div>
+                </div>
+                <div class="process-step">
+                    <div class="step-icon">↩️</div>
+                    <div class="step-title">Return Value</div>
+                    <div class="step-desc">Result is returned</div>
+                </div>
+            </div>
+
+            <div class="note-box">
+                <p><strong>Important:</strong> The values from the method call (a and b) are copied to the parameters of the function. Thus even if we modify the values inside the method, the values in the main method will not change.</p>
+                <p><strong>Exception:</strong> In case of Arrays, the reference is passed. Same is the case for Object passing to methods.</p>
+            </div>
+        </section>
+
+        <section id="static-keyword">
+            <h2>Static Keyword</h2>
+            <div class="definition-box">
+                <p><strong>static keyword is used to associate a method of a given class with the class rather than the object.</strong></p>
+                <p>Static method in a class is shared by all the objects.</p>
+            </div>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <span class="file-name">StaticExample.java</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                </div>
+                <pre><code>public class StaticExample {
+    // Static method - belongs to class
+    static int add(int a, int b) {
+        return a + b;
+    }
+    
+    // Non-static method - belongs to object
+    int multiply(int a, int b) {
+        return a * b;
+    }
+    
+    public static void main(String[] args) {
+        // Calling static method - no object needed
+        int sum = StaticExample.add(5, 3);
+        System.out.println("Sum: " + sum);
+        
+        // Calling non-static method - object needed
+        StaticExample obj = new StaticExample();
+        int product = obj.multiply(5, 3);
+        System.out.println("Product: " + product);
+    }
+}</code></pre>
+            </div>
+        </section>
+
+        <section id="method-overloading">
+            <h2>Method Overloading</h2>
+            <div class="definition-box">
+                <p><strong>Two or more methods can have same name but different parameters. Such methods are called Overloaded methods.</strong></p>
+                <p><strong>Note:</strong> Method overloading cannot be performed by changing the return type of methods.</p>
+            </div>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <span class="file-name">MethodOverloading.java</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                </div>
+                <pre><code>public class MethodOverloading {
+    // Overloaded methods with same name but different parameters
+    
+    void foo() {
+        System.out.println("Method with no parameters");
+    }
+    
+    void foo(int a) {
+        System.out.println("Method with one parameter: " + a);
+    }
+    
+    int foo(int a, int b) {
+        System.out.println("Method with two parameters");
+        return a + b;
+    }
+    
+    void foo(String name) {
+        System.out.println("Method with String parameter: " + name);
+    }
+    
+    public static void main(String[] args) {
+        MethodOverloading obj = new MethodOverloading();
+        
+        obj.foo();              // Calls first method
+        obj.foo(10);            // Calls second method
+        int result = obj.foo(5, 3);  // Calls third method
+        obj.foo("Java");        // Calls fourth method
+        
+        System.out.println("Result: " + result);
+    }
+}</code></pre>
+            </div>
+        </section>
+
+        <section id="varargs">
+            <h2>Variable Arguments (Varargs)</h2>
+            <div class="definition-box">
+                <p><strong>A function with varargs can be created in Java using the following syntax:</strong></p>
+                <p><code>public static void foo(int... arr)</code></p>
+                <p>arr is available here as int[] arr</p>
+            </div>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <span class="file-name">VarargsExample.java</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                </div>
+                <pre><code>public class VarargsExample {
+    // Method with varargs
+    public static void foo(int... arr) {
+        System.out.println("Number of arguments: " + arr.length);
+        for (int element : arr) {
+            System.out.print(element + " ");
+        }
+        System.out.println();
+    }
+    
+    // Method with at least one parameter required
+    public static void bar(int a, int... arr) {
+        System.out.println("First parameter: " + a);
+        System.out.println("Remaining parameters:");
+        for (int element : arr) {
+            System.out.print(element + " ");
+        }
+        System.out.println();
+    }
+    
+    public static void main(String[] args) {
+        // foo can be called with zero or more arguments
+        foo();
+        foo(7);
+        foo(7, 8, 9);
+        foo(1, 2, 7, 8, 9);
+        
+        System.out.println("---");
+        
+        // bar requires at least one argument
+        bar(1);
+        bar(1, 2);
+        bar(1, 7, 9, 11);
+    }
+}</code></pre>
+            </div>
+        </section>
+
+        <section id="recursion">
+            <h2>Recursion</h2>
+            <div class="definition-box">
+                <p><strong>A function in Java can call itself. Such calling of function by itself is called recursion.</strong></p>
+                <p><strong>Example:</strong> factorial(n) = n × factorial(n-1)</p>
+            </div>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <span class="file-name">RecursionExample.java</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                </div>
+                <pre><code>public class RecursionExample {
+    // Recursive method to calculate factorial
+    static int factorial(int n) {
+        if (n == 0 || n == 1) {
+            return 1;  // Base case
+        } else {
+            return n * factorial(n - 1);  // Recursive call
+        }
+    }
+    
+    // Recursive method to calculate Fibonacci
+    static int fibonacci(int n) {
+        if (n <= 1) {
+            return n;  // Base case
+        } else {
+            return fibonacci(n - 1) + fibonacci(n - 2);  // Recursive call
+        }
+    }
+    
+    public static void main(String[] args) {
+        int num = 5;
+        System.out.println("Factorial of " + num + " = " + factorial(num));
+        
+        System.out.println("Fibonacci series:");
+        for (int i = 0; i < 10; i++) {
+            System.out.print(fibonacci(i) + " ");
+        }
+    }
+}</code></pre>
+            </div>
+
+            <div class="exercise card">
+                <h4>Quick Quiz: Write a program to calculate factorial of a number using recursion in Java</h4>
+                <div class="answer-box">
+                    <p><strong>Answer:</strong> The factorial method shown above demonstrates recursion. The method calls itself with (n-1) until it reaches the base case (n=0 or n=1).</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="practice">
+            <h2>Practice Set</h2>
+            
+            <div class="practice-set">
+                <h3>Chapter 7 - Practice Set</h3>
+                <div class="practice-problems grid grid-2">
+                    <div class="problem-item card">
+                        <h4>1. Multiplication Table</h4>
+                        <p>Write a Java method to print multiplication table of a number n.</p>
+                    </div>
+                    
+                    <div class="problem-item card">
+                        <h4>2. Star Pattern</h4>
+                        <p>Write a program using functions to print the following pattern:<br>
+                        *<br>**<br>***<br>****</p>
+                    </div>
+                    
+                    <div class="problem-item card">
+                        <h4>3. Sum of Natural Numbers</h4>
+                        <p>Write a recursive function to calculate sum of first n natural numbers.</p>
+                    </div>
+                    
+                    <div class="problem-item card">
+                        <h4>4. Reverse Star Pattern</h4>
+                        <p>Write a function to print the following pattern:<br>
+                        ****<br>***<br>**<br>*</p>
+                    </div>
+                    
+                    <div class="problem-item card">
+                        <h4>5. Fibonacci Series</h4>
+                        <p>Write a function to print nth term of fibonacci series using recursion.</p>
+                    </div>
+                    
+                    <div class="problem-item card">
+                        <h4>6. Average Calculator</h4>
+                        <p>Write a function to find average of a set of numbers passed as arguments.</p>
+                    </div>
+                    
+                    <div class="problem-item card">
+                        <h4>7. Temperature Converter</h4>
+                        <p>Write a function to convert Celsius temperature into Fahrenheit.</p>
+                    </div>
+                    
+                    <div class="problem-item card">
+                        <h4>8. Iterative Approach</h4>
+                        <p>Repeat problem 3 using iterative approach.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="exercise card">
+                <h3>Sample Solution: Multiplication Table</h3>
+                <div class="solution-container">
+                    <button class="btn btn-secondary show-solution-btn" onclick="toggleSolution('multiplicationTable')">Show Solution</button>
+                    <div id="multiplicationTable" class="solution-code" style="display: none;">
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="file-name">MultiplicationTable.java</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            </div>
+                            <pre><code>public class MultiplicationTable {
+    static void printTable(int n) {
+        System.out.println("Multiplication table of " + n + ":");
+        for (int i = 1; i <= 10; i++) {
+            System.out.println(n + " × " + i + " = " + (n * i));
+        }
+    }
+    
+    public static void main(String[] args) {
+        printTable(5);
+        System.out.println();
+        printTable(7);
+    }
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="chapter-nav">
+            <a href="chapter6.html" class="btn btn-secondary">← Previous: Arrays</a>
+            <a href="chapter8.html" class="btn btn-primary">Next: OOPs →</a>
+        </div>
+    </main>
+
+   
+    <script src="script.js"></script>
+</body>
+</html>

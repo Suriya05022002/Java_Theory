@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 13: Multithreading - Java Tutorial</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="topnav">
+        <div class="nav-container">
+            <div class="logo">Java Tutorial</div><br>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="chapter1.html">Variables</a>
+                <a href="chapter2.html">Operators</a>
+                <a href="chapter3.html">Strings</a>
+                <a href="chapter4.html">Conditionals</a>
+                <a href="chapter5.html">Loops</a>
+                <a href="chapter6.html">Arrays</a>
+                <a href="chapter7.html">Methods</a>
+                <a href="chapter8.html">OOPs Intro</a>
+                <a href="chapter9.html">Constructors</a>
+                <a href="chapter10.html">Inheritance</a>
+                <a href="chapter11.html">Abstract & Interfaces</a>
+                <a href="chapter12.html">Packages</a>
+                <a href="chapter13.html" class="active">Multithreading</a>
+                <a href="chapter14.html">Exceptions</a>
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+          </button>
+        </div>
+    </nav>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-section">
+            <div class="sidebar-title">Chapter 13 Topics</div>
+            <a href="#multithreading-intro" class="active">Introduction</a>
+            <a href="#creating-threads">Creating Threads</a>
+            <a href="#thread-lifecycle">Thread Lifecycle</a>
+            <a href="#thread-class">Thread Class</a>
+            <a href="#thread-methods">Thread Methods</a>
+            <a href="#practice">Practice Set</a>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <h1>Chapter 13: Multithreading</h1>
+        
+        <section id="multithreading-intro">
+            <h2>Introduction to Multithreading</h2>
+            <div class="definition-box">
+                <p><strong>Multiprocessing and multithreading both are used to achieve multitasking.</strong></p>
+                <p>Multithreading allows concurrent execution of multiple parts of a program for maximum utilization of CPU.</p>
+            </div>
+            
+            <div class="threading-concept card">
+                <h3>Process vs Thread</h3>
+                <div class="comparison-visual">
+                    <div class="process-diagram">
+                        <h4>Multiprocessing</h4>
+                        <div class="process-flow">
+                            <div class="process-step">
+                                <div class="step-title">Process 1</div>
+                                <div class="step-desc">Separate Memory</div>
+                            </div>
+                            <div class="process-step">
+                                <div class="step-title">Process 2</div>
+                                <div class="step-desc">Separate Memory</div>
+                            </div>
+                            <div class="process-step">
+                                <div class="step-title">Process 3</div>
+                                <div class="step-desc">Separate Memory</div>
+                            </div>
+                        </div>
+                        <div class="os-layer">Operating System</div>
+                    </div>
+                    
+                    <div class="thread-diagram">
+                        <h4>Multithreading</h4>
+                        <div class="thread-container">
+                            <div class="process-box">
+                                <div class="process-title">Process</div>
+                                <div class="thread-flow">
+                                    <div class="thread-step">Thread 1</div>
+                                    <div class="thread-step">Thread 2</div>
+                                    <div class="thread-step">Thread 3</div>
+                                </div>
+                                <div class="shared-memory">Shared Memory Area</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="thread-benefits grid grid-2">
+                <div class="concept-card card">
+                    <h3>Thread Advantages</h3>
+                   
+                        <li><strong>Shared Memory:</strong> Threads use shared memory area</li>
+                        <li><strong>Faster Context Switching:</strong> Less overhead than processes</li>
+                        <li><strong>Lightweight:</strong> Thread is lighter than process</li>
+                        <li><strong>Resource Sharing:</strong> Efficient resource utilization</li>
+                    
+                </div>
+                
+                <div class="concept-card card">
+                    <h3>Real-world Example</h3>
+                    <p><strong>Word Processor:</strong></p>
+                  
+                        <li>One thread running in foreground as an editor</li>
+                        <li>Another thread in background auto-saving the document</li>
+                        <li>Third thread checking spelling and grammar</li>
+                   
+                </div>
+            </div>
+
+            
+                    
+                    
+                </div>
+            </div>
+        </section>
+
+        <section id="creating-threads">
+            <h2>Creating a Thread</h2>
+            <div class="definition-box">
+                <p><strong>There are two ways to create a thread in Java:</strong></p>
+                
+                    <li>By extending Thread Class</li>
+                    <li>By implementing Runnable interface</li>
+                
+            </div>
+            
+            <div class="thread-creation-methods">
+                <h3>Method 1: Extending Thread Class</h3>
+                
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="file-name">ThreadByExtending.java</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code>class MyThread extends Thread {
+    @Override
+    public void run() {
+        // Code that will run in separate thread
+        for (int i = 1; i <= 5; i++) {
+            System.out.println("Thread: " + Thread.currentThread().getName() + 
+                             ", Count: " + i);
+            try {
+                Thread.sleep(1000); // Sleep for 1 second
+            } catch (InterruptedException e) {
+                System.out.println("Thread interrupted");
+            }
+        }
+    }
+}
+
+public class ThreadByExtending {
+    public static void main(String[] args) {
+        MyThread thread1 = new MyThread();
+        MyThread thread2 = new MyThread();
+        
+        thread1.setName("Worker-1");
+        thread2.setName("Worker-2");
+        
+        thread1.start(); // Start first thread
+        thread2.start(); // Start second thread
+        
+        System.out.println("Main thread continues...");
+    }
+}</code></pre>
+                </div>
+
+                <h3>Method 2: Implementing Runnable Interface</h3>
+                
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="file-name">ThreadByRunnable.java</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code>class MyRunnable implements Runnable {
+    @Override
+    public void run() {
+        for (int i = 1; i <= 5; i++) {
+            System.out.println("Runnable: " + Thread.currentThread().getName() + 
+                             ", Count: " + i);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                System.out.println("Thread interrupted");
+            }
+        }
+    }
+}
+
+public class ThreadByRunnable {
+    public static void main(String[] args) {
+        MyRunnable runnable1 = new MyRunnable();
+        MyRunnable runnable2 = new MyRunnable();
+        
+        Thread thread1 = new Thread(runnable1, "Worker-1");
+        Thread thread2 = new Thread(runnable2, "Worker-2");
+        
+        thread1.start();
+        thread2.start();
+        
+        System.out.println("Main thread continues...");
+    }
+}</code></pre>
+                </div>
+
+                <div class="method-comparison grid grid-2">
+                    <div class="concept-card card">
+                        <h3>Extending Thread Class</h3>
+                        <p><strong>Pros:</strong></p>
+                        
+                            <li>Simple to implement</li>
+                            <li>Direct access to Thread methods</li>
+                        
+                        <p><strong>Cons:</strong></p>
+                     
+                            <li>Cannot extend other classes</li>
+                            <li>Tight coupling with Thread class</li>
+                     
+                    </div>
+                    
+                    <div class="concept-card card">
+                        <h3>Implementing Runnable</h3>
+                        <p><strong>Pros:</strong></p>
+                       
+                            <li>Can extend other classes</li>
+                            <li>Better object-oriented design</li>
+                            <li>Separation of concerns</li>
+                        
+                        <p><strong>Cons:</strong></p>
+                       
+                            <li>Slightly more code</li>
+                            <li>Need Thread object to start</li>
+                       
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="thread-lifecycle">
+            <h2>Life Cycle of a Thread</h2>
+            <div class="definition-box">
+                <p><strong>A thread goes through various states during its lifetime.</strong></p>
+            </div>
+            
+           
+
+            <div class="state-descriptions">
+                <h3>State Descriptions</h3>
+                <div class="state-list">
+                    <div class="state-item card">
+                        <h4>1. New</h4>
+                        <p>Instance of thread created which is not yet started by invoking start().</p>
+                        <code>Thread t = new Thread();</code>
+                    </div>
+                    
+                    <div class="state-item card">
+                        <h4>2. Runnable</h4>
+                        <p>After invocation of start() & before it is selected to be run by the scheduler.</p>
+                        <code>t.start();</code>
+                    </div>
+                    
+                    <div class="state-item card">
+                        <h4>3. Running</h4>
+                        <p>After thread scheduler has selected it for execution.</p>
+                        <code>// Thread is executing run() method</code>
+                    </div>
+                    
+                    <div class="state-item card">
+                        <h4>4. Non-Runnable (Blocked)</h4>
+                        <p>Thread alive, but not eligible to run due to waiting, sleeping, or blocking.</p>
+                        <code>Thread.sleep(1000); // or wait(), join()</code>
+                    </div>
+                    
+                    <div class="state-item card">
+                        <h4>5. Terminated</h4>
+                        <p>run() method has exited - thread execution completed.</p>
+                        <code>// Thread finished execution</code>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="thread-class">
+            <h2>The Thread Class</h2>
+            <div class="definition-box">
+                <p><strong>Below are the commonly used Constructors of Thread class:</strong></p>
+            </div>
+            
+            <div class="thread-constructors">
+                <h3>Thread Constructors</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Constructor</th>
+                                <th>Description</th>
+                                <th>Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>Thread()</code></td>
+                                <td>Creates a new thread with default name</td>
+                                <td><code>Thread t = new Thread();</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>Thread(String name)</code></td>
+                                <td>Creates a new thread with specified name</td>
+                                <td><code>Thread t = new Thread("MyThread");</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>Thread(Runnable r)</code></td>
+                                <td>Creates a new thread with Runnable target</td>
+                                <td><code>Thread t = new Thread(runnable);</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>Thread(Runnable r, String name)</code></td>
+                                <td>Creates a new thread with Runnable and name</td>
+                                <td><code>Thread t = new Thread(runnable, "MyThread");</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <span class="file-name">ThreadConstructorExample.java</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                </div>
+                <pre><code>class TaskRunnable implements Runnable {
+    private String taskName;
+    
+    public TaskRunnable(String taskName) {
+        this.taskName = taskName;
+    }
+    
+    @Override
+    public void run() {
+        for (int i = 1; i <= 3; i++) {
+            System.out.println(taskName + " - Step " + i + 
+                             " [Thread: " + Thread.currentThread().getName() + "]");
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                System.out.println("Thread interrupted");
+            }
+        }
+    }
+}
+
+public class ThreadConstructorExample {
+    public static void main(String[] args) {
+        // Constructor 1: Thread()
+        Thread thread1 = new Thread() {
+            @Override
+            public void run() {
+                System.out.println("Anonymous thread running: " + getName());
+            }
+        };
+        
+        // Constructor 2: Thread(String name)
+        Thread thread2 = new Thread("NamedThread") {
+            @Override
+            public void run() {
+                System.out.println("Named thread running: " + getName());
+            }
+        };
+        
+        // Constructor 3: Thread(Runnable r)
+        TaskRunnable task1 = new TaskRunnable("Task1");
+        Thread thread3 = new Thread(task1);
+        
+        // Constructor 4: Thread(Runnable r, String name)
+        TaskRunnable task2 = new TaskRunnable("Task2");
+        Thread thread4 = new Thread(task2, "CustomWorker");
+        
+        // Start all threads
+        thread1.start();
+        thread2.start();
+        thread3.start();
+        thread4.start();
+        
+        System.out.println("All threads started from main thread: " + 
+                         Thread.currentThread().getName());
+    }
+}</code></pre>
+            </div>
+        </section>
+
+        <section id="thread-methods">
+            <h2>Methods of Thread Class</h2>
+            <div class="definition-box">
+                <p><strong>Thread class offers a lot of methods such as run(), start(), join(), getPriority(), setPriority() etc.</strong></p>
+                <p>More can be found by visiting Java docs.</p>
+            </div>
+            
+            <div class="thread-methods-table">
+                <h3>Important Thread Methods</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Method</th>
+                                <th>Description</th>
+                                <th>Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>start()</code></td>
+                                <td>Starts the thread execution</td>
+                                <td><code>thread.start();</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>run()</code></td>
+                                <td>Contains the code to be executed</td>
+                                <td><code>public void run() { ... }</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>sleep(long ms)</code></td>
+                                <td>Pauses thread for specified milliseconds</td>
+                                <td><code>Thread.sleep(1000);</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>join()</code></td>
+                                <td>Waits for thread to complete</td>
+                                <td><code>thread.join();</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>getName()</code></td>
+                                <td>Returns thread name</td>
+                                <td><code>String name = thread.getName();</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>setName(String)</code></td>
+                                <td>Sets thread name</td>
+                                <td><code>thread.setName("Worker");</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>getPriority()</code></td>
+                                <td>Returns thread priority (1-10)</td>
+                                <td><code>int priority = thread.getPriority();</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>setPriority(int)</code></td>
+                                <td>Sets thread priority (1-10)</td>
+                                <td><code>thread.setPriority(Thread.MAX_PRIORITY);</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>isAlive()</code></td>
+                                <td>Checks if thread is alive</td>
+                                <td><code>boolean alive = thread.isAlive();</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>currentThread()</code></td>
+                                <td>Returns reference to current thread</td>
+                                <td><code>Thread current = Thread.currentThread();</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <span class="file-name">ThreadMethodsExample.java</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                </div>
+                <pre><code>class WorkerThread extends Thread {
+    public WorkerThread(String name) {
+        super(name);
+    }
+    
+    @Override
+    public void run() {
+        System.out.println(getName() + " started with priority: " + getPriority());
+        
+        for (int i = 1; i <= 5; i++) {
+            System.out.println(getName() + " - Task " + i);
+            try {
+                Thread.sleep(500); // Sleep for 500ms
+            } catch (InterruptedException e) {
+                System.out.println(getName() + " was interrupted");
+                return;
+            }
+        }
+        
+        System.out.println(getName() + " completed");
+    }
+}
+
+public class ThreadMethodsExample {
+    public static void main(String[] args) {
+        System.out.println("Main thread: " + Thread.currentThread().getName());
+        
+        // Create threads
+        WorkerThread worker1 = new WorkerThread("Worker-1");
+        WorkerThread worker2 = new WorkerThread("Worker-2");
+        WorkerThread worker3 = new WorkerThread("Worker-3");
+        
+        // Set priorities
+        worker1.setPriority(Thread.MIN_PRIORITY);  // 1
+        worker2.setPriority(Thread.NORM_PRIORITY); // 5
+        worker3.setPriority(Thread.MAX_PRIORITY);  // 10
+        
+        // Start threads
+        worker1.start();
+        worker2.start();
+        worker3.start();
+        
+        // Check if threads are alive
+        System.out.println("Worker1 alive: " + worker1.isAlive());
+        System.out.println("Worker2 alive: " + worker2.isAlive());
+        System.out.println("Worker3 alive: " + worker3.isAlive());
+        
+        try {
+            // Wait for all threads to complete
+            worker1.join();
+            worker2.join();
+            worker3.join();
+        } catch (InterruptedException e) {
+            System.out.println("Main thread interrupted");
+        }
+        
+        System.out.println("All workers completed. Main thread ending.");
+    }
+}</code></pre>
+            </div>
+
+            <div class="thread-priorities card">
+                <h3>Thread Priorities</h3>
+                <p>Java threads have priorities ranging from 1 to 10:</p>
+              
+                    <li><code>Thread.MIN_PRIORITY</code> = 1</li>
+                    <li><code>Thread.NORM_PRIORITY</code> = 5 (default)</li>
+                    <li><code>Thread.MAX_PRIORITY</code> = 10</li>
+              
+                <div class="note-box">
+                    <p><strong>Note:</strong> Thread priority is a hint to the thread scheduler. The actual behavior depends on the underlying operating system.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="practice">
+            <h2>Practice Set</h2>
+            
+            <div class="practice-set">
+                <h3>Chapter 13 - Practice Set</h3>
+                <div class="practice-problems grid grid-2">
+                    <div class="problem-item card">
+                        <h4>1. Continuous Messages</h4>
+                        <p>Write a program to print "Good morning" and "Welcome" continuously on the screen in Java using Threads.</p>
+                    </div>
+                    
+                    <div class="problem-item card">
+                        <h4>2. Thread Sleep</h4>
+                        <p>Add a sleep method in welcome thread of question 1 to delay its execution for 200 ms.</p>
+                    </div>
+                    
+                    <div class="problem-item card">
+                        <h4>3. Priority Methods</h4>
+                        <p>Demonstrate getPriority() and setPriority() methods in Java Threads.</p>
+                    </div>
+                    
+                    <div class="problem-item card">
+                        <h4>4. Thread State</h4>
+                        <p>How do you get state of a given thread in Java?</p>
+                    </div>
+                    
+                    <div class="problem-item card">
+                        <h4>5. Current Thread Reference</h4>
+                        <p>How do you get reference to the current thread in Java?</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="exercise card">
+                <h3>Solution Example: Continuous Messages with Sleep</h3>
+                <div class="solution-container">
+                    <button class="btn btn-secondary show-solution-btn" onclick="toggleSolution('solution1')">Show Solution</button>
+                    <div id="solution1" class="solution-code" style="display: none;">
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="file-name">ContinuousMessages.java</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            </div>
+                            <pre><code>class GoodMorningThread extends Thread {
+    @Override
+    public void run() {
+        while (true) {
+            System.out.println("Good morning");
+            try {
+                Thread.sleep(1000); // Sleep for 1 second
+            } catch (InterruptedException e) {
+                System.out.println("Good morning thread interrupted");
+                break;
+            }
+        }
+    }
+}
+
+class WelcomeThread extends Thread {
+    @Override
+    public void run() {
+        while (true) {
+            System.out.println("Welcome");
+            try {
+                Thread.sleep(200); // Sleep for 200 ms as requested
+            } catch (InterruptedException e) {
+                System.out.println("Welcome thread interrupted");
+                break;
+            }
+        }
+    }
+}
+
+public class ContinuousMessages {
+    public static void main(String[] args) {
+        GoodMorningThread gmThread = new GoodMorningThread();
+        WelcomeThread welcomeThread = new WelcomeThread();
+        
+        // Set thread names
+        gmThread.setName("GoodMorning-Thread");
+        welcomeThread.setName("Welcome-Thread");
+        
+        // Set priorities
+        gmThread.setPriority(Thread.NORM_PRIORITY);
+        welcomeThread.setPriority(Thread.MAX_PRIORITY);
+        
+        System.out.println("Starting threads...");
+        System.out.println("Good Morning Thread Priority: " + gmThread.getPriority());
+        System.out.println("Welcome Thread Priority: " + welcomeThread.getPriority());
+        
+        // Start both threads
+        gmThread.start();
+        welcomeThread.start();
+        
+        // Let threads run for 10 seconds then interrupt them
+        try {
+            Thread.sleep(10000);
+            gmThread.interrupt();
+            welcomeThread.interrupt();
+        } catch (InterruptedException e) {
+            System.out.println("Main thread interrupted");
+        }
+        
+        System.out.println("Main thread ending");
+    }
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="exercise card">
+                <h3>Solution Example: Thread State and Current Thread</h3>
+                <div class="solution-container">
+                    <button class="btn btn-secondary show-solution-btn" onclick="toggleSolution('solution2')">Show Solution</button>
+                    <div id="solution2" class="solution-code" style="display: none;">
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="file-name">ThreadStateExample.java</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            </div>
+                            <pre><code>class StateDemo extends Thread {
+    @Override
+    public void run() {
+        System.out.println("Thread running: " + Thread.currentThread().getName());
+        System.out.println("Current thread state: " + Thread.currentThread().getState());
+        
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            System.out.println("Thread interrupted");
+        }
+        
+        System.out.println("Thread finishing: " + Thread.currentThread().getName());
+    }
+}
+
+public class ThreadStateExample {
+    public static void main(String[] args) {
+        StateDemo thread = new StateDemo();
+        
+        // Get current thread reference
+        Thread currentThread = Thread.currentThread();
+        System.out.println("Current thread (main): " + currentThread.getName());
+        System.out.println("Main thread priority: " + currentThread.getPriority());
+        
+        // Check thread state before starting
+        System.out.println("Thread state before start: " + thread.getState()); // NEW
+        
+        thread.start();
+        
+        // Check thread state after starting
+        System.out.println("Thread state after start: " + thread.getState()); // RUNNABLE
+        
+        try {
+            Thread.sleep(500);
+            System.out.println("Thread state while running: " + thread.getState()); // RUNNABLE or TIMED_WAITING
+            
+            thread.join(); // Wait for thread to complete
+            
+            System.out.println("Thread state after completion: " + thread.getState()); // TERMINATED
+        } catch (InterruptedException e) {
+            System.out.println("Main thread interrupted");
+        }
+        
+        System.out.println("Main thread completed");
+    }
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="chapter-nav">
+            <a href="chapter12.html" class="btn btn-secondary">← Previous: Packages</a>
+            <a href="chapter14.html" class="btn btn-primary">Next: Exceptions →</a>
+        </div>
+    </main>
+
+   
+
+    <script src="script.js"></script>
+</body>

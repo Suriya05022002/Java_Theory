@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 10: Inheritance - Java Tutorial</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="topnav">
+        <div class="nav-container">
+           <div class="logo">Java Tutorial</div><br>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="chapter1.html">Variables</a>
+                <a href="chapter2.html">Operators</a>
+                <a href="chapter3.html">Strings</a>
+                <a href="chapter4.html">Conditionals</a>
+                <a href="chapter5.html">Loops</a>
+                <a href="chapter6.html">Arrays</a>
+                <a href="chapter7.html">Methods</a>
+                <a href="chapter8.html">OOPs Intro</a>
+                <a href="chapter9.html">Constructors</a>
+                <a href="chapter10.html"  class="active">Inheritance</a>
+                <a href="chapter11.html">Abstract & Interfaces</a>
+                <a href="chapter12.html">Packages</a>
+                <a href="chapter13.html">Multithreading</a>
+                <a href="chapter14.html">Exceptions</a>
+            </div>
+           <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+           </button>
+        </div>
+    </nav>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-section">
+            <div class="sidebar-title">Chapter 10 Topics</div>
+            <a href="#inheritance-intro" class="active">Introduction</a>
+            <a href="#declaring-inheritance">Declaring Inheritance</a>
+            <a href="#constructors-inheritance">Constructors</a>
+            <a href="#super-keyword">Super Keyword</a>
+            <a href="#method-overriding">Method Overriding</a>
+            <a href="#dynamic-dispatch">Dynamic Dispatch</a>
+            <a href="#practice">Practice Set</a>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <h1>Chapter 10: Inheritance</h1>
+        
+        <section id="inheritance-intro">
+            <h2>Introduction to Inheritance</h2>
+            <div class="definition-box">
+                <p><strong>Inheritance is used to borrow properties & methods from an existing class.</strong></p>
+                <p>It allows us to create new classes based on existing classes, promoting code reusability and establishing relationships between classes.</p>
+            </div>
+            
+           <div class="inheritance-concept card">
+    <h3>Basic Concept</h3>
+    <div class="analogy-flow-vertical">
+        <div class="analogy-step">
+            <h4>📱 Phone</h4>
+            <p>Super Class</p>
+        </div>
+
+        <div class="arrow">&#8595;</div> <!-- ↓ -->
+
+        <div class="analogy-step">
+            <h4>🤖 Smart Phone</h4>
+            <p>Sub Class</p>
+        </div>
+    </div>
+</div>
+
+                <p class="text-center mt-4"><strong>Subclass extends Superclass</strong></p>
+            </div>
+
+            <div class="hierarchy-examples grid grid-2">
+                <div class="tree card">
+                    <h4>Vehicle Hierarchy</h4>
+                    <div class="parent">Vehicle</div>
+                    <div class="children">
+                        <div class="child">Car</div>
+                        <div class="child">Truck</div>
+                    </div>
+                </div>
+                
+                <div class="tree card">
+                    <h4>Animal Hierarchy</h4>
+                    <div class="parent">Animal</div>
+                    <div class="children">
+                        <div class="child">Dog</div>
+                        <div class="child">Cat</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="note-box">
+                <p><strong>Important:</strong> Java doesn't support multiple inheritance (i.e., two classes cannot be super classes for a subclass).</p>
+            </div>
+        </section>
+
+        <section id="declaring-inheritance">
+            <h2>Declaring Inheritance in Java</h2>
+            <div class="definition-box">
+                <p><strong>Inheritance in Java is declared using the <code>extends</code> keyword.</strong></p>
+            </div>
+            
+            <div class="code-container">
+                <div class="code-header">
+                    <span class="file-name">InheritanceExample.java</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                </div>
+                <pre><code>// Base class (Superclass)
+class Animal {
+    String name;
+    int age;
+    
+    void eat() {
+        System.out.println(name + " is eating");
+    }
+    
+    void sleep() {
+        System.out.println(name + " is sleeping");
+    }
+}
+
+// Derived class (Subclass)
+class Dog extends Animal {
+    String breed;
+    
+    void bark() {
+        System.out.println(name + " is barking");
+    }
+    
+    void wagTail() {
+        System.out.println(name + " is wagging tail");
+    }
+}
+
+public class InheritanceExample {
+    public static void main(String[] args) {
+        Dog myDog = new Dog();
+        myDog.name = "Buddy";
+        myDog.age = 3;
+        myDog.breed = "Golden Retriever";
+        
+        // Using inherited methods
+        myDog.eat();    // From Animal class
+        myDog.sleep();  // From Animal class
+        
+        // Using Dog's own methods
+        myDog.bark();
+        myDog.wagTail();
+    }
+}</code></pre>
+            </div>
+
+            <div class="info-box">
+                <p><strong>When a class inherits from a superclass, it inherits:</strong></p>
+                
+                    <li>All public and protected fields</li>
+                    <li>All public and protected methods</li>
+                    <li>Package-private members (if in same package)</li>
+               
+            </div>
+        </section>
+
+        <section id="constructors-inheritance">
+            <h2>Constructors in Inheritance</h2>
+            <div class="definition-box">
+                <p><strong>When a derived class is extended from the base class, the constructor of the base class is executed first followed by the constructor of the derived class.</strong></p>
+            </div>
+            
+            <div class="execution-flow">
+                <div class="flow-item">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>Parent Constructor</h4>
+                        <p>Base class constructor executes first</p>
+                    </div>
+                </div>
+                <div class="arrow">↓</div>
+                <div class="flow-item">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>Child Constructor</h4>
+                        <p>Derived class constructor executes second</p>
+                    </div>
+                </div>
+                <div class="arrow">↓</div>
+                <div class="flow-item">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>Grand Child Constructor</h4>
+                        <p>Further derived class constructor executes last</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <span class="file-name">ConstructorInheritance.java</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                </div>
+                <pre><code>class Parent {
+    Parent() {
+        System.out.println("Parent constructor called");
+    }
+    
+    Parent(String name) {
+        System.out.println("Parent constructor with name: " + name);
+    }
+}
+
+class Child extends Parent {
+    Child() {
+        System.out.println("Child constructor called");
+    }
+    
+    Child(String name) {
+        super(name); // Call parent constructor with parameter
+        System.out.println("Child constructor with name: " + name);
+    }
+}
+
+public class ConstructorInheritance {
+    public static void main(String[] args) {
+        System.out.println("Creating Child object:");
+        Child child = new Child();
+        
+        System.out.println("\nCreating Child object with name:");
+        Child namedChild = new Child("John");
+    }
+}</code></pre>
+            </div>
+
+            <div class="note-box">
+                <p><strong>Constructor Overloading:</strong> When there are multiple constructors in the parent class, the constructor without any parameters is called from the child class by default.</p>
+            </div>
+        </section>
+
+        <section id="super-keyword">
+            <h2>Super Keyword</h2>
+            <div class="definition-box">
+                <p><strong>A reference variable used to refer to the immediate parent class object.</strong></p>
+            </div>
+            
+            <div class="super-uses grid grid-3">
+                <div class="concept-card card">
+                    <h3>Instance Variables</h3>
+                    <p>Can be used to refer immediate parent class instance variable</p>
+                    <div class="example">
+                        <code>super.variableName</code>
+                    </div>
+                </div>
+                
+                <div class="concept-card card">
+                    <h3>Methods</h3>
+                    <p>Can be used to invoke parent class methods</p>
+                    <div class="example">
+                        <code>super.methodName()</code>
+                    </div>
+                </div>
+                
+                <div class="concept-card card">
+                    <h3>Constructors</h3>
+                    <p>Can be used to invoke parent class constructors</p>
+                    <div class="example">
+                        <code>super(parameters)</code>
+                    </div>
+                </div>
+            </div>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <span class="file-name">SuperKeywordExample.java</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                </div>
+                <pre><code>class Vehicle {
+    String brand = "Generic";
+    int maxSpeed = 100;
+    
+    void start() {
+        System.out.println("Vehicle is starting");
+    }
+    
+    void displayInfo() {
+        System.out.println("Brand: " + brand + ", Max Speed: " + maxSpeed);
+    }
+}
+
+class Car extends Vehicle {
+    String brand = "Toyota"; // Hiding parent variable
+    int doors = 4;
+    
+    void start() {
+        super.start(); // Call parent method
+        System.out.println("Car engine started");
+    }
+    
+    void displayInfo() {
+        System.out.println("Car Brand: " + brand);
+        System.out.println("Vehicle Brand: " + super.brand); // Access parent variable
+        super.displayInfo(); // Call parent method
+        System.out.println("Doors: " + doors);
+    }
+}
+
+public class SuperKeywordExample {
+    public static void main(String[] args) {
+        Car car = new Car();
+        car.start();
+        System.out.println();
+        car.displayInfo();
+    }
+}</code></pre>
+            </div>
+        </section>
+
+        <section id="method-overriding">
+            <h2>Method Overriding</h2>
+            <div class="definition-box">
+                <p><strong>If the child class implements the same method present in the parent class again, it is known as method overriding.</strong></p>
+                <p>This is also called "Redefining method of super class in sub class".</p>
+            </div>
+            
+            <div class="code-container">
+                <div class="code-header">
+                    <span class="file-name">MethodOverriding.java</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                </div>
+                <pre><code>class Animal {
+    void makeSound() {
+        System.out.println("Animal makes a sound");
+    }
+    
+    void move() {
+        System.out.println("Animal moves");
+    }
+}
+
+class Dog extends Animal {
+    @Override
+    void makeSound() {
+        System.out.println("Dog barks: Woof! Woof!");
+    }
+    
+    @Override
+    void move() {
+        System.out.println("Dog runs on four legs");
+    }
+}
+
+class Cat extends Animal {
+    @Override
+    void makeSound() {
+        System.out.println("Cat meows: Meow! Meow!");
+    }
+    
+    @Override
+    void move() {
+        System.out.println("Cat walks silently");
+    }
+}
+
+public class MethodOverriding {
+    public static void main(String[] args) {
+        Animal animal = new Animal();
+        Dog dog = new Dog();
+        Cat cat = new Cat();
+        
+        animal.makeSound(); // Animal makes a sound
+        dog.makeSound();    // Dog barks: Woof! Woof!
+        cat.makeSound();    // Cat meows: Meow! Meow!
+        
+        animal.move(); // Animal moves
+        dog.move();    // Dog runs on four legs
+        cat.move();    // Cat walks silently
+    }
+}</code></pre>
+            </div>
+
+            <div class="info-box">
+                <p><strong>Rules for Method Overriding:</strong></p>
+                
+                    <li>Method name must be the same</li>
+                    <li>Parameter list must be the same</li>
+                    <li>Return type must be the same or covariant</li>
+                    <li>Access modifier cannot be more restrictive</li>
+                    <li>Cannot override static, final, or private methods</li>
+              
+            </div>
+        </section>
+
+        <section id="dynamic-dispatch">
+            <h2>Dynamic Method Dispatch</h2>
+            <div class="definition-box">
+                <p><strong>Dynamic method dispatch is used to achieve runtime polymorphism in Java.</strong></p>
+                <p>It allows Java to decide which method to call at runtime based on the actual object type.</p>
+            </div>
+            
+            <div class="scenarios">
+                <div class="scenario">
+                    <h4>Scenario 1: Allowed</h4>
+                    <code>Super obj = new Sub();</code>
+                    <code>obj.method1(); // Sub's method called</code>
+                    <code>obj.method3(); // Not Allowed - method doesn't exist in Super</code>
+                    <p><strong>Result:</strong> Method of actual object (Sub) is called</p>
+                </div>
+                
+                <div class="scenario">
+                    <h4>Scenario 2: Not Allowed</h4>
+                    <code>Sub obj = new Super();</code>
+                    <p><strong>Result:</strong> Compilation error - cannot assign parent to child reference</p>
+                </div>
+            </div>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <span class="file-name">DynamicDispatch.java</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                </div>
+                <pre><code>class Shape {
+    void draw() {
+        System.out.println("Drawing a shape");
+    }
+    
+    void area() {
+        System.out.println("Calculating area of shape");
+    }
+}
+
+class Circle extends Shape {
+    @Override
+    void draw() {
+        System.out.println("Drawing a circle");
+    }
+    
+    @Override
+    void area() {
+        System.out.println("Area = π × r²");
+    }
+    
+    void circumference() {
+        System.out.println("Circumference = 2 × π × r");
+    }
+}
+
+class Rectangle extends Shape {
+    @Override
+    void draw() {
+        System.out.println("Drawing a rectangle");
+    }
+    
+    @Override
+    void area() {
+        System.out.println("Area = length × width");
+    }
+}
+
+public class DynamicDispatch {
+    public static void main(String[] args) {
+        // Dynamic method dispatch
+        Shape shape1 = new Circle();    // Allowed
+        Shape shape2 = new Rectangle(); // Allowed
+        
+        shape1.draw(); // Calls Circle's draw method
+        shape1.area(); // Calls Circle's area method
+        
+        shape2.draw(); // Calls Rectangle's draw method
+        shape2.area(); // Calls Rectangle's area method
+        
+        // shape1.circumference(); // Not allowed - method not in Shape class
+        
+        // To call circumference, we need to cast
+        if (shape1 instanceof Circle) {
+            ((Circle) shape1).circumference();
+        }
+    }
+}</code></pre>
+            </div>
+        </section>
+
+        <section id="practice">
+            <h2>Practice Set</h2>
+            
+            <div class="practice-set">
+                <h3>Chapter 10 - Practice Set</h3>
+                <div class="practice-problems grid grid-2">
+                    <div class="problem-item card">
+                        <h4>1. Circle and Cylinder</h4>
+                        <p>Create a class Circle and use inheritance to create another class Cylinder from it.</p>
+                    </div>
+                    
+                    <div class="problem-item card">
+                        <h4>2. Rectangle and Cuboid</h4>
+                        <p>Create a class Rectangle and use inheritance to create another class Cuboid. Try to keep it as close to real world scenario as possible.</p>
+                    </div>
+                    
+                    <div class="problem-item card">
+                        <h4>3. Area and Volume Methods</h4>
+                        <p>Create methods for area and volume in problem 1.</p>
+                    </div>
+                    
+                    <div class="problem-item card">
+                        <h4>4. Getters and Setters</h4>
+                        <p>Create methods for area & volume in problem 2. Also create getters and setters.</p>
+                    </div>
+                    
+                    <div class="problem-item card">
+                        <h4>5. Constructor Execution Order</h4>
+                        <p>What is the order of constructor execution for the following inheritance hierarchy?<br>
+                        Base → Derived1 → Derived2<br>
+                        <code>Derived2 obj = new Derived2();</code><br>
+                        Which constructor(s) will be executed & in what order?</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="exercise card">
+                <h3>Solution Example: Circle and Cylinder</h3>
+                <div class="solution-container">
+                    <button class="btn btn-secondary show-solution-btn" onclick="toggleSolution('solution1')">Show Solution</button>
+                    <div id="solution1" class="solution-code" style="display: none;">
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="file-name">CircleCylinder.java</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            </div>
+                            <pre><code>class Circle {
+    protected double radius;
+    
+    public Circle(double radius) {
+        this.radius = radius;
+    }
+    
+    public double getArea() {
+        return Math.PI * radius * radius;
+    }
+    
+    public double getRadius() {
+        return radius;
+    }
+    
+    public void setRadius(double radius) {
+        this.radius = radius;
+    }
+}
+
+class Cylinder extends Circle {
+    private double height;
+    
+    public Cylinder(double radius, double height) {
+        super(radius); // Call parent constructor
+        this.height = height;
+    }
+    
+    public double getVolume() {
+        return getArea() * height; // Using inherited method
+    }
+    
+    public double getSurfaceArea() {
+        return 2 * getArea() + 2 * Math.PI * radius * height;
+    }
+    
+    public double getHeight() {
+        return height;
+    }
+    
+    public void setHeight(double height) {
+        this.height = height;
+    }
+}
+
+public class CircleCylinder {
+    public static void main(String[] args) {
+        Circle circle = new Circle(5.0);
+        System.out.println("Circle Area: " + circle.getArea());
+        
+        Cylinder cylinder = new Cylinder(5.0, 10.0);
+        System.out.println("Cylinder Volume: " + cylinder.getVolume());
+        System.out.println("Cylinder Surface Area: " + cylinder.getSurfaceArea());
+    }
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="chapter-nav">
+            <a href="chapter9.html" class="btn btn-secondary">← Previous: Constructors</a>
+            <a href="chapter11.html" class="btn btn-primary">Next: Abstract & Interfaces →</a>
+        </div>
+    </main>
+
+   
+
+    <script src="script.js"></script>
+</body>

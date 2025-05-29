@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 1: Variables & Data Types - Java Tutorial</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="topnav">
+        <div class="nav-container">
+            <div class="logo">Java Tutorial</div><br>
+            <div class="nav-links" id="navLinks">
+                 <a href="index.html">Home</a>
+                <a href="chapter1.html"  class="active">Variables</a>
+                <a href="chapter2.html">Operators</a>
+                <a href="chapter3.html">Strings</a>
+                <a href="chapter4.html">Conditionals</a>
+                <a href="chapter5.html">Loops</a>
+                <a href="chapter6.html">Arrays</a>
+                <a href="chapter7.html">Methods</a>
+                <a href="chapter8.html">OOPs Intro</a>
+                <a href="chapter9.html">Constructors</a>
+                <a href="chapter10.html">Inheritance</a>
+                <a href="chapter11.html">Abstract & Interfaces</a>
+                <a href="chapter12.html">Packages</a>
+                <a href="chapter13.html">Multithreading</a>
+                <a href="chapter14.html">Exceptions</a>
+            </div>
+               <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+        </button>
+        </div>
+    </nav>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-section">
+            <div class="sidebar-title">Chapter 1 Topics</div>
+            <a href="#keywords" class="active">Keywords</a>
+            <a href="#variables">Variables</a>
+            <a href="#data-types">Data Types</a>
+            <a href="#literals">Literals</a>
+            <a href="#input-output">Input/Output</a>
+            <a href="#practice">Practice Set</a>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <h1>Chapter 1: Variables & Data Types</h1>
+        
+        <section id="keywords">
+            <h2>Keywords in Java</h2>
+            <div class="definition-box">
+                <p><strong>Keywords are words which are reserved and used by the Java Compiler. They cannot be used as an Identifier.</strong></p>
+            </div>
+            
+            <div class="keywords-grid grid grid-4">
+                <div class="keyword-category card">
+                    <h3>Access Modifiers</h3>
+                    <div class="keyword-list">
+                        <span class="keyword">public</span>
+                        <span class="keyword">private</span>
+                        <span class="keyword">protected</span>
+                    </div>
+                </div>
+                
+                <div class="keyword-category card">
+                    <h3>Data Types</h3>
+                    <div class="keyword-list">
+                        <span class="keyword">int</span>
+                        <span class="keyword">double</span>
+                        <span class="keyword">float</span>
+                        <span class="keyword">char</span>
+                        <span class="keyword">boolean</span>
+                        <span class="keyword">byte</span>
+                        <span class="keyword">short</span>
+                        <span class="keyword">long</span>
+                    </div>
+                </div>
+                
+                <div class="keyword-category card">
+                    <h3>Control Flow</h3>
+                    <div class="keyword-list">
+                        <span class="keyword">if</span>
+                        <span class="keyword">else</span>
+                        <span class="keyword">switch</span>
+                        <span class="keyword">case</span>
+                        <span class="keyword">for</span>
+                        <span class="keyword">while</span>
+                        <span class="keyword">do</span>
+                        <span class="keyword">break</span>
+                        <span class="keyword">continue</span>
+                    </div>
+                </div>
+                
+                <div class="keyword-category card">
+                    <h3>Class & Object</h3>
+                    <div class="keyword-list">
+                        <span class="keyword">class</span>
+                        <span class="keyword">interface</span>
+                        <span class="keyword">extends</span>
+                        <span class="keyword">implements</span>
+                        <span class="keyword">new</span>
+                        <span class="keyword">this</span>
+                        <span class="keyword">super</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="note-box">
+                <p><strong>Note:</strong> Go to <a href="https://docs.oracle.com" target="_blank">docs.oracle.com</a> for a comprehensive list of all Java keywords!</p>
+            </div>
+        </section>
+
+        <section id="variables">
+            <h2>Variables in Java</h2>
+            <div class="definition-box">
+                <p><strong>A variable is a container that holds data that can be changed during the execution of a program.</strong></p>
+            </div>
+            
+            <div class="variable-rules">
+                <h3>Variable Naming Rules:</h3>
+                <div class="rules-grid grid grid-2">
+                    <div class="rule-item card valid">
+                        <h4>✅ Valid Names</h4>
+                       
+                            <li><code>age</code></li>
+                            <li><code>studentName</code></li>
+                            <li><code>_count</code></li>
+                            <li><code>$price</code></li>
+                            <li><code>number1</code></li>
+                        
+                    </div>
+                    <div class="rule-item card invalid">
+                        <h4>❌ Invalid Names</h4>
+                      
+                            <li><code>2number</code> (starts with digit)</li>
+                            <li><code>class</code> (keyword)</li>
+                            <li><code>my-name</code> (contains hyphen)</li>
+                            <li><code>my name</code> (contains space)</li>
+                            <li><code>@value</code> (invalid character)</li>
+                      
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="data-types">
+            <h2>Data Types in Java</h2>
+            <div class="definition-box">
+                <p><strong>Data types specify the different sizes and values that can be stored in the variable.</strong></p>
+                <p>Java is <span class="highlight">statically typed</span> - variables must be declared before use.</p>
+            </div>
+            
+            <h3>Primitive Data Types</h3>
+            <p>There are <strong>8 primitive data types</strong> supported by Java:</p>
+            
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Data Type</th>
+                            <th>Size</th>
+                            <th>Range</th>
+                            <th>Default Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>byte</code></td>
+                            <td>1 byte</td>
+                            <td>-128 to 127</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td><code>short</code></td>
+                            <td>2 bytes</td>
+                            <td>-32,768 to 32,767</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td><code>int</code></td>
+                            <td>4 bytes</td>
+                            <td>-2,147,483,648 to 2,147,483,647</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td><code>long</code></td>
+                            <td>8 bytes</td>
+                            <td>-2^63 to 2^63-1</td>
+                            <td>0L</td>
+                        </tr>
+                        <tr>
+                            <td><code>float</code></td>
+                            <td>4 bytes</td>
+                            <td>3.4e-038 to 3.4e+038</td>
+                            <td>0.0f</td>
+                        </tr>
+                        <tr>
+                            <td><code>double</code></td>
+                            <td>8 bytes</td>
+                            <td>1.7e-308 to 1.7e+308</td>
+                            <td>0.0d</td>
+                        </tr>
+                        <tr>
+                            <td><code>char</code></td>
+                            <td>2 bytes</td>
+                            <td>0 to 65,535</td>
+                            <td>'\u0000'</td>
+                        </tr>
+                        <tr>
+                            <td><code>boolean</code></td>
+                            <td>1 bit</td>
+                            <td>true or false</td>
+                            <td>false</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>How to choose data types for our Variables</h3>
+            <div class="data-type-hierarchy card">
+                <h4>Primitive Data Types</h4>
+                <div class="type-branches grid grid-3">
+                    <div class="type-branch">
+                        <h5>Integral (int)</h5>
+                        <span>byte, short, int, long</span>
+                    </div>
+                    <div class="type-branch">
+                        <h5>Floats (Decimal)</h5>
+                        <span>float(f), double(d)</span>
+                    </div>
+                    <div class="type-branch">
+                        <h5>Char, Boolean</h5>
+                        <span>char, boolean(true/false)</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="note-box">
+                <p>In order to choose the data type we first need to find the type of data we want to store. After that we need to analyze the Min & Max Value we might use.</p>
+            </div>
+        </section>
+
+        <section id="literals">
+            <h2>Literals</h2>
+            <div class="definition-box">
+                <p><strong>A constant value which can be assigned to the variable is called a literal.</strong></p>
+            </div>
+            
+            <div class="literals-examples card">
+                <h3>Types of Literals:</h3>
+                <ul>
+                    <li><code>101</code> → Integer Literal</li>
+                    <li><code>10.1f</code> → Float Literal</li>
+                    <li><code>10.1</code> → Double Literal (default type for decimals)</li>
+                    <li><code>'A'</code> → Character Literal</li>
+                    <li><code>true</code> → Boolean Literal</li>
+                    <li><code>"Harry"</code> → String Literal</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="input-output">
+            <h2>Reading Data from the Keyboard</h2>
+            <div class="definition-box">
+                <p><strong>In order to read data from the keyboard, Java has a Scanner class.</strong></p>
+                <p>Scanner class has a lot of methods to read data from the keyboard.</p>
+            </div>
+            
+            <div class="scanner-setup">
+                <h3>Scanner Setup:</h3>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="file-name">InputExample.java</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code>import java.util.Scanner;
+
+public class InputExample {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        // Read different types of input
+        System.out.print("Enter your name: ");
+        String name = scanner.nextLine();
+        
+        System.out.print("Enter your age: ");
+        int age = scanner.nextInt();
+        
+        System.out.print("Enter your salary: ");
+        double salary = scanner.nextDouble();
+        
+        System.out.println("Name: " + name);
+        System.out.println("Age: " + age);
+        System.out.println("Salary: " + salary);
+        
+        scanner.close();
+    }
+}</code></pre>
+                </div>
+            </div>
+            
+            <div class="scanner-methods">
+                <h3>Scanner Methods:</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Method</th>
+                                <th>Description</th>
+                                <th>Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>nextInt()</code></td>
+                                <td>Reads an integer</td>
+                                <td><code>int num = scanner.nextInt();</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>nextDouble()</code></td>
+                                <td>Reads a double</td>
+                                <td><code>double price = scanner.nextDouble();</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>nextFloat()</code></td>
+                                <td>Reads a float</td>
+                                <td><code>float rate = scanner.nextFloat();</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>next()</code></td>
+                                <td>Reads a single word</td>
+                                <td><code>String word = scanner.next();</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>nextLine()</code></td>
+                                <td>Reads entire line</td>
+                                <td><code>String line = scanner.nextLine();</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>nextBoolean()</code></td>
+                                <td>Reads a boolean</td>
+                                <td><code>boolean flag = scanner.nextBoolean();</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="practice">
+            <h2>Practice Set</h2>
+            
+            <div class="exercise card">
+                <h3>Exercise 1.1: Student Percentage Calculator</h3>
+                <div class="exercise-description">
+                    <p><strong>Problem:</strong> Write a program to calculate percentage of a given student in CBSE board exam. His marks from 5 subjects must be taken as input from the keyboard. (Marks are out of 100).</p>
+                </div>
+                
+                <div class="solution-container">
+                    <button class="btn btn-secondary show-solution-btn" onclick="toggleSolution('solution1')">Show Solution</button>
+                    <div id="solution1" class="solution-code" style="display: none;">
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="file-name">StudentPercentage.java</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            </div>
+                            <pre><code>import java.util.Scanner;
+
+public class StudentPercentage {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.println("Enter marks for 5 subjects (out of 100):");
+        
+        System.out.print("Subject 1: ");
+        int subject1 = scanner.nextInt();
+        
+        System.out.print("Subject 2: ");
+        int subject2 = scanner.nextInt();
+        
+        System.out.print("Subject 3: ");
+        int subject3 = scanner.nextInt();
+        
+        System.out.print("Subject 4: ");
+        int subject4 = scanner.nextInt();
+        
+        System.out.print("Subject 5: ");
+        int subject5 = scanner.nextInt();
+        
+        int totalMarks = subject1 + subject2 + subject3 + subject4 + subject5;
+        double percentage = (totalMarks / 5.0);
+        
+        System.out.println("Total Marks: " + totalMarks + "/500");
+        System.out.println("Percentage: " + percentage + "%");
+        
+        scanner.close();
+    }
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="practice-set">
+                <h3>Chapter 1 - Practice Set</h3>
+                <div class="practice-problems grid grid-2">
+                    <div class="problem-item card">
+                        <h4>1. Sum of Three Numbers</h4>
+                        <p>Write a program to sum three numbers in Java.</p>
+                    </div>
+                    
+                    <div class="problem-item card">
+                        <h4>2. CGPA Calculator</h4>
+                        <p>Write a program to calculate CGPA using marks of three subjects (out of 100).</p>
+                    </div>
+                    
+                    <div class="problem-item card">
+                        <h4>3. Greeting Program</h4>
+                        <p>Write a Java program which asks the user to enter his/her name and greets them with "Hello &lt;name&gt;, have a good day" text.</p>
+                    </div>
+                    
+                    <div class="problem-item card">
+                        <h4>4. Unit Conversion</h4>
+                        <p>Write a Java program to convert Kilometers to miles.</p>
+                    </div>
+                    
+                    <div class="problem-item card">
+                        <h4>5. Number Type Detection</h4>
+                        <p>Write a Java program to detect whether a number entered by the user is integer or not.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="chapter-nav">
+            <a href="index.html" class="btn btn-secondary">← Previous: Introduction</a>
+            <a href="chapter2.html" class="btn btn-primary">Next: Operators →</a>
+        </div>
+    </main>
+
+    
+      
+   
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 14: Errors & Exceptions - Java Tutorial</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="topnav">
+        <div class="nav-container">
+           <div class="logo">Java Tutorial</div><br>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="chapter1.html">Variables</a>
+                <a href="chapter2.html">Operators</a>
+                <a href="chapter3.html">Strings</a>
+                <a href="chapter4.html">Conditionals</a>
+                <a href="chapter5.html">Loops</a>
+                <a href="chapter6.html">Arrays</a>
+                <a href="chapter7.html">Methods</a>
+                <a href="chapter8.html">OOPs Intro</a>
+                <a href="chapter9.html">Constructors</a>
+                <a href="chapter10.html">Inheritance</a>
+                <a href="chapter11.html">Abstract & Interfaces</a>
+                <a href="chapter12.html">Packages</a>
+                <a href="chapter13.html">Multithreading</a>
+                <a href="chapter14.html" class="active">Exceptions</a>
+            </div>
+           <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+           </button>
+        </div>
+    </nav>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-section">
+            <div class="sidebar-title">Chapter 14 Topics</div>
+            <a href="#errors-intro" class="active">Types of Errors</a>
+            <a href="#exceptions">Exceptions</a>
+            <a href="#try-catch">Try-Catch Block</a>
+            <a href="#specific-exceptions">Specific Exceptions</a>
+            <a href="#exception-class">Exception Class</a>
+            <a href="#throw-throws">Throw & Throws</a>
+            <a href="#finally-block">Finally Block</a>
+            <a href="#practice">Practice Set</a>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <h1>Chapter 14: Errors & Exceptions</h1>
+        
+        <section id="errors-intro">
+            <h2>Introduction to Errors</h2>
+            <div class="definition-box">
+                <p><strong>No matter how smart we are, errors are our constant companions. With practice, we keep getting better at finding & correcting them.</strong></p>
+            </div>
+            
+            <div class="error-types">
+                <h3>There are three types of errors in Java:</h3>
+                <div class="error-categories grid grid-3">
+                    <div class="error-type card">
+                        <h4>1. Syntax Errors</h4>
+                        <p>When compiler finds something wrong with our program, it throws a syntax error.</p>
+                        <div class="example">
+                            <code>int a = 9  // No semicolon - syntax error!</code><br>
+                            <code>d = 4;     // Variable not declared - syntax error!</code>
+                        </div>
+                    </div>
+                    
+                    <div class="error-type card">
+                        <h4>2. Logical Errors</h4>
+                        <p>A logical error or a bug occurs when a program compiles and runs but does the wrong thing.</p>
+                        <div class="example">
+                           
+                                <li>Message delivered wrongly</li>
+                                <li>Wrong time of chats being displayed</li>
+                                <li>Incorrect redirects</li>
+                        
+                        </div>
+                    </div>
+                    
+                    <div class="error-type card">
+                        <h4>3. Runtime Errors</h4>
+                        <p>Java may sometimes encounter an error while the program is running. These are also called <strong>exceptions!</strong></p>
+                        <div class="example">
+                            
+                                <li>Division by zero</li>
+                                <li>Array index out of bounds</li>
+                                <li>Null pointer access</li>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="error-responsibility card">
+                <h3>Who Encounters What?</h3>
+                <div class="responsibility-table">
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Error Type</th>
+                                    <th>Encountered By</th>
+                                    <th>When</th>
+                                    <th>Example</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Syntax Errors</strong></td>
+                                    <td>Programmer</td>
+                                    <td>Compile time</td>
+                                    <td>Missing semicolon, undeclared variables</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Logical Errors</strong></td>
+                                    <td>Programmer</td>
+                                    <td>During testing</td>
+                                    <td>Wrong algorithm, incorrect calculations</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Runtime Errors</strong></td>
+                                    <td>Users</td>
+                                    <td>Runtime</td>
+                                    <td>Invalid input, resource constraints</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="runtime-example card">
+                <h3>Runtime Error Example</h3>
+                <p>These are encountered due to circumstances like bad input and/or resource constraints.</p>
+                <div class="example">
+                    <p><strong>Example:</strong> User supplies "5" + "8" to a program which adds 2 numbers</p>
+                    <p>The program expects integers but receives strings, causing a runtime exception.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="exceptions">
+            <h2>Exceptions in Java</h2>
+            <div class="definition-box">
+                <p><strong>An Exception is an event that occurs when a program is executed disrupting the normal flow of instructions.</strong></p>
+            </div>
+            
+            <div class="exception-types grid grid-2">
+                <div class="concept-card card">
+                    <h3>1. Checked Exceptions</h3>
+                    <p><strong>Compile time exceptions (Handled by Compiler)</strong></p>
+                   
+                        <li>Must be handled or declared</li>
+                        <li>Checked at compile time</li>
+                        <li>Examples: IOException, SQLException</li>
+                 
+                </div>
+                
+                <div class="concept-card card">
+                    <h3>2. Unchecked Exceptions</h3>
+                    <p><strong>Runtime exceptions</strong></p>
+                   
+                        <li>Not checked at compile time</li>
+                        <li>Occur during program execution</li>
+                        <li>Examples: NullPointerException, ArithmeticException</li>
+                   
+                </div>
+            </div>
+
+            <div class="common-exceptions">
+                <h3>Commonly Occurring Exceptions in Java</h3>
+                <div class="exception-list grid grid-2">
+                    <div class="exception-item card">
+                        <h4>1. NullPointerException</h4>
+                        <p>Occurs when trying to access methods or fields of a null object.</p>
+                        <div class="code-container">
+                            <pre><code>String str = null;
+int length = str.length(); // NullPointerException</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="exception-item card">
+                        <h4>2. ArithmeticException</h4>
+                        <p>Occurs during arithmetic operations like division by zero.</p>
+                        <div class="code-container">
+                            <pre><code>int result = 10 / 0; // ArithmeticException</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="exception-item card">
+                        <h4>3. ArrayIndexOutOfBoundsException</h4>
+                        <p>Occurs when accessing array with invalid index.</p>
+                        <div class="code-container">
+                            <pre><code>int[] arr = {1, 2, 3};
+int value = arr[5]; // ArrayIndexOutOfBoundsException</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="exception-item card">
+                        <h4>4. IllegalArgumentException</h4>
+                        <p>Occurs when a method receives inappropriate arguments.</p>
+                        <div class="code-container">
+                            <pre><code>Thread.sleep(-1000); // IllegalArgumentException</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="exception-item card">
+                        <h4>5. NumberFormatException</h4>
+                        <p>Occurs when trying to convert invalid string to number.</p>
+                        <div class="code-container">
+                            <pre><code>int num = Integer.parseInt("abc"); // NumberFormatException</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="try-catch">
+            <h2>Try-Catch Block in Java</h2>
+            <div class="definition-box">
+                <p><strong>In Java, exceptions are managed using try-catch blocks.</strong></p>
+            </div>
+            
+            <div class="syntax-box">
+                <h3>Basic Syntax:</h3>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="file-name">Try-Catch Syntax</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code>try {
+    // Code to try
+} catch (Exception e) {
+    // Code if exception occurs
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <span class="file-name">BasicTryCatch.java</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                </div>
+                <pre><code>public class BasicTryCatch {
+    public static void main(String[] args) {
+        try {
+            int a = 10;
+            int b = 0;
+            int result = a / b; // This will cause ArithmeticException
+            System.out.println("Result: " + result);
+        } catch (ArithmeticException e) {
+            System.out.println("Error: Cannot divide by zero!");
+            System.out.println("Exception message: " + e.getMessage());
+        }
+        
+        System.out.println("Program continues after exception handling");
+        
+        // Another example with array
+        try {
+            int[] numbers = {1, 2, 3, 4, 5};
+            System.out.println("Element at index 10: " + numbers[10]);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Error: Array index out of bounds!");
+            System.out.println("Exception: " + e.toString());
+        }
+        
+        // Example with null pointer
+        try {
+            String text = null;
+            int length = text.length();
+        } catch (NullPointerException e) {
+            System.out.println("Error: Null pointer exception occurred!");
+            e.printStackTrace(); // Print full stack trace
+        }
+    }
+}</code></pre>
+            </div>
+
+            <div class="try-catch-benefits card">
+                <h3>Benefits of Try-Catch</h3>
+              
+                    <li><strong>Graceful Error Handling:</strong> Program doesn't crash abruptly</li>
+                    <li><strong>User-Friendly Messages:</strong> Display meaningful error messages</li>
+                    <li><strong>Program Continuation:</strong> Code after try-catch continues to execute</li>
+                    <li><strong>Debugging Information:</strong> Access to exception details</li>
+              
+            </div>
+        </section>
+
+        <section id="specific-exceptions">
+            <h2>Handling Specific Exceptions</h2>
+            <div class="definition-box">
+                <p><strong>In Java, we can handle specific exceptions by using multiple catch blocks.</strong></p>
+            </div>
+            
+            <div class="code-container">
+                <div class="code-header">
+                    <span class="file-name">MultipleExceptions.java</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                </div>
+                <pre><code>import java.io.*;
+import java.util.Scanner;
+
+public class MultipleExceptions {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        try {
+            System.out.print("Enter first number: ");
+            int num1 = Integer.parseInt(scanner.nextLine());
+            
+            System.out.print("Enter second number: ");
+            int num2 = Integer.parseInt(scanner.nextLine());
+            
+            int result = num1 / num2;
+            System.out.println("Result: " + result);
+            
+            // Array access example
+            int[] arr = {1, 2, 3};
+            System.out.println("Array element: " + arr[result]);
+            
+        } catch (NumberFormatException e) {
+            System.out.println("Error: Please enter valid integers!");
+            System.out.println("Details: " + e.getMessage());
+            
+        } catch (ArithmeticException e) {
+            System.out.println("Error: Division by zero is not allowed!");
+            System.out.println("Details: " + e.getMessage());
+            
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Error: Array index out of bounds!");
+            System.out.println("Details: " + e.getMessage());
+            
+        } catch (Exception e) {
+            // Generic catch block for any other exceptions
+            System.out.println("An unexpected error occurred: " + e.getMessage());
+            e.printStackTrace();
+        }
+        
+        System.out.println("Program execution completed.");
+        scanner.close();
+    }
+}</code></pre>
+            </div>
+
+            <div class="multiple-catch-rules card">
+                <h3>Rules for Multiple Catch Blocks</h3>
+               
+                    <li><strong>Specific to General:</strong> More specific exceptions should be caught before general ones</li>
+                    <li><strong>Order Matters:</strong> Catch blocks are checked in order from top to bottom</li>
+                    <li><strong>Only One Executes:</strong> Only the first matching catch block executes</li>
+                    <li><strong>Parent-Child Hierarchy:</strong> Child exception classes must come before parent classes</li>
+                
+            </div>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <span class="file-name">CatchOrderExample.java</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                </div>
+                <pre><code>public class CatchOrderExample {
+    public static void main(String[] args) {
+        // CORRECT ORDER - Specific to General
+        try {
+            int[] arr = new int[5];
+            arr[10] = 50; // ArrayIndexOutOfBoundsException
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Array index error: " + e.getMessage());
+        } catch (RuntimeException e) {
+            System.out.println("Runtime error: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("General error: " + e.getMessage());
+        }
+        
+        // INCORRECT ORDER - Would cause compilation error
+        /*
+        try {
+            // some code
+        } catch (Exception e) {          // Too general - should be last
+            System.out.println("General error");
+        } catch (ArithmeticException e) { // Unreachable code - compilation error
+            System.out.println("Arithmetic error");
+        }
+        */
+    }
+}</code></pre>
+            </div>
+        </section>
+
+        <section id="exception-class">
+            <h2>Exception Class Hierarchy</h2>
+            <div class="definition-box">
+                <p><strong>All exceptions in Java inherit from the Throwable class.</strong></p>
+            </div>
+            
+            <div class="exception-hierarchy card">
+                <h3>Exception Class Hierarchy</h3>
+                <div class="hierarchy-tree">
+                    <div class="hierarchy-level">
+                        <div class="class-box root">Throwable</div>
+                    </div>
+                    <div class="hierarchy-level">
+                        <div class="class-box">Error</div>
+                        <div class="class-box">Exception</div>
+                    </div>
+                    <div class="hierarchy-level">
+                        <div class="class-box">OutOfMemoryError</div>
+                        <div class="class-box">RuntimeException</div>
+                        <div class="class-box">IOException</div>
+                    </div>
+                    <div class="hierarchy-level">
+                        <div class="class-box">StackOverflowError</div>
+                        <div class="class-box">NullPointerException</div>
+                        <div class="class-box">ArithmeticException</div>
+                        <div class="class-box">FileNotFoundException</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="exception-methods">
+                <h3>Important Exception Methods</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Method</th>
+                                <th>Description</th>
+                                <th>Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>getMessage()</code></td>
+                                <td>Returns the detail message of the exception</td>
+                                <td><code>e.getMessage()</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>toString()</code></td>
+                                <td>Returns exception class name and message</td>
+                                <td><code>e.toString()</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>printStackTrace()</code></td>
+                                <td>Prints the stack trace to standard error</td>
+                                <td><code>e.printStackTrace()</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>getStackTrace()</code></td>
+                                <td>Returns array of stack trace elements</td>
+                                <td><code>e.getStackTrace()</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>getCause()</code></td>
+                                <td>Returns the cause of the exception</td>
+                                <td><code>e.getCause()</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <span class="file-name">ExceptionMethodsExample.java</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                </div>
+                <pre><code>public class ExceptionMethodsExample {
+    public static void main(String[] args) {
+        try {
+            // Intentionally cause an exception
+            int result = 10 / 0;
+        } catch (ArithmeticException e) {
+            System.out.println("=== Exception Information ===");
+            
+            // getMessage() - Returns the detail message
+            System.out.println("Message: " + e.getMessage());
+            
+            // toString() - Returns class name and message
+            System.out.println("ToString: " + e.toString());
+            
+            // getClass() - Returns the exception class
+            System.out.println("Class: " + e.getClass().getName());
+            
+            // printStackTrace() - Prints full stack trace
+            System.out.println("\nStack Trace:");
+            e.printStackTrace();
+            
+            // getStackTrace() - Returns stack trace as array
+            System.out.println("\nStack Trace Elements:");
+            StackTraceElement[] stackTrace = e.getStackTrace();
+            for (StackTraceElement element : stackTrace) {
+                System.out.println("  " + element.toString());
+            }
+        }
+        
+        // Example with nested method calls
+        try {
+            methodA();
+        } catch (Exception e) {
+            System.out.println("\n=== Nested Method Exception ===");
+            System.out.println("Exception in nested method: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+    
+    static void methodA() {
+        methodB();
+    }
+    
+    static void methodB() {
+        methodC();
+    }
+    
+    static void methodC() {
+        // This will show the call stack
+        String str = null;
+        int length = str.length(); // NullPointerException
+    }
+}</code></pre>
+            </div>
+        </section>
+
+        <section id="throw-throws">
+            <h2>Throw and Throws Keywords</h2>
+            <div class="definition-box">
+                <p><strong>The throw and throws keywords are used for exception handling in Java.</strong></p>
+            </div>
+            
+            <div class="throw-throws-comparison grid grid-2">
+                <div class="concept-card card">
+                    <h3>throw Keyword</h3>
+                  
+                        <li>Used to explicitly throw an exception</li>
+                        <li>Used inside method body</li>
+                        <li>Can throw only one exception at a time</li>
+                        <li>Followed by an instance of exception</li>
+                  
+                    <div class="example">
+                        <code>throw new ArithmeticException("Division by zero");</code>
+                    </div>
+                </div>
+                
+                <div class="concept-card card">
+                    <h3>throws Keyword</h3>
+                   
+                        <li>Used to declare exceptions that method might throw</li>
+                        <li>Used in method signature</li>
+                        <li>Can declare multiple exceptions</li>
+                        <li>Followed by exception class names</li>
+                   
+                    <div class="example">
+                        <code>public void method() throws IOException, SQLException</code>
+                    </div>
+                </div>
+            </div>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <span class="file-name">ThrowExample.java</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                </div>
+                <pre><code>public class ThrowExample {
+    
+    // Method that throws an exception explicitly
+    public static void validateAge(int age) {
+        if (age < 18) {
+            throw new IllegalArgumentException("Age must be 18 or older. Provided: " + age);
+        }
+        System.out.println("Age is valid: " + age);
+    }
+    
+    // Method that throws custom exception
+    public static void divide(int a, int b) {
+        if (b == 0) {
+            throw new ArithmeticException("Cannot divide by zero! Divisor: " + b);
+        }
+        int result = a / b;
+        System.out.println("Division result: " + result);
+    }
+    
+    // Method that validates array index
+    public static void accessArray(int[] arr, int index) {
+        if (index < 0 || index >= arr.length) {
+            throw new ArrayIndexOutOfBoundsException(
+                "Invalid index: " + index + ". Array length: " + arr.length);
+        }
+        System.out.println("Array element at index " + index + ": " + arr[index]);
+    }
+    
+    public static void main(String[] args) {
+        // Example 1: Age validation
+        try {
+            validateAge(25); // Valid age
+            validateAge(15); // Invalid age - will throw exception
+        } catch (IllegalArgumentException e) {
+            System.out.println("Age validation error: " + e.getMessage());
+        }
+        
+        // Example 2: Division
+        try {
+            divide(10, 2); // Valid division
+            divide(10, 0); // Invalid division - will throw exception
+        } catch (ArithmeticException e) {
+            System.out.println("Division error: " + e.getMessage());
+        }
+        
+        // Example 3: Array access
+        try {
+            int[] numbers = {1, 2, 3, 4, 5};
+            accessArray(numbers, 2); // Valid index
+            accessArray(numbers, 10); // Invalid index - will throw exception
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Array access error: " + e.getMessage());
+        }
+    }
+}</code></pre>
+            </div>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <span class="file-name">ThrowsExample.java</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                </div>
+                <pre><code>import java.io.*;
+
+public class ThrowsExample {
+    
+    // Method that declares it might throw IOException
+    public static void readFile(String filename) throws IOException {
+        FileReader file = new FileReader(filename);
+        BufferedReader reader = new BufferedReader(file);
+        
+        String line = reader.readLine();
+        System.out.println("First line: " + line);
+        
+        reader.close();
+    }
+    
+    // Method that declares multiple exceptions
+    public static void processData(String data) throws NumberFormatException, IllegalArgumentException {
+        if (data == null || data.trim().isEmpty()) {
+            throw new IllegalArgumentException("Data cannot be null or empty");
+        }
+        
+        int number = Integer.parseInt(data); // May throw NumberFormatException
+        System.out.println("Processed number: " + number);
+    }
+    
+    // Method that calls other methods with throws
+    public static void performOperations() throws IOException, NumberFormatException {
+        readFile("data.txt");        // Must handle or declare IOException
+        processData("123");          // Must handle or declare NumberFormatException
+    }
+    
+    public static void main(String[] args) {
+        // Handling IOException from readFile
+        try {
+            readFile("example.txt");
+        } catch (IOException e) {
+            System.out.println("File reading error: " + e.getMessage());
+        }
+        
+        // Handling multiple exceptions from processData
+        try {
+            processData("abc");      // Will throw NumberFormatException
+        } catch (NumberFormatException e) {
+            System.out.println("Number format error: " + e.getMessage());
+        } catch (IllegalArgumentException e) {
+            System.out.println("Argument error: " + e.getMessage());
+        }
+        
+        // Handling exceptions from performOperations
+        try {
+            performOperations();
+        } catch (IOException e) {
+            System.out.println("IO error in operations: " + e.getMessage());
+        } catch (NumberFormatException e) {
+            System.out.println("Number format error in operations: " + e.getMessage());
+        }
+    }
+}</code></pre>
+            </div>
+
+            <div class="custom-exception card">
+                <h3>Creating Custom Exceptions</h3>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="file-name">CustomExceptionExample.java</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code>// Custom exception class
+class InsufficientBalanceException extends Exception {
+    public InsufficientBalanceException(String message) {
+        super(message);
+    }
+}
+
+class BankAccount {
+    private double balance;
+    
+    public BankAccount(double initialBalance) {
+        this.balance = initialBalance;
+    }
+    
+    public void withdraw(double amount) throws InsufficientBalanceException {
+        if (amount > balance) {
+            throw new InsufficientBalanceException(
+                "Insufficient balance. Available: " + balance + ", Requested: " + amount);
+        }
+        balance -= amount;
+        System.out.println("Withdrawal successful. Remaining balance: " + balance);
+    }
+    
+    public double getBalance() {
+        return balance;
+    }
+}
+
+public class CustomExceptionExample {
+    public static void main(String[] args) {
+        BankAccount account = new BankAccount(1000.0);
+        
+        try {
+            account.withdraw(500);  // Valid withdrawal
+            account.withdraw(600);  // Invalid - insufficient balance
+        } catch (InsufficientBalanceException e) {
+            System.out.println("Transaction failed: " + e.getMessage());
+        }
+    }
+}</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <section id="finally-block">
+            <h2>Finally Block</h2>
+            <div class="definition-box">
+                <p><strong>The finally block contains code that is always executed, whether an exception occurs or not.</strong></p>
+                <p>It's typically used for cleanup operations like closing files, database connections, etc.</p>
+            </div>
+            
+            <div class="finally-syntax">
+                <h3>Finally Block Syntax</h3>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="file-name">Finally Syntax</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code>try {
+    // Code that may throw exception
+} catch (Exception e) {
+    // Exception handling code
+} finally {
+    // Code that always executes
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <span class="file-name">FinallyExample.java</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                </div>
+                <pre><code>import java.io.*;
+
+public class FinallyExample {
+    
+    public static void demonstrateFinally() {
+        FileReader file = null;
+        
+        try {
+            System.out.println("Opening file...");
+            file = new FileReader("example.txt");
+            
+            // Simulate some file operations
+            int data = file.read();
+            System.out.println("File data read successfully");
+            
+        } catch (IOException e) {
+            System.out.println("Error reading file: " + e.getMessage());
+            
+        } finally {
+            // This block always executes
+            System.out.println("Finally block executing...");
+            
+            if (file != null) {
+                try {
+                    file.close();
+                    System.out.println("File closed successfully");
+                } catch (IOException e) {
+                    System.out.println("Error closing file: " + e.getMessage());
+                }
+            }
+        }
+    }
+    
+    public static int demonstrateFinallyWithReturn() {
+        try {
+            System.out.println("In try block");
+            return 1;
+        } catch (Exception e) {
+            System.out.println("In catch block");
+            return 2;
+        } finally {
+            System.out.println("In finally block - this always executes");
+            // Note: return in finally block would override try/catch return
+        }
+    }
+    
+    public static void demonstrateFinallyWithoutCatch() {
+        try {
+            System.out.println("Try block without catch");
+            int result = 10 / 2; // No exception
+            System.out.println("Result: " + result);
+        } finally {
+            System.out.println("Finally executes even without catch block");
+        }
+    }
+    
+    public static void main(String[] args) {
+        System.out.println("=== Example 1: Finally with Exception ===");
+        demonstrateFinally();
+        
+        System.out.println("\n=== Example 2: Finally with Return ===");
+        int result = demonstrateFinallyWithReturn();
+        System.out.println("Returned value: " + result);
+        
+        System.out.println("\n=== Example 3: Finally without Catch ===");
+        demonstrateFinallyWithoutCatch();
+        
+        System.out.println("\n=== Example 4: Multiple Operations ===");
+        performMultipleOperations();
+    }
+    
+    public static void performMultipleOperations() {
+        int[] numbers = {1, 2, 3, 4, 5};
+        
+        try {
+            System.out.println("Starting operations...");
+            
+            // Operation 1: Array access
+            System.out.println("Element at index 2: " + numbers[2]);
+            
+            // Operation 2: Division
+            int result = 10 / 2;
+            System.out.println("Division result: " + result);
+            
+            // Operation 3: Potential exception
+            System.out.println("Element at index 10: " + numbers[10]); // Exception here
+            
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Array error: " + e.getMessage());
+            
+        } catch (ArithmeticException e) {
+            System.out.println("Math error: " + e.getMessage());
+            
+        } finally {
+            System.out.println("Cleanup operations completed");
+            System.out.println("Resources released");
+        }
+        
+        System.out.println("Method execution completed");
+    }
+}</code></pre>
+            </div>
+
+            <div class="finally-rules card">
+                <h3>Important Rules for Finally Block</h3>
+               
+                    <li><strong>Always Executes:</strong> Finally block executes whether exception occurs or not</li>
+                    <li><strong>Cleanup Code:</strong> Perfect place for resource cleanup (files, connections, etc.)</li>
+                    <li><strong>Optional:</strong> Finally block is optional - you can have try-catch without finally</li>
+                    <li><strong>Execution Order:</strong> Finally executes after try or catch block</li>
+                    <li><strong>System.exit():</strong> Finally won't execute if System.exit() is called</li>
+                    <li><strong>Return Override:</strong> Return statement in finally can override try/catch return</li>
+              
+            </div>
+
+            <div class="try-with-resources card">
+                <h3>Try-with-Resources (Java 7+)</h3>
+                <p>A more elegant way to handle resources that implement AutoCloseable:</p>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="file-name">TryWithResources.java</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code>import java.io.*;
+
+public class TryWithResources {
+    public static void readFileWithResources(String filename) {
+        // Resources declared in try() are automatically closed
+        try (FileReader file = new FileReader(filename);
+             BufferedReader reader = new BufferedReader(file)) {
+            
+            String line = reader.readLine();
+            System.out.println("File content: " + line);
+            
+        } catch (IOException e) {
+            System.out.println("Error reading file: " + e.getMessage());
+        }
+        // No need for finally block - resources auto-closed
+    }
+    
+    public static void main(String[] args) {
+        readFileWithResources("example.txt");
+    }
+}</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <section id="practice">
+            <h2>Practice Set</h2>
+            
+            <div class="practice-set">
+                <h3>Chapter 14 - Practice Set</h3>
+                <div class="practice-problems grid grid-2">
+                    <div class="problem-item card">
+                        <h4>1. Syntax Error Demo</h4>
+                        <p>Write a Java program that demonstrates syntax error.</p>
+                    </div>
+                    
+                    <div class="problem-item card">
+                        <h4>2. Runtime Error Demo</h4>
+                        <p>Write a Java program that demonstrates runtime error (exception).</p>
+                    </div>
+                    
+                    <div class="problem-item card">
+                        <h4>3. Exception Handling</h4>
+                        <p>Write a program that allows you to keep accessing an array until a valid index is given by the user.</p>
+                    </div>
+                    
+                    <div class="problem-item card">
+                        <h4>4. Multiple Catch Blocks</h4>
+                        <p>Modify program 3 to include IllegalArgumentException as well as any other exception that occurs during runtime.</p>
+                    </div>
+                    
+                    <div class="problem-item card">
+                        <h4>5. Nested Try-Catch</h4>
+                        <p>Write a program that demonstrates nested try-catch blocks.</p>
+                    </div>
+                    
+                    <div class="problem-item card">
+                        <h4>6. Custom Exception</h4>
+                        <p>Create a custom exception class and demonstrate its usage.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="exercise card">
+                <h3>Solution Example: Array Access with Exception Handling</h3>
+                <div class="solution-container">
+                    <button class="btn btn-secondary show-solution-btn" onclick="toggleSolution('solution1')">Show Solution</button>
+                    <div id="solution1" class="solution-code" style="display: none;">
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="file-name">ArrayAccessSolution.java</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            </div>
+                            <pre><code>import java.util.Scanner;
+
+public class ArrayAccessSolution {
+    public static void main(String[] args) {
+        int[] numbers = {10, 20, 30, 40, 50};
+        Scanner scanner = new Scanner(System.in);
+        boolean validAccess = false;
+        
+        System.out.println("Array elements: [10, 20, 30, 40, 50]");
+        System.out.println("Array indices: 0 to " + (numbers.length - 1));
+        
+        while (!validAccess) {
+            try {
+                System.out.print("Enter array index to access: ");
+                String input = scanner.nextLine();
+                
+                // This may throw NumberFormatException
+                int index = Integer.parseInt(input);
+                
+                // Check for negative index (custom validation)
+                if (index < 0) {
+                    throw new IllegalArgumentException("Index cannot be negative: " + index);
+                }
+                
+                // This may throw ArrayIndexOutOfBoundsException
+                int value = numbers[index];
+                
+                System.out.println("Element at index " + index + ": " + value);
+                validAccess = true;
+                
+            } catch (NumberFormatException e) {
+                System.out.println("Error: Please enter a valid integer!");
+                System.out.println("Details: " + e.getMessage());
+                
+            } catch (IllegalArgumentException e) {
+                System.out.println("Error: " + e.getMessage());
+                
+            } catch (ArrayIndexOutOfBoundsException e) {
+                System.out.println("Error: Index out of bounds!");
+                System.out.println("Valid range: 0 to " + (numbers.length - 1));
+                System.out.println("Details: " + e.getMessage());
+                
+            } catch (Exception e) {
+                System.out.println("Unexpected error occurred: " + e.getMessage());
+                
+            } finally {
+                if (!validAccess) {
+                    System.out.println("Please try again with a valid index.\n");
+                }
+            }
+        }
+        
+        scanner.close();
+        System.out.println("Program completed successfully!");
+    }
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="exercise card">
+                <h3>Solution Example: Custom Exception</h3>
+                <div class="solution-container">
+                    <button class="btn btn-secondary show-solution-btn" onclick="toggleSolution('solution2')">Show Solution</button>
+                    <div id="solution2" class="solution-code" style="display: none;">
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="file-name">CustomExceptionSolution.java</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            </div>
+                            <pre><code>// Custom exception for age validation
+class InvalidAgeException extends Exception {
+    public InvalidAgeException(String message) {
+        super(message);
+    }
+    
+    public InvalidAgeException(String message, Throwable cause) {
+        super(message, cause);
+    }
+}
+
+// Custom exception for grade validation
+class InvalidGradeException extends Exception {
+    public InvalidGradeException(String message) {
+        super(message);
+    }
+}
+
+class Student {
+    private String name;
+    private int age;
+    private double grade;
+    
+    public Student(String name, int age, double grade) throws InvalidAgeException, InvalidGradeException {
+        setName(name);
+        setAge(age);
+        setGrade(grade);
+    }
+    
+    public void setName(String name) {
+        if (name == null || name.trim().isEmpty()) {
+            throw new IllegalArgumentException("Name cannot be null or empty");
+        }
+        this.name = name;
+    }
+    
+    public void setAge(int age) throws InvalidAgeException {
+        if (age < 0) {
+            throw new InvalidAgeException("Age cannot be negative: " + age);
+        }
+        if (age > 150) {
+            throw new InvalidAgeException("Age seems unrealistic: " + age);
+        }
+        if (age < 5) {
+            throw new InvalidAgeException("Student age must be at least 5 years: " + age);
+        }
+        this.age = age;
+    }
+    
+    public void setGrade(double grade) throws InvalidGradeException {
+        if (grade < 0.0 || grade > 100.0) {
+            throw new InvalidGradeException("Grade must be between 0 and 100: " + grade);
+        }
+        this.grade = grade;
+    }
+    
+    public void displayInfo() {
+        System.out.println("Student: " + name + ", Age: " + age + ", Grade: " + grade + "%");
+    }
+    
+    // Getters
+    public String getName() { return name; }
+    public int getAge() { return age; }
+    public double getGrade() { return grade; }
+}
+
+public class CustomExceptionSolution {
+    public static void main(String[] args) {
+        System.out.println("=== Custom Exception Demonstration ===\n");
+        
+        // Test case 1: Valid student
+        try {
+            Student student1 = new Student("Alice", 20, 85.5);
+            student1.displayInfo();
+        } catch (InvalidAgeException | InvalidGradeException e) {
+            System.out.println("Error creating student: " + e.getMessage());
+        }
+        
+        // Test case 2: Invalid age (negative)
+        try {
+            Student student2 = new Student("Bob", -5, 90.0);
+            student2.displayInfo();
+        } catch (InvalidAgeException e) {
+            System.out.println("Age validation failed: " + e.getMessage());
+        } catch (InvalidGradeException e) {
+            System.out.println("Grade validation failed: " + e.getMessage());
+        }
+        
+        // Test case 3: Invalid age (too young)
+        try {
+            Student student3 = new Student("Charlie", 3, 75.0);
+            student3.displayInfo();
+        } catch (InvalidAgeException e) {
+            System.out.println("Age validation failed: " + e.getMessage());
+        } catch (InvalidGradeException e) {
+            System.out.println("Grade validation failed: " + e.getMessage());
+        }
+        
+        // Test case 4: Invalid grade
+        try {
+            Student student4 = new Student("Diana", 18, 150.0);
+            student4.displayInfo();
+        } catch (InvalidAgeException e) {
+            System.out.println("Age validation failed: " + e.getMessage());
+        } catch (InvalidGradeException e) {
+            System.out.println("Grade validation failed: " + e.getMessage());
+        }
+        
+        // Test case 5: Multiple operations with exception handling
+        try {
+            Student student5 = new Student("Eve", 22, 88.0);
+            student5.displayInfo();
+            
+            // Try to update with invalid values
+            student5.setAge(200); // This will throw exception
+            
+        } catch (InvalidAgeException e) {
+            System.out.println("Failed to update age: " + e.getMessage());
+        } catch (InvalidGradeException e) {
+            System.out.println("Failed to update grade: " + e.getMessage());
+        } catch (IllegalArgumentException e) {
+            System.out.println("Invalid argument: " + e.getMessage());
+        }
+        
+        System.out.println("\nCustom exception demonstration completed!");
+    }
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="chapter-nav">
+            <a href="chapter13.html" class="btn btn-secondary">← Previous: Multithreading</a>
+            <a href="index.html" class="btn btn-primary">Back to Home →</a>
+        </div>
+    </main>
+
+   
+    <script src="script.js"></script>
+</body>
+</html>

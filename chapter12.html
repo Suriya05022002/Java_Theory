@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 12: Packages - Java Tutorial</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="topnav">
+        <div class="nav-container">
+            <div class="logo">Java Tutorial</div><br>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="chapter1.html">Variables</a>
+                <a href="chapter2.html">Operators</a>
+                <a href="chapter3.html">Strings</a>
+                <a href="chapter4.html">Conditionals</a>
+                <a href="chapter5.html">Loops</a>
+                <a href="chapter6.html">Arrays</a>
+                <a href="chapter7.html">Methods</a>
+                <a href="chapter8.html">OOPs Intro</a>
+                <a href="chapter9.html">Constructors</a>
+                <a href="chapter10.html">Inheritance</a>
+                <a href="chapter11.html">Abstract & Interfaces</a>
+                <a href="chapter12.html" class="active">Packages</a>
+                <a href="chapter13.html">Multithreading</a>
+                <a href="chapter14.html">Exceptions</a>
+            </div>
+          <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-section">
+            <div class="sidebar-title">Chapter 12 Topics</div>
+            <a href="#compiler-interpreter" class="active">Compiler vs Interpreter</a>
+            <a href="#java-execution">Java Execution</a>
+            <a href="#packages-intro">Packages Introduction</a>
+            <a href="#creating-packages">Creating Packages</a>
+            <a href="#using-packages">Using Packages</a>
+            <a href="#access-modifiers">Access Modifiers</a>
+            <a href="#practice">Practice Set</a>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <h1>Chapter 12: Packages</h1>
+        
+        <section id="compiler-interpreter">
+            <h2>Interpreter vs Compiler</h2>
+            <div class="definition-box">
+                <p><strong>Understanding how programming languages are executed</strong></p>
+            </div>
+            
+            <div class="comparison-table">
+                <h3>Interpreter vs Compiler</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Aspect</th>
+                                <th>Interpreter</th>
+                                <th>Compiler</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Translation</strong></td>
+                                <td>One statement at a time</td>
+                                <td>Entire program at a time</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Execution</strong></td>
+                                <td>Interpreter is needed every time</td>
+                                <td>Once compiled, it is not needed</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Error Handling</strong></td>
+                                <td>Partial execution if error occurs</td>
+                                <td>No execution if an error occurs</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Development</strong></td>
+                                <td>Easy for programmers</td>
+                                <td>Usually not as easy as interpreted ones</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Speed</strong></td>
+                                <td>Slower execution</td>
+                                <td>Faster execution</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="java-execution">
+            <h2>Is Java Compiled or Interpreted?</h2>
+            <div class="definition-box">
+                <p><strong>Java is a hybrid language → both compiled as well as interpreted</strong></p>
+            </div>
+            
+            <div class="java-execution-flow card">
+                <h3>Java Execution Process</h3>
+                <div class="process-flow">
+                    <div class="process-step">
+                        <div class="step-icon">📝</div>
+                        <div class="step-title">Java Source Code</div>
+                        <div class="step-desc">Harry.java</div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-icon">⚙️</div>
+                        <div class="step-title">Java Compiler</div>
+                        <div class="step-desc">javac Harry.java</div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-icon">📦</div>
+                        <div class="step-title">Bytecode</div>
+                        <div class="step-desc">Harry.class</div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-icon">🖥️</div>
+                        <div class="step-title">JVM Interpreter</div>
+                        <div class="step-desc">java Harry</div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-icon">⚡</div>
+                        <div class="step-title">Machine Code</div>
+                        <div class="step-desc">Platform Specific</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="compilation-steps">
+                <h3>Executing a Java Program</h3>
+                <div class="step-list">
+                    <div class="run-step">
+                        <div class="step-num">1</div>
+                        <div class="step-detail">
+                            <strong>Compile:</strong> <code>javac Harry.java</code> → Creates Harry.class
+                        </div>
+                    </div>
+                    <div class="run-step">
+                        <div class="step-num">2</div>
+                        <div class="step-detail">
+                            <strong>Execute:</strong> <code>java Harry</code> → Runs the bytecode
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="platform-independence card">
+                <h3>Platform Independence</h3>
+                <p>This bytecode can be taken to any platform (Windows/Mac/Linux) for execution.</p>
+                <p class="text-center"><strong>Hence Java is platform independent (Write Once Run Everywhere)</strong></p>
+                
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="file-name">Terminal Commands</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code># Compile Java file
+javac MyProgram.java
+
+# Run compiled bytecode
+java MyProgram
+
+# Compile and create package
+javac -d . MyProgram.java</code></pre>
+                </div>
+            </div>
+
+            <div class="note-box">
+                <p><strong>Note:</strong> So far the execution of our program was being managed by IntelliJ IDEA. We can download a source code editor like VS Code to compile & execute our Java programs manually.</p>
+            </div>
+        </section>
+
+        <section id="packages-intro">
+            <h2>Packages in Java</h2>
+            <div class="definition-box">
+                <p><strong>A package is used to group related classes.</strong></p>
+                <p>Packages help in avoiding name conflicts and organizing code better.</p>
+            </div>
+            
+            <div class="package-types grid grid-2">
+                <div class="concept-card card">
+                    <h3>Built-in Packages</h3>
+                    <p>Java API packages provided by Oracle</p>
+                    <div class="example">
+                       
+                            <li><code>java.lang</code> - Basic classes</li>
+                            <li><code>java.util</code> - Utility classes</li>
+                            <li><code>java.io</code> - Input/Output classes</li>
+                            <li><code>java.net</code> - Networking classes</li>
+                        
+                    </div>
+                </div>
+                
+                <div class="concept-card card">
+                    <h3>User-defined Packages</h3>
+                    <p>Custom packages created by developers</p>
+                    <div class="example">
+                        
+                            <li><code>com.company.project</code></li>
+                            <li><code>org.example.utils</code></li>
+                          
+                    </div>
+                </div>
+            </div>
+<div class="package-analogy card">
+    <h3>Package Organization (Like File System)</h3>
+    
+    <!-- First vertical flow -->
+    <div class="analogy-flow-vertical">
+        <div class="analogy-step">
+            <h4>Files</h4>
+            <p>Song.mp3<br>Photo.jpg<br>Video.mp4</p>
+        </div>
+        <div class="arrow">&#8595;</div> <!-- ↓ -->
+        <!-- <div class="analogy-step">
+            <h4>Organized Folders</h4>
+            <p>Songs/<br>Photos/<br>Videos/</p>
+        </div> -->
+    </div>
+
+    <!-- Second vertical flow -->
+    <div class="analogy-flow-vertical mt-4">
+        <div class="analogy-step">
+            <h4>Java Classes</h4>
+            <p>Song.java<br>Photo.java<br>Video.java</p>
+        </div>
+        <div class="arrow">&#8595;</div> <!-- ↓ -->
+        <div class="analogy-step">
+            <h4>Organized Packages</h4>
+            <p>com.media.audio<br>com.media.image<br>com.media.video</p>
+        </div>
+    </div>
+</div>
+
+        </section>
+
+        <section id="creating-packages">
+            <h2>Creating a Package</h2>
+            
+            <div class="code-container">
+                <div class="code-header">
+                    <span class="file-name">Creating Simple Package</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                </div>
+                <pre><code># Simple compilation
+javac Harry.java → Creates Harry.class
+
+# Create package folder structure
+javac -d . Harry.java → Creates package folder and class file</code></pre>
+            </div>
+
+            <div class="package-creation">
+                <h3>Package Declaration and Creation</h3>
+                
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="file-name">com/company/utils/Calculator.java</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code>package com.company.utils;
+
+public class Calculator {
+    public static int add(int a, int b) {
+        return a + b;
+    }
+    
+    public static int subtract(int a, int b) {
+        return a - b;
+    }
+    
+    public static int multiply(int a, int b) {
+        return a * b;
+    }
+    
+    public static double divide(int a, int b) {
+        if (b != 0) {
+            return (double) a / b;
+        }
+        throw new IllegalArgumentException("Division by zero");
+    }
+}</code></pre>
+                </div>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="file-name">com/company/shapes/Circle.java</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code>package com.company.shapes;
+
+public class Circle {
+    private double radius;
+    
+    public Circle(double radius) {
+        this.radius = radius;
+    }
+    
+    public double getArea() {
+        return Math.PI * radius * radius;
+    }
+    
+    public double getCircumference() {
+        return 2 * Math.PI * radius;
+    }
+    
+    public double getRadius() {
+        return radius;
+    }
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="inner-packages card">
+                <h3>Inner Packages</h3>
+                <p>We can also create inner packages by adding package "inner" as package name</p>
+                
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="file-name">Folder Structure Example</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code>project/
+├── com/
+│   └── company/
+│       ├── utils/
+│       │   └── Calculator.java
+│       ├── shapes/
+│       │   ├── Circle.java
+│       │   └── Rectangle.java
+│       └── database/
+│           └── Connection.java
+└── Main.java</code></pre>
+                </div>
+            </div>
+
+            <div class="note-box">
+                <p><strong>Note:</strong> These packages once created can be used by other classes.</p>
+            </div>
+        </section>
+
+        <section id="using-packages">
+            <h2>Using a Java Package</h2>
+            <div class="definition-box">
+                <p><strong>To use classes from packages, we need to import them.</strong></p>
+            </div>
+            
+            <div class="import-examples">
+                <h3>Import Statements</h3>
+                
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="file-name">ImportExamples.java</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code>// Import specific class
+import java.util.Scanner;
+import java.util.ArrayList;
+
+// Import all classes from a package
+import java.util.*;
+
+// Import specific class from custom package
+import com.company.utils.Calculator;
+import com.company.shapes.Circle;
+
+// Import all classes from custom package
+import com.company.shapes.*;
+
+public class ImportExamples {
+    public static void main(String[] args) {
+        // Using imported classes
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<String> list = new ArrayList<>();
+        
+        // Using custom package classes
+        Calculator calc = new Calculator();
+        Circle circle = new Circle(5.0);
+        
+        System.out.println("Circle area: " + circle.getArea());
+        System.out.println("Addition: " + Calculator.add(10, 20));
+    }
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="import-types grid grid-3">
+                <div class="concept-card card">
+                    <h3>Specific Import</h3>
+                    <code>import java.lang.String;</code>
+                    <p>Import specific class from java.lang</p>
+                </div>
+                
+                <div class="concept-card card">
+                    <h3>Wildcard Import</h3>
+                    <code>import java.lang.*;</code>
+                    <p>Import everything from java.lang</p>
+                </div>
+                
+                <div class="concept-card card">
+                    <h3>Default Import</h3>
+                    <code>String s = new String("Harry");</code>
+                    <p>java.lang is imported by default</p>
+                </div>
+            </div>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <span class="file-name">PackageUsageExample.java</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                </div>
+                <pre><code>import com.company.utils.Calculator;
+import com.company.shapes.*;
+
+public class PackageUsageExample {
+    public static void main(String[] args) {
+        // Using Calculator from utils package
+        int sum = Calculator.add(15, 25);
+        int difference = Calculator.subtract(30, 10);
+        
+        System.out.println("Sum: " + sum);
+        System.out.println("Difference: " + difference);
+        
+        // Using Circle from shapes package
+        Circle circle = new Circle(7.5);
+        System.out.println("Circle Area: " + circle.getArea());
+        System.out.println("Circle Circumference: " + circle.getCircumference());
+        
+        // Using Rectangle from shapes package (if exists)
+        // Rectangle rect = new Rectangle(10, 5);
+        // System.out.println("Rectangle Area: " + rect.getArea());
+    }
+}</code></pre>
+            </div>
+        </section>
+
+        <section id="access-modifiers">
+            <h2>Access Modifiers in Java</h2>
+            <div class="definition-box">
+                <p><strong>Access modifiers determine whether other classes can use a particular field or invoke a particular method.</strong></p>
+                <p>Can be public, private, protected or default (no modifier).</p>
+            </div>
+            
+            <div class="access-modifiers-table">
+                <h3>Access Modifiers Scope</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Modifier</th>
+                                <th>Class</th>
+                                <th>Package</th>
+                                <th>Subclass</th>
+                                <th>World</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>public</strong></td>
+                                <td>✅ Y</td>
+                                <td>✅ Y</td>
+                                <td>✅ Y</td>
+                                <td>✅ Y</td>
+                            </tr>
+                            <tr>
+                                <td><strong>protected</strong></td>
+                                <td>✅ Y</td>
+                                <td>✅ Y</td>
+                                <td>✅ Y</td>
+                                <td>❌ N</td>
+                            </tr>
+                            <tr>
+                                <td><strong>default (no modifier)</strong></td>
+                                <td>✅ Y</td>
+                                <td>✅ Y</td>
+                                <td>❌ N</td>
+                                <td>❌ N</td>
+                            </tr>
+                            <tr>
+                                <td><strong>private</strong></td>
+                                <td>✅ Y</td>
+                                <td>❌ N</td>
+                                <td>❌ N</td>
+                                <td>❌ N</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="access-examples">
+                <h3>Access Modifier Examples</h3>
+                
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="file-name">com/example/AccessExample.java</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code>package com.example;
+
+public class AccessExample {
+    public String publicField = "Public - accessible everywhere";
+    protected String protectedField = "Protected - accessible in package and subclasses";
+    String defaultField = "Default - accessible in same package only";
+    private String privateField = "Private - accessible in same class only";
+    
+    public void publicMethod() {
+        System.out.println("Public method - accessible everywhere");
+    }
+    
+    protected void protectedMethod() {
+        System.out.println("Protected method - accessible in package and subclasses");
+    }
+    
+    void defaultMethod() {
+        System.out.println("Default method - accessible in same package only");
+    }
+    
+    private void privateMethod() {
+        System.out.println("Private method - accessible in same class only");
+    }
+    
+    public void demonstrateAccess() {
+        // All fields and methods accessible within same class
+        System.out.println(publicField);
+        System.out.println(protectedField);
+        System.out.println(defaultField);
+        System.out.println(privateField);
+        
+        publicMethod();
+        protectedMethod();
+        defaultMethod();
+        privateMethod();
+    }
+}</code></pre>
+                </div>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="file-name">com/example/SamePackageClass.java</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code>package com.example;
+
+public class SamePackageClass {
+    public void testAccess() {
+        AccessExample obj = new AccessExample();
+        
+        // Accessible: public, protected, default
+        System.out.println(obj.publicField);
+        System.out.println(obj.protectedField);
+        System.out.println(obj.defaultField);
+        // System.out.println(obj.privateField); // Error - not accessible
+        
+        obj.publicMethod();
+        obj.protectedMethod();
+        obj.defaultMethod();
+        // obj.privateMethod(); // Error - not accessible
+    }
+}</code></pre>
+                </div>
+
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="file-name">com/other/DifferentPackageClass.java</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code>package com.other;
+
+import com.example.AccessExample;
+
+public class DifferentPackageClass {
+    public void testAccess() {
+        AccessExample obj = new AccessExample();
+        
+        // Only public accessible from different package
+        System.out.println(obj.publicField);
+        // System.out.println(obj.protectedField); // Error - not accessible
+        // System.out.println(obj.defaultField); // Error - not accessible
+        // System.out.println(obj.privateField); // Error - not accessible
+        
+        obj.publicMethod();
+        // obj.protectedMethod(); // Error - not accessible
+        // obj.defaultMethod(); // Error - not accessible
+        // obj.privateMethod(); // Error - not accessible
+    }
+}
+
+class SubclassExample extends AccessExample {
+    public void testInheritedAccess() {
+        // In subclass: public and protected accessible
+        System.out.println(publicField);
+        System.out.println(protectedField);
+        // System.out.println(defaultField); // Error - different package
+        // System.out.println(privateField); // Error - not accessible
+        
+        publicMethod();
+        protectedMethod();
+        // defaultMethod(); // Error - different package
+        // privateMethod(); // Error - not accessible
+    }
+}</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <section id="practice">
+            <h2>Practice Set</h2>
+            
+            <div class="practice-set">
+                <h3>Chapter 12 - Practice Set</h3>
+                <div class="practice-problems grid grid-2">
+                    <div class="problem-item card">
+                        <h4>1. Calculator Package</h4>
+                        <p>Create three classes Calculator, ScCalculator and HybridCalculator and group them into a package.</p>
+                    </div>
+                    
+                    <div class="problem-item card">
+                        <h4>2. Built-in Package Usage</h4>
+                        <p>Use a built-in package in Java to write a class which displays a message (by using sout) after taking input from the user.</p>
+                    </div>
+                    
+                    <div class="problem-item card">
+                        <h4>3. Three-Level Package</h4>
+                        <p>Create a package in class with three package levels: folder → folder.L1 → folder.L2</p>
+                    </div>
+                    
+                    <div class="problem-item card">
+                        <h4>4. Access Modifier Demo</h4>
+                        <p>Prove that you cannot access default property but can access protected property from the subclass.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="exercise card">
+                <h3>Solution Example: Calculator Package</h3>
+                <div class="solution-container">
+                    <button class="btn btn-secondary show-solution-btn" onclick="toggleSolution('solution1')">Show Solution</button>
+                    <div id="solution1" class="solution-code" style="display: none;">
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="file-name">com/calculator/Calculator.java</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            </div>
+                            <pre><code>package com.calculator;
+
+public class Calculator {
+    public double add(double a, double b) {
+        return a + b;
+    }
+    
+    public double subtract(double a, double b) {
+        return a - b;
+    }
+    
+    public double multiply(double a, double b) {
+        return a * b;
+    }
+    
+    public double divide(double a, double b) {
+        if (b != 0) {
+            return a / b;
+        }
+        throw new ArithmeticException("Division by zero");
+    }
+}</code></pre>
+                        </div>
+                        
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="file-name">com/calculator/ScCalculator.java</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            </div>
+                            <pre><code>package com.calculator;
+
+public class ScCalculator extends Calculator {
+    public double sin(double angle) {
+        return Math.sin(Math.toRadians(angle));
+    }
+    
+    public double cos(double angle) {
+        return Math.cos(Math.toRadians(angle));
+    }
+    
+    public double tan(double angle) {
+        return Math.tan(Math.toRadians(angle));
+    }
+    
+    public double sqrt(double number) {
+        return Math.sqrt(number);
+    }
+    
+    public double power(double base, double exponent) {
+        return Math.pow(base, exponent);
+    }
+}</code></pre>
+                        </div>
+                        
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="file-name">com/calculator/HybridCalculator.java</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            </div>
+                            <pre><code>package com.calculator;
+
+public class HybridCalculator extends ScCalculator {
+    public double log(double number) {
+        return Math.log10(number);
+    }
+    
+    public double naturalLog(double number) {
+        return Math.log(number);
+    }
+    
+    public double factorial(int n) {
+        if (n < 0) {
+            throw new IllegalArgumentException("Factorial not defined for negative numbers");
+        }
+        if (n == 0 || n == 1) {
+            return 1;
+        }
+        double result = 1;
+        for (int i = 2; i <= n; i++) {
+            result *= i;
+        }
+        return result;
+    }
+    
+    public double percentage(double value, double total) {
+        return (value / total) * 100;
+    }
+}</code></pre>
+                        </div>
+                        
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="file-name">TestCalculator.java</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            </div>
+                            <pre><code>import com.calculator.*;
+
+public class TestCalculator {
+    public static void main(String[] args) {
+        Calculator calc = new Calculator();
+        ScCalculator scCalc = new ScCalculator();
+        HybridCalculator hybridCalc = new HybridCalculator();
+        
+        // Basic operations
+        System.out.println("Basic Calculator:");
+        System.out.println("10 + 5 = " + calc.add(10, 5));
+        System.out.println("10 - 5 = " + calc.subtract(10, 5));
+        
+        // Scientific operations
+        System.out.println("\nScientific Calculator:");
+        System.out.println("sin(30°) = " + scCalc.sin(30));
+        System.out.println("sqrt(16) = " + scCalc.sqrt(16));
+        
+        // Hybrid operations
+        System.out.println("\nHybrid Calculator:");
+        System.out.println("log(100) = " + hybridCalc.log(100));
+        System.out.println("5! = " + hybridCalc.factorial(5));
+        System.out.println("25% of 200 = " + hybridCalc.percentage(25, 100) * 200 / 100);
+    }
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="chapter-nav">
+            <a href="chapter11.html" class="btn btn-secondary">← Previous: Abstract & Interfaces</a>
+            <a href="chapter13.html" class="btn btn-primary">Next: Multithreading →</a>
+        </div>
+    </main>
+
+   
+
+    <script src="script.js"></script>
+</body>

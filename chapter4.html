@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 4: Conditionals - Java Tutorial</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="topnav">
+        <div class="nav-container">
+          <div class="logo">Java Tutorial</div><br>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="chapter1.html">Variables</a>
+                <a href="chapter2.html">Operators</a>
+                <a href="chapter3.html">Strings</a>
+                <a href="chapter4.html"  class="active">Conditionals</a>
+                <a href="chapter5.html">Loops</a>
+                <a href="chapter6.html">Arrays</a>
+                <a href="chapter7.html">Methods</a>
+                <a href="chapter8.html">OOPs Intro</a>
+                <a href="chapter9.html">Constructors</a>
+                <a href="chapter10.html">Inheritance</a>
+                <a href="chapter11.html">Abstract & Interfaces</a>
+                <a href="chapter12.html">Packages</a>
+                <a href="chapter13.html">Multithreading</a>
+                <a href="chapter14.html">Exceptions</a>
+
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+           </button>
+        </div>
+    </nav>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-section">
+            <div class="sidebar-title">Chapter 4 Topics</div>
+            <a href="#conditionals-intro" class="active">Introduction</a>
+            <a href="#if-else">If-Else Statement</a>
+            <a href="#relational-operators">Relational Operators</a>
+            <a href="#logical-operators">Logical Operators</a>
+            <a href="#else-if">Else If Clause</a>
+            <a href="#switch-case">Switch Case</a>
+            <a href="#practice">Practice Set</a>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <h1>Chapter 4: Conditionals in Java</h1>
+        
+        <section id="conditionals-intro">
+            <h2>Introduction to Conditionals</h2>
+            <div class="definition-box">
+                <p>Sometimes we want to watch comedy videos on YouTube if the day is Sunday</p>
+                <p>Sometimes, we order junk food if it is our friend's birthday in the hostel</p>
+                <p>You might want to buy an Umbrella if it's raining and you have the money</p>
+                <p>You order the meal if also or your favorite bhindi is listed on the menu.</p>
+                <p><strong>All these are decisions which depends on a certain condition being met.</strong></p>
+            </div>
+            
+            <div class="note-box">
+                <p>In Java, we can execute instructions on a condition being met.</p>
+            </div>
+            
+            <h3>Decision making Instructions in Java</h3>
+            <ul class="decision-types">
+                <li>If-Else Statement</li>
+                <li>Switch Statement</li>
+            </ul>
+        </section>
+
+        <section id="if-else">
+            <h2>If-Else Statement</h2>
+            <div class="definition-box">
+                <p>The syntax of an If-Else statement in Java looks like that of C++ and JavaScript. Java has a similar syntax too.</p>
+            </div>
+            
+            <div class="syntax-box">
+                <h3>Syntax:</h3>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="file-name">IfElseSyntax.java</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code>if (condition-to-be-checked) {
+    // Statements if condition is true;
+} else {
+    // Statements if condition is false;
+}</code></pre>
+                </div>
+            </div>
+            
+            <div class="code-container">
+                <h3>Code Example:</h3>
+                <div class="code-header">
+                    <span class="file-name">IfElseExample.java</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                </div>
+                <pre><code>int a = 29;
+if (a > 18) {
+    System.out.println("You can drive");
+}</code></pre>
+            </div>
+            
+            <div class="note-box">
+                <p><strong>Note:</strong> The else block is optional</p>
+            </div>
+        </section>
+
+        <section id="relational-operators">
+            <h2>Relational Operators in Java</h2>
+            <div class="definition-box">
+                <p><strong>Relational operators are used to evaluate conditions (true or false) inside the if statements.</strong></p>
+            </div>
+            
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Operator</th>
+                            <th>Description</th>
+                            <th>Example</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>==</code></td>
+                            <td>Equals</td>
+                            <td><code>a == b</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>>=</code></td>
+                            <td>Greater than or equal to</td>
+                            <td><code>a >= b</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>></code></td>
+                            <td>Greater than</td>
+                            <td><code>a > b</code></td>
+                        </tr>
+                        <tr>
+                            <td><code><</code></td>
+                            <td>Less than</td>
+                            <td><code>a < b</code></td>
+                        </tr>
+                        <tr>
+                            <td><code><=</code></td>
+                            <td>Less than or equal to</td>
+                            <td><code>a <= b</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>!=</code></td>
+                            <td>Not equals</td>
+                            <td><code>a != b</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="note-box">
+                <p><strong>Note:</strong> '=' is used for assignment whereas '==' is used for equality check.</p>
+                <p>The condition can be either true or false.</p>
+            </div>
+        </section>
+
+        <section id="logical-operators">
+            <h2>Logical Operators</h2>
+            <div class="definition-box">
+                <p><strong>&&, || and ! are most commonly used logical operators in Java</strong></p>
+                <p>These are read as:</p>
+                
+                    <li><strong>&&</strong> → AND</li>
+                    <li><strong>||</strong> → OR</li>
+                    <li><strong>!</strong> → NOT</li>
+                
+                <p>Used to provide logic to our Java programs</p>
+            </div>
+            
+            <div class="logical-operators-details grid grid-3">
+                <div class="operator-detail card">
+                    <h3>AND Operator (&&)</h3>
+                    <p>Evaluates to true if both the conditions are true</p>
+                    <div class="truth-table">
+                        <table>
+                            <tr><td>Y && Y</td><td>=</td><td>Y</td></tr>
+                            <tr><td>Y && N</td><td>=</td><td>N</td></tr>
+                            <tr><td>N && Y</td><td>=</td><td>N</td></tr>
+                            <tr><td>N && N</td><td>=</td><td>N</td></tr>
+                        </table>
+                        <p><small>Y → true, N → false</small></p>
+                    </div>
+                </div>
+                
+                <div class="operator-detail card">
+                    <h3>OR Operator (||)</h3>
+                    <p>Evaluates to true when at least one of the conditions is true</p>
+                    <div class="truth-table">
+                        <table>
+                            <tr><td>Y || Y</td><td>=</td><td>Y</td></tr>
+                            <tr><td>Y || N</td><td>=</td><td>Y</td></tr>
+                            <tr><td>N || Y</td><td>=</td><td>Y</td></tr>
+                            <tr><td>N || N</td><td>=</td><td>N</td></tr>
+                        </table>
+                        <p><small>Y → true, N → false</small></p>
+                    </div>
+                </div>
+                
+                <div class="operator-detail card">
+                    <h3>NOT Operator (!)</h3>
+                    <p>Negates the given logic (true becomes false and false becomes true)</p>
+                    <div class="truth-table">
+                        <table>
+                            <tr><td>!Y</td><td>=</td><td>N</td></tr>
+                            <tr><td>!N</td><td>=</td><td>Y</td></tr>
+                        </table>
+                        <p><small>Y → true, N → false</small></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="else-if">
+            <h2>Else If Clause</h2>
+            <div class="definition-box">
+                <p><strong>Instead of using multiple if statements, we can also use else if along with if thus forming an if-else-if-else ladder</strong></p>
+                <p>Using such kind of logic reduces indents. Last else is executed only if all the conditions fail.</p>
+            </div>
+            
+            <div class="syntax-box">
+                <h3>Syntax:</h3>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="file-name">ElseIfSyntax.java</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code>if (condition1) {
+    // Statements;
+} else if (condition2) {
+    // Statements;
+} else if (condition3) {
+    // Statements;
+} else {
+    // Statements;
+}</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <section id="switch-case">
+            <h2>Switch Case Control Instruction</h2>
+            <div class="definition-box">
+                <p><strong>Switch-Case is used when we have to make a choice between number of alternatives for a given variable</strong></p>
+            </div>
+            
+            <div class="syntax-box">
+                <h3>Syntax:</h3>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="file-name">SwitchSyntax.java</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code>switch (var) {
+    case C1:
+        // Code;
+        break;
+    case C2:
+        // Code;
+        break;
+    case C3:
+        // Code;
+        break;
+    default:
+        // Code;
+}</code></pre>
+                </div>
+            </div>
+            
+            <div class="note-box">
+                <p><strong>Note:</strong></p>
+               
+                    <li>Var can be an integer, character or String in Java.</li>
+                    <li>A switch can occur within another but in practice this is rarely done.</li>
+                
+            </div>
+        </section>
+
+        <section id="practice">
+            <h2>Practice Set</h2>
+            <div class="practice-exercises">
+                <div class="exercise card">
+                    <h3>1. Student Pass/Fail Program</h3>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span class="file-name">StudentResult.java</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code>import java.util.Scanner;
+
+public class StudentResult {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Enter marks for subject 1: ");
+        int sub1 = scanner.nextInt();
+        System.out.print("Enter marks for subject 2: ");
+        int sub2 = scanner.nextInt();
+        System.out.print("Enter marks for subject 3: ");
+        int sub3 = scanner.nextInt();
+        
+        double total = (sub1 + sub2 + sub3) / 3.0;
+        
+        if (total >= 40 && sub1 >= 33 && sub2 >= 33 && sub3 >= 33) {
+            System.out.println("Student Passed");
+        } else {
+            System.out.println("Student Failed");
+        }
+        
+        scanner.close();
+    }
+}</code></pre>
+                    </div>
+                </div>
+                
+                <div class="exercise card">
+                    <h3>2. Income Tax Calculator</h3>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span class="file-name">IncomeTax.java</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code>import java.util.Scanner;
+
+public class IncomeTax {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Enter your income: ");
+        double income = scanner.nextDouble();
+        double tax = 0;
+        
+        if (income <= 250000) {
+            tax = 0;
+        } else if (income <= 500000) {
+            tax = (income - 250000) * 0.05;
+        } else if (income <= 1000000) {
+            tax = 250000 * 0.05 + (income - 500000) * 0.20;
+        } else {
+            tax = 250000 * 0.05 + 500000 * 0.20 + (income - 1000000) * 0.30;
+        }
+        
+        System.out.println("Income Tax: " + tax);
+        scanner.close();
+    }
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="practice-set">
+                <h3>Chapter 4 - Practice Set</h3>
+                <div class="practice-problems grid grid-2">
+                    <div class="problem-item card">
+                        <h4>1. Student Pass/Fail</h4>
+                        <p>Write a program to find out whether a student is pass or fail; if it requires total 40% and at least 33% in each subject to pass. Assume 3 subjects and take marks as input from the user.</p>
+                    </div>
+                    
+                    <div class="problem-item card">
+                        <h4>2. Income Tax Calculator</h4>
+                        <p>Calculate income tax paid by an employee to the government as per the slabs: 2.5L-5.0L (5%), 5.01-10.0L (20%), Above 10.01 (30%). No tax below 2.5L.</p>
+                    </div>
+                    
+                    <div class="problem-item card">
+                        <h4>3. Day of the Week</h4>
+                        <p>Write a Java program to find out the day of the week given the number [1 for Monday, 2 for Tuesday ... and so on!]</p>
+                    </div>
+                    
+                    <div class="problem-item card">
+                        <h4>4. Leap Year</h4>
+                        <p>Write a Java program to find whether a year entered by the user is a leap year or not.</p>
+                    </div>
+                    
+                    <div class="problem-item card">
+                        <h4>5. Website Type</h4>
+                        <p>Write a program to find out the type of website from the URL: .com → Commercial website, .org → Organization website, .in → Indian Website</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="chapter-nav">
+            <a href="chapter3.html" class="btn btn-secondary">← Previous: Strings</a>
+            <a href="chapter5.html" class="btn btn-primary">Next: Loops →</a>
+        </div>
+    </main>
+
+   
+    <script src="script.js"></script>
+</body>
+</html>

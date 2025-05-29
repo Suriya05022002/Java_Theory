@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 2: Operators & Expressions - Java Tutorial</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="topnav">
+        <div class="nav-container">
+           <div class="logo">Java Tutorial</div><br>
+            <div class="nav-links" id="navLinks">
+                 <a href="index.html">Home</a>
+                <a href="chapter1.html">Variables</a>
+                <a href="chapter2.html"  class="active">Operators</a>
+                <a href="chapter3.html">Strings</a>
+                <a href="chapter4.html">Conditionals</a>
+                <a href="chapter5.html">Loops</a>
+                <a href="chapter6.html">Arrays</a>
+                <a href="chapter7.html">Methods</a>
+                <a href="chapter8.html">OOPs Intro</a>
+                <a href="chapter9.html">Constructors</a>
+                <a href="chapter10.html">Inheritance</a>
+                <a href="chapter11.html">Abstract & Interfaces</a>
+                <a href="chapter12.html">Packages</a>
+                <a href="chapter13.html">Multithreading</a>
+                <a href="chapter14.html">Exceptions</a>
+
+            </div>
+             <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+         </button>
+        </div>
+    </nav>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-section">
+            <div class="sidebar-title">Chapter 2 Topics</div>
+            <a href="#operators-intro" class="active">Introduction</a>
+            <a href="#arithmetic-operators">Arithmetic</a>
+            <a href="#assignment-operators">Assignment</a>
+            <a href="#comparison-operators">Comparison</a>
+            <a href="#logical-operators">Logical</a>
+            <a href="#increment-decrement">Increment/Decrement</a>
+            <a href="#precedence">Precedence</a>
+            <a href="#practice">Practice Set</a>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <h1>Chapter 2: Operators and Expressions</h1>
+        
+        <section id="operators-intro">
+            <h2>Introduction to Operators</h2>
+            <div class="definition-box">
+                <p><strong>Operators are used to perform operations on variables and values.</strong></p>
+            </div>
+            
+          <div class="operator-example card">
+    <div class="expression-breakdown">
+        <span class="operand">7</span>
+        <span class="operator">+</span>
+        <span class="operand">8</span>
+        <span class="equals">=</span>
+        <span class="result">15</span>
+    </div>
+    <div class="labels">
+        <span>7 operand</span><br>
+        <span>+ operator</span><br>
+        <span>8 operand</span><br>
+        <span>= equals</span><br>
+        <span>15 result</span><br>
+    </div>
+</div>
+
+        </section>
+
+        <section id="arithmetic-operators">
+            <h2>Types of Operators</h2>
+            
+            <div class="operator-category">
+                <h3>1. Arithmetic Operators</h3>
+                <div class="operators-grid grid grid-4">
+                    <div class="operator-item card">
+                        <code>+</code>
+                        <span>Addition</span>
+                    </div>
+                    <div class="operator-item card">
+                        <code>-</code>
+                        <span>Subtraction</span>
+                    </div>
+                    <div class="operator-item card">
+                        <code>*</code>
+                        <span>Multiplication</span>
+                    </div>
+                    <div class="operator-item card">
+                        <code>/</code>
+                        <span>Division</span>
+                    </div>
+                    <div class="operator-item card">
+                        <code>%</code>
+                        <span>Modulus</span>
+                    </div>
+                    <div class="operator-item card">
+                        <code>++</code>
+                        <span>Increment</span>
+                    </div>
+                    <div class="operator-item card">
+                        <code>--</code>
+                        <span>Decrement</span>
+                    </div>
+                </div>
+                
+                <div class="note-box">
+                    <p><strong>Note:</strong></p>
+                   
+                        <li>Arithmetic operators cannot work with booleans</li>
+                        <li>% operator can work on floats & doubles</li>
+                  
+                </div>
+            </div>
+        </section>
+
+        <section id="assignment-operators">
+            <div class="operator-category">
+                <h3>2. Assignment Operators</h3>
+                <div class="operators-grid grid grid-3">
+                    <div class="operator-item card">
+                        <code>=</code>
+                        <span>Simple Assignment</span>
+                    </div>
+                    <div class="operator-item card">
+                        <code>+ =</code>
+                        <span>Add and Assign</span>
+                    </div>
+                    <div class="operator-item card">
+                        <code>- =</code>
+                        <span>Subtract and Assign</span>
+                    </div>
+                    <div class="operator-item card">
+                        <code>* =</code>
+                        <span>Multiply and Assign</span>
+                    </div>
+                    <div class="operator-item card">
+                        <code>/ =</code>
+                        <span>Divide and Assign</span>
+                    </div>
+                    <div class="operator-item card">
+                        <code>% =</code>
+                        <span>Modulus and Assign</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="comparison-operators">
+            <div class="operator-category">
+                <h3>3. Comparison Operators</h3>
+                <div class="operators-grid grid grid-3">
+                    <div class="operator-item card">
+                        <code>==</code>
+                        <span>Equal to</span>
+                    </div>
+                    <div class="operator-item card">
+                        <code>!=</code>
+                        <span>Not equal to</span>
+                    </div>
+                    <div class="operator-item card">
+                        <code>&gt;</code>
+                        <span>Greater than</span>
+                    </div>
+                    <div class="operator-item card">
+                        <code>&lt;</code>
+                        <span>Less than</span>
+                    </div>
+                    <div class="operator-item card">
+                        <code>&gt;=</code>
+                        <span>Greater than or equal</span>
+                    </div>
+                    <div class="operator-item card">
+                        <code>&lt;=</code>
+                        <span>Less than or equal</span>
+                    </div>
+                </div>
+                
+                <div class="note-box">
+                    <p><strong>Note:</strong> '=' is used for assignment whereas '==' is used for equality check.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="logical-operators">
+            <div class="operator-category">
+                <h3>4. Logical Operators</h3>
+                <div class="operators-grid grid grid-3">
+                    <div class="operator-item card">
+                        <code>&&</code>
+                        <span>AND</span>
+                    </div>
+                    <div class="operator-item card">
+                        <code>||</code>
+                        <span>OR</span>
+                    </div>
+                    <div class="operator-item card">
+                        <code>!</code>
+                        <span>NOT</span>
+                    </div>
+                </div>
+                
+                <div class="truth-tables grid grid-3">
+                    <div class="truth-table card">
+                        <h4>AND Operator (&&)</h4>
+                        <p>Evaluates to true if both conditions are true</p>
+                        <table>
+                            <tr><td>true && true</td><td>=</td><td>true</td></tr>
+                            <tr><td>true && false</td><td>=</td><td>false</td></tr>
+                            <tr><td>false && true</td><td>=</td><td>false</td></tr>
+                            <tr><td>false && false</td><td>=</td><td>false</td></tr>
+                        </table>
+                    </div>
+                    
+                    <div class="truth-table card">
+                        <h4>OR Operator (||)</h4>
+                        <p>Evaluates to true when at least one condition is true</p>
+                        <table>
+                            <tr><td>true || true</td><td>=</td><td>true</td></tr>
+                            <tr><td>true || false</td><td>=</td><td>true</td></tr>
+                            <tr><td>false || true</td><td>=</td><td>true</td></tr>
+                            <tr><td>false || false</td><td>=</td><td>false</td></tr>
+                        </table>
+                    </div>
+                    
+                    <div class="truth-table card">
+                        <h4>NOT Operator (!)</h4>
+                        <p>Negates the given logic</p>
+                        <table>
+                            <tr><td>!true</td><td>=</td><td>false</td></tr>
+                            <tr><td>!false</td><td>=</td><td>true</td></tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="increment-decrement">
+            <h2>Increment and Decrement Operators</h2>
+            <div class="increment-section">
+                <div class="increment-types grid grid-2">
+                    <div class="increment-type card">
+                        <h3>Pre-increment (++a)</h3>
+                        <p>First increment the value, then use it</p>
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="file-name">PreIncrement.java</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            </div>
+                            <pre><code>int a = 5;
+int b = ++a; // a becomes 6, then b gets 6
+System.out.println(a); // Output: 6
+System.out.println(b); // Output: 6</code></pre>
+                        </div>
+                    </div>
+                    
+                    <div class="increment-type card">
+                        <h3>Post-increment (a++)</h3>
+                        <p>First use the value, then increment</p>
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="file-name">PostIncrement.java</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            </div>
+                            <pre><code>int a = 5;
+int b = a++; // b gets 5, then a becomes 6
+System.out.println(a); // Output: 6
+System.out.println(b); // Output: 5</code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="note-box">
+                    <p><strong>Note:</strong> These operators work on all data types except booleans. Data type remains the same.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="precedence">
+            <h2>Precedence of Operators</h2>
+            <div class="definition-box">
+                <p>The operators are applied and evaluated based on precedence. For example (+, -) has less precedence compared to (*, /). Hence * & / are evaluated first.</p>
+                <p>In case we like to change this order, we use <span class="highlight">parentheses</span>.</p>
+            </div>
+            
+            <div class="precedence-table">
+                <h3>Operator Precedence (High to Low)</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Precedence</th>
+                                <th>Operators</th>
+                                <th>Associativity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>++, --</td>
+                                <td>Right to Left</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>*, /, %</td>
+                                <td>Left to Right</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>+, -</td>
+                                <td>Left to Right</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>&lt;, &lt;=, &gt;, &gt;=</td>
+                                <td>Left to Right</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>==, !=</td>
+                                <td>Left to Right</td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>&&</td>
+                                <td>Left to Right</td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>||</td>
+                                <td>Left to Right</td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td>=, +=, -=, *=, /=, %=</td>
+                                <td>Right to Left</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="practice">
+            <h2>Practice Set</h2>
+            <div class="quiz-section">
+                <div class="quiz-item card">
+                    <h3>Quick Quiz 1:</h3>
+                    <p>What will be the value of x?</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span class="file-name">Quiz1.java</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code>int Y = 7;  
+                            int X = ++Y * 8;
+// Value of X?</code></pre>
+                    </div>
+                    <div class="answer-box">
+                        <p><strong>Answer:</strong> x = 64 (y becomes 8 first, then 8 * 8 = 64)</p>
+                    </div>
+                </div>
+                
+                <div class="quiz-item card">
+                    <h3>Quick Quiz 2:</h3>
+                    <p>What will be the result of the following expression?</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span class="file-name">Quiz2.java</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code>float a = 7/4*9/2;</code></pre>
+                    </div>
+                    <div class="answer-box">
+                        <p><strong>Answer:</strong> a = 4.0 (Integer division: 7/4=1, 1*9=9, 9/2=4)</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="practice-set">
+                <h3>Chapter 2 - Practice Set</h3>
+                <div class="practice-problems grid grid-2">
+                    <div class="problem-item card">
+                        <h4>1. Expression Result</h4>
+                        <p>What will be the result of the following expression: <code>float a = 7/4*9/2</code></p>
+                    </div>
+                    
+                    <div class="problem-item card">
+                        <h4>2. Encryption Program</h4>
+                        <p>Write a Java program to encrypt a grade by adding 8 to it. Decrypt it to show the correct grade.</p>
+                    </div>
+                    
+                    <div class="problem-item card">
+                        <h4>3. Comparison Operators</h4>
+                        <p>Use comparison operators to find out whether a given number is greater than the user entered number or not.</p>
+                    </div>
+                    
+                    <div class="problem-item card">
+                        <h4>4. Mathematical Expression</h4>
+                        <p>Write the following expression in a Java program: v² = u² + 2as</p>
+                    </div>
+                    
+                    <div class="problem-item card">
+                        <h4>5. Expression Value</h4>
+                        <p>Find the value of the following expression: <code>int x=7; int a = 7+49/7+35/7;</code> Value of a?</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="chapter-nav">
+            <a href="chapter1.html" class="btn btn-secondary">← Previous: Variables</a>
+            <a href="chapter3.html" class="btn btn-primary">Next: Strings →</a>
+        </div>
+    </main>
+
+    
+    <script src="script.js"></script>
+</body>
+</html>

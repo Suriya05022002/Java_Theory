@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 8: Introduction to OOPs - Java Tutorial</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="topnav">
+        <div class="nav-container">
+            <div class="logo">Java Tutorial</div><br>
+            <div class="nav-links" id="navLinks">
+                 <a href="index.html">Home</a>
+                <a href="chapter1.html">Variables</a>
+                <a href="chapter2.html">Operators</a>
+                <a href="chapter3.html">Strings</a>
+                <a href="chapter4.html">Conditionals</a>
+                <a href="chapter5.html">Loops</a>
+                <a href="chapter6.html">Arrays</a>
+                <a href="chapter7.html">Methods</a>
+                <a href="chapter8.html" class="active">OOPs Intro</a>
+                <a href="chapter9.html">Constructors</a>
+                <a href="chapter10.html" >Inheritance</a>
+                <a href="chapter11.html">Abstract & Interfaces</a>
+                <a href="chapter12.html">Packages</a>
+                <a href="chapter13.html">Multithreading</a>
+                <a href="chapter14.html">Exceptions</a>
+
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+         </button>
+        </div>
+    </nav>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-section">
+            <div class="sidebar-title">Chapter 8 Topics</div>
+            <a href="#introduction" class="active">Introduction</a>
+            <a href="#oop-concepts">OOPs Concepts</a>
+            <a href="#classes-objects">Classes & Objects</a>
+            <a href="#modeling">Problem Modeling</a>
+            <a href="#custom-class">Custom Classes</a>
+            <a href="#practice">Practice Set</a>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <h1>Chapter 8: Introduction to OOPs</h1>
+        
+        <section id="introduction">
+            <h2>What is Object Oriented Programming?</h2>
+            <div class="definition-box">
+                <p><strong>Object Oriented programming tries to map code instructions with real world making the code short and easier to understand.</strong></p>
+                <p><strong>Solving a problem by creating objects is one of the most popular approaches in programming. This is called Object Oriented Programming.</strong></p>
+            </div>
+            
+            <div class="oop-benefits grid grid-3">
+                <div class="benefit-item card">
+                    <h3>🔄 Code Reusability</h3>
+                    <p>Write once, use multiple times through inheritance</p>
+                </div>
+                <div class="benefit-item card">
+                    <h3>🛡️ Data Security</h3>
+                    <p>Encapsulation protects data from unauthorized access</p>
+                </div>
+                <div class="benefit-item card">
+                    <h3>🧩 Modularity</h3>
+                    <p>Break complex problems into smaller, manageable parts</p>
+                </div>
+            </div>
+
+            <h3>What is DRY?</h3>
+            <div class="info-box">
+                <p><strong>DRY stands for - Do not repeat yourself</strong></p>
+                <p>It focuses on <strong>Code reusability</strong></p>
+            </div>
+        </section>
+
+        <section id="oop-concepts">
+            <h2>OOPs Terminology</h2>
+            
+            <div class="oop-concepts grid grid-2">
+                <div class="concept-card card">
+                    <h3>1. Abstraction</h3>
+                    <p><strong>Hiding internal details (show only essential info)</strong></p>
+                    <div class="example">
+                        <p>📱 You use this phone without bothering about how it was made.</p>
+                    </div>
+                </div>
+                
+                <div class="concept-card card">
+                    <h3>2. Encapsulation</h3>
+                    <p><strong>The act of putting various components together (in a capsule)</strong></p>
+                    <div class="example">
+                        <p>💻 Laptop is a single entity with wifi + Speaker + Storage in a single box!</p>
+                        <p>In Java, encapsulation means that sensitive data can be hidden from users.</p>
+                    </div>
+                </div>
+                
+                <div class="concept-card card">
+                    <h3>3. Inheritance</h3>
+                    <p><strong>The act of deriving new things from existing things</strong></p>
+                    <div class="example">
+                        <p>🛺 Rickshaw ⇒ E-Rickshaw</p>
+                        <p>📞 Phone ⇒ Smart Phone</p>
+                        <p><strong>Implements DRY!</strong></p>
+                    </div>
+                </div>
+                
+                <div class="concept-card card">
+                    <h3>4. Polymorphism</h3>
+                    <p><strong>One entity many forms</strong></p>
+                    <div class="example">
+                        <p>📱 Smartphone → Phone</p>
+                        <p>📱 Smartphone → Calculator</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="classes-objects">
+            <h2>Classes and Objects</h2>
+            
+            <h3>Class</h3>
+            <div class="definition-box">
+                <p><strong>A class is a blueprint for creating objects.</strong></p>
+                <p>Contains info to create a valid object.</p>
+            </div>
+
+            <h3>Object</h3>
+            <div class="definition-box">
+                <p><strong>An Object is an instantiation of a class. When a class is defined, a template (info) is defined. Memory is allocated only after object instantiation.</strong></p>
+            </div>
+
+           <div class="class-object-diagram card">
+    <h3>Class vs Object Analogy</h3>
+    <div class="analogy-flow-vertical">
+        <div class="analogy-step">
+            <h4>📋 JEE Application Form</h4>
+            <p>(Class - Blueprint)</p>
+        </div>
+
+        <div class="arrow">&#8595;</div> <!-- ↓ -->
+
+        <div class="analogy-step">
+            <h4>✍️ Filled by Student</h4>
+            <p>(Object Creation Process)</p>
+        </div>
+
+        <div class="arrow">&#8595;</div> <!-- ↓ -->
+
+        <div class="analogy-step">
+            <h4>📄 Application for that Student</h4>
+            <p>(Object - Instance)</p>
+        </div>
+    </div>
+</div>
+
+        </section>
+
+        <section id="modeling">
+            <h2>How to Model a Problem in OOPs</h2>
+            <div class="definition-box">
+                <p><strong>We identify the following:</strong></p>
+                
+                    <li><strong>Noun → Class</strong> → Employee</li>
+                    <li><strong>Adjective → Attributes</strong> → name, age, salary</li>
+                    <li><strong>Verb → Methods</strong> → getSalary(), increment()</li>
+                
+            </div>
+
+            <div class="modeling-example card">
+                <h3>Example: Employee Management System</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Component</th>
+                                <th>Type</th>
+                                <th>Examples</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Employee</td>
+                                <td>Class (Noun)</td>
+                                <td>The main entity</td>
+                            </tr>
+                            <tr>
+                                <td>name, age, salary</td>
+                                <td>Attributes (Adjectives)</td>
+                                <td>Properties of employee</td>
+                            </tr>
+                            <tr>
+                                <td>getSalary(), increment()</td>
+                                <td>Methods (Verbs)</td>
+                                <td>Actions employee can perform</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="note-box">
+                <p><strong>Remember:</strong> Any real world Object = Properties + Behaviour</p>
+                <p><strong>Object in OOPs = Attributes + Methods</strong></p>
+            </div>
+        </section>
+
+        <section id="custom-class">
+            <h2>Writing a Custom Class</h2>
+            
+            <h3>Basic Class Structure</h3>
+            <div class="code-container">
+                <div class="code-header">
+                    <span class="file-name">Employee.java</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                </div>
+                <pre><code>public class Employee {
+    int id;        // Attribute 1
+    String name;   // Attribute 2
+}</code></pre>
+            </div>
+
+            <h3>Class with Methods</h3>
+            <div class="code-container">
+                <div class="code-header">
+                    <span class="file-name">EmployeeWithMethods.java</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                </div>
+                <pre><code>public class Employee {
+    public int id;
+    public String name;
+    public int salary;
+    
+    public int getSalary() {
+        return salary;
+    }
+    
+    public void getDetails() {
+        System.out.println("Employee ID: " + id);
+        System.out.println("Employee Name: " + name);
+        System.out.println("Employee Salary: " + salary);
+    }
+    
+    public void setName(String newName) {
+        name = newName;
+    }
+}</code></pre>
+            </div>
+
+            <h3>Using the Employee Class</h3>
+            <div class="code-container">
+                <div class="code-header">
+                    <span class="file-name">EmployeeTest.java</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                </div>
+                <pre><code>public class EmployeeTest {
+    public static void main(String[] args) {
+        // Creating objects of Employee class
+        Employee emp1 = new Employee();
+        Employee emp2 = new Employee();
+        
+        // Setting attributes for emp1
+        emp1.id = 101;
+        emp1.name = "John Doe";
+        emp1.salary = 50000;
+        
+        // Setting attributes for emp2
+        emp2.id = 102;
+        emp2.name = "Jane Smith";
+        emp2.salary = 60000;
+        
+        // Using methods
+        System.out.println("Employee 1 Details:");
+        emp1.getDetails();
+        
+        System.out.println("\nEmployee 2 Details:");
+        emp2.getDetails();
+        
+        // Modifying employee name
+        emp1.setName("John Updated");
+        System.out.println("\nAfter name update:");
+        emp1.getDetails();
+        
+        // Getting salary
+        System.out.println("\nEmployee 1 Salary: " + emp1.getSalary());
+    }
+}</code></pre>
+            </div>
+        </section>
+
+        <section id="practice">
+            <h2>Practice Set</h2>
+            
+            <div class="practice-set">
+                <h3>Chapter 8 - Practice Set</h3>
+                <div class="practice-problems grid grid-2">
+                    <div class="problem-item card">
+                        <h4>1. Employee Class</h4>
+                        <p>Create a class Employee with following properties and methods:<br>
+                        • Salary (property) (int)<br>
+                        • getSalary (method returning int)<br>
+                        • name (property) (String)<br>
+                        • getName (method returning String)<br>
+                        • setName (method changing name)</p>
+                    </div>
+                    
+                    <div class="problem-item card">
+                        <h4>2. CellPhone Class</h4>
+                        <p>Create a class CellPhone with methods to print "ringing...", "vibrating..." etc.</p>
+                    </div>
+                    
+                    <div class="problem-item card">
+                        <h4>3. Square Class</h4>
+                        <p>Create a class Square with a method to initialize its side, calculating area, perimeter etc.</p>
+                    </div>
+                    
+                    <div class="problem-item card">
+                        <h4>4. Rectangle Class</h4>
+                        <p>Create a class Rectangle & repeat problem 3.</p>
+                    </div>
+                    
+                    <div class="problem-item card">
+                        <h4>5. Tommy Vercetti Class</h4>
+                        <p>Create a class Tommy Vercetti for Rockstar Games capable of hitting (print hitting...), running, firing etc.</p>
+                    </div>
+                    
+                    <div class="problem-item card">
+                        <h4>6. Circle Class</h4>
+                        <p>Repeat problem 4 for a Circle.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="exercise card">
+                <h3>Sample Solution: CellPhone Class</h3>
+                <div class="solution-container">
+                    <button class="btn btn-secondary show-solution-btn" onclick="toggleSolution('cellPhone')">Show Solution</button>
+                    <div id="cellPhone" class="solution-code" style="display: none;">
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="file-name">CellPhone.java</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            </div>
+                            <pre><code>public class CellPhone {
+    public void ring() {
+        System.out.println("Ringing...");
+    }
+    
+    public void vibrate() {
+        System.out.println("Vibrating...");
+    }
+    
+    public void callFriend() {
+        System.out.println("Calling friend...");
+    }
+    
+    public static void main(String[] args) {
+        CellPhone myPhone = new CellPhone();
+        
+        myPhone.ring();
+        myPhone.vibrate();
+        myPhone.callFriend();
+    }
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="exercise card">
+                <h3>Sample Solution: Square Class</h3>
+                <div class="solution-container">
+                    <button class="btn btn-secondary show-solution-btn" onclick="toggleSolution('square')">Show Solution</button>
+                    <div id="square" class="solution-code" style="display: none;">
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="file-name">Square.java</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            </div>
+                            <pre><code>public class Square {
+    private int side;
+    
+    public void setSide(int side) {
+        this.side = side;
+    }
+    
+    public int getSide() {
+        return side;
+    }
+    
+    public int area() {
+        return side * side;
+    }
+    
+    public int perimeter() {
+        return 4 * side;
+    }
+    
+    public static void main(String[] args) {
+        Square sq = new Square();
+        sq.setSide(5);
+        
+        System.out.println("Side: " + sq.getSide());
+        System.out.println("Area: " + sq.area());
+        System.out.println("Perimeter: " + sq.perimeter());
+    }
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="chapter-nav">
+            <a href="chapter7.html" class="btn btn-secondary">← Previous: Methods</a>
+            <a href="chapter9.html" class="btn btn-primary">Next: Constructors →</a>
+        </div>
+    </main>
+
+   
+
+    <script src="script.js"></script>
+</body>
+</html>

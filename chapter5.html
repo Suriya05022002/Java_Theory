@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 5: Loops - Java Tutorial</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="topnav">
+        <div class="nav-container">
+            <div class="logo">Java Tutorial</div><br>
+            <div class="nav-links" id="navLinks">
+               <a href="index.html">Home</a>
+                <a href="chapter1.html">Variables</a>
+                <a href="chapter2.html">Operators</a>
+                <a href="chapter3.html">Strings</a>
+                <a href="chapter4.html">Conditionals</a>
+                <a href="chapter5.html"  class="active">Loops</a>
+                <a href="chapter6.html">Arrays</a>
+                <a href="chapter7.html">Methods</a>
+                <a href="chapter8.html">OOPs Intro</a>
+                <a href="chapter9.html">Constructors</a>
+                <a href="chapter10.html">Inheritance</a>
+                <a href="chapter11.html">Abstract & Interfaces</a>
+                <a href="chapter12.html">Packages</a>
+                <a href="chapter13.html">Multithreading</a>
+                <a href="chapter14.html">Exceptions</a>
+
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+       </button>
+        </div>
+    </nav>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-section">
+            <div class="sidebar-title">Chapter 5 Topics</div>
+            <a href="#loops-intro" class="active">Introduction</a>
+            <a href="#while-loop">While Loop</a>
+            <a href="#do-while-loop">Do-While Loop</a>
+            <a href="#for-loop">For Loop</a>
+            <a href="#enhanced-for">Enhanced For</a>
+            <a href="#loop-control">Loop Control</a>
+            <a href="#nested-loops">Nested Loops</a>
+            <a href="#practice">Practice Set</a>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <h1>Chapter 5: Loops in Java</h1>
+        
+        <section id="loops-intro">
+            <h2>Introduction to Loops</h2>
+            <div class="definition-box">
+                <p><strong>Sometimes we need to repeat a set of statements. For example:</strong></p>
+               
+                    <li>Print "Hello World" 500 times</li>
+                    <li>Print first 500 natural numbers</li>
+                    <li>Print a pattern</li>
+                
+                <p>In such cases, loops are used to execute a set of statements repeatedly.</p>
+            </div>
+            
+            <h3>Types of Loops in Java</h3>
+            <div class="loop-types grid grid-2">
+                <div class="loop-type-card card">
+                    <h4>1. while loop</h4>
+                    <p>Executes statements while condition is true</p>
+                </div>
+                <div class="loop-type-card card">
+                    <h4>2. do-while loop</h4>
+                    <p>Executes statements at least once, then checks condition</p>
+                </div>
+                <div class="loop-type-card card">
+                    <h4>3. for loop</h4>
+                    <p>Most commonly used when number of iterations is known</p>
+                </div>
+                <div class="loop-type-card card">
+                    <h4>4. Enhanced for loop</h4>
+                    <p>Used to iterate over arrays and collections</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="while-loop">
+            <h2>While Loop</h2>
+            <div class="definition-box">
+                <p><strong>The while loop executes a set of statements as long as the condition is true.</strong></p>
+            </div>
+            
+            <div class="syntax-box">
+                <h3>Syntax:</h3>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="file-name">WhileSyntax.java</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code>while (condition) {
+    // Statements to be executed
+}</code></pre>
+                </div>
+            </div>
+            
+            <div class="example-section">
+                <h3>Example 1: Print numbers 1 to 10</h3>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="file-name">WhileExample.java</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code>public class WhileExample {
+    public static void main(String[] args) {
+        int i = 1;
+        while (i <= 10) {
+            System.out.println(i);
+            i++; // Important: increment to avoid infinite loop
+        }
+    }
+}</code></pre>
+                </div>
+            </div>
+            
+            <div class="example-section">
+                <h3>Example 2: Sum of first n natural numbers</h3>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="file-name">SumNatural.java</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code>import java.util.Scanner;
+
+public class SumNatural {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter n: ");
+        int n = scanner.nextInt();
+        
+        int sum = 0;
+        int i = 1;
+        
+        while (i <= n) {
+            sum += i;
+            i++;
+        }
+        
+        System.out.println("Sum = " + sum);
+        scanner.close();
+    }
+}</code></pre>
+                </div>
+            </div>
+            
+            <div class="note-box">
+                <p><strong>Important:</strong> Always ensure the loop variable is updated inside the loop to avoid infinite loops!</p>
+            </div>
+        </section>
+
+        <section id="do-while-loop">
+            <h2>Do-While Loop</h2>
+            <div class="definition-box">
+                <p><strong>The do-while loop executes the statements at least once, then checks the condition.</strong></p>
+                <p>This is useful when you want to execute the loop body at least once regardless of the condition.</p>
+            </div>
+            
+            <div class="syntax-box">
+                <h3>Syntax:</h3>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="file-name">DoWhileSyntax.java</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code>do {
+    // Statements to be executed
+} while (condition);</code></pre>
+                </div>
+            </div>
+            
+            <div class="example-section">
+                <h3>Example: Menu-driven program</h3>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="file-name">MenuExample.java</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code>import java.util.Scanner;
+
+public class MenuExample {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int choice;
+        
+        do {
+            System.out.println("\n--- Menu ---");
+            System.out.println("1. Add");
+            System.out.println("2. Subtract");
+            System.out.println("3. Exit");
+            System.out.print("Enter your choice: ");
+            choice = scanner.nextInt();
+            
+            switch (choice) {
+                case 1:
+                    System.out.println("Addition selected");
+                    break;
+                case 2:
+                    System.out.println("Subtraction selected");
+                    break;
+                case 3:
+                    System.out.println("Goodbye!");
+                    break;
+                default:
+                    System.out.println("Invalid choice!");
+            }
+        } while (choice != 3);
+        
+        scanner.close();
+    }
+}</code></pre>
+                </div>
+            </div>
+            
+            <div class="comparison-box">
+                <h3>While vs Do-While</h3>
+                <div class="comparison-grid grid grid-2">
+                    <div class="comparison-item card">
+                        <h4>While Loop</h4>
+                        
+                            <li>Condition checked first</li>
+                            <li>May not execute at all</li>
+                            <li>Entry-controlled loop</li>
+                       
+                    </div>
+                    <div class="comparison-item card">
+                        <h4>Do-While Loop</h4>
+                       
+                            <li>Condition checked last</li>
+                            <li>Executes at least once</li>
+                            <li>Exit-controlled loop</li>
+                       
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="for-loop">
+            <h2>For Loop</h2>
+            <div class="definition-box">
+                <p><strong>The for loop is used when the number of iterations is known beforehand.</strong></p>
+                <p>It's the most commonly used loop in programming.</p>
+            </div>
+            
+            <div class="syntax-box">
+                <h3>Syntax:</h3>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="file-name">ForSyntax.java</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code>for (initialization; condition; increment/decrement) {
+    // Statements to be executed
+}</code></pre>
+                </div>
+            </div>
+            
+            <div class="for-loop-breakdown">
+                <h3>For Loop Components:</h3>
+                <div class="component-grid grid grid-3">
+                    <div class="component card">
+                        <h4>1. Initialization</h4>
+                        <p>Executed once at the beginning</p>
+                        <code>int i = 0</code>
+                    </div>
+                    <div class="component card">
+                        <h4>2. Condition</h4>
+                        <p>Checked before each iteration</p>
+                        <code>i < 10</code>
+                    </div>
+                    <div class="component card">
+                        <h4>3. Update</h4>
+                        <p>Executed after each iteration</p>
+                        <code>i++</code>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="example-section">
+                <h3>Example 1: Print numbers 1 to 10</h3>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="file-name">ForExample.java</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code>public class ForExample {
+    public static void main(String[] args) {
+        for (int i = 1; i <= 10; i++) {
+            System.out.println(i);
+        }
+    }
+}</code></pre>
+                </div>
+            </div>
+            
+            <div class="example-section">
+                <h3>Example 2: Print multiplication table</h3>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="file-name">MultiplicationTable.java</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code>import java.util.Scanner;
+
+public class MultiplicationTable {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a number: ");
+        int num = scanner.nextInt();
+        
+        System.out.println("Multiplication table of " + num + ":");
+        for (int i = 1; i <= 10; i++) {
+            System.out.println(num + " x " + i + " = " + (num * i));
+        }
+        
+        scanner.close();
+    }
+}</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <section id="enhanced-for">
+            <h2>Enhanced For Loop (For-Each)</h2>
+            <div class="definition-box">
+                <p><strong>The enhanced for loop is used to iterate over arrays and collections.</strong></p>
+                <p>It's also known as the "for-each" loop and provides a cleaner syntax.</p>
+            </div>
+            
+            <div class="syntax-box">
+                <h3>Syntax:</h3>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="file-name">EnhancedForSyntax.java</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code>for (dataType variable : array/collection) {
+    // Statements to be executed
+}</code></pre>
+                </div>
+            </div>
+            
+            <div class="example-section">
+                <h3>Example: Iterate over an array</h3>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="file-name">EnhancedForExample.java</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code>public class EnhancedForExample {
+    public static void main(String[] args) {
+        int[] numbers = {1, 2, 3, 4, 5};
+        
+        // Enhanced for loop
+        System.out.println("Enhanced for loop:");
+        for (int num : numbers) {
+            System.out.println(num);
+        }
+    }
+}</code></pre>
+                </div>
+            </div>
+            
+            <div class="note-box">
+                <p><strong>Note:</strong> Enhanced for loop is read-only. You cannot modify the array elements using this loop.</p>
+            </div>
+        </section>
+
+        <section id="loop-control">
+            <h2>Loop Control Statements</h2>
+            <div class="definition-box">
+                <p><strong>Loop control statements change the execution flow of loops.</strong></p>
+            </div>
+            
+            <div class="control-statements grid grid-2">
+                <div class="control-statement card">
+                    <h3>1. break Statement</h3>
+                    <p>Terminates the loop immediately</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span class="file-name">BreakExample.java</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code>for (int i = 1; i <= 10; i++) {
+    if (i == 5) {
+        break; // Exit loop when i equals 5
+    }
+    System.out.println(i);
+}
+// Output: 1, 2, 3, 4</code></pre>
+                    </div>
+                </div>
+                
+                <div class="control-statement card">
+                    <h3>2. continue Statement</h3>
+                    <p>Skips the current iteration and continues with the next</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span class="file-name">ContinueExample.java</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code>for (int i = 1; i <= 10; i++) {
+    if (i == 5) {
+        continue; // Skip when i equals 5
+    }
+    System.out.println(i);
+}
+// Output: 1, 2, 3, 4, 6, 7, 8, 9, 10</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="nested-loops">
+            <h2>Nested Loops</h2>
+            <div class="definition-box">
+                <p><strong>A loop inside another loop is called a nested loop.</strong></p>
+                <p>Nested loops are useful for working with 2D arrays, patterns, and complex iterations.</p>
+            </div>
+            
+            <div class="example-section">
+                <h3>Example 1: Print a pattern</h3>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="file-name">StarPattern.java</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code>public class StarPattern {
+    public static void main(String[] args) {
+        int rows = 5;
+        
+        for (int i = 1; i <= rows; i++) {
+            for (int j = 1; j <= i; j++) {
+                System.out.print("* ");
+            }
+            System.out.println();
+        }
+    }
+}
+
+// Output:
+// * 
+// * * 
+// * * * 
+// * * * * 
+// * * * * *</code></pre>
+                </div>
+            </div>
+            
+            <div class="example-section">
+                <h3>Example 2: Number pattern</h3>
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="file-name">NumberPattern.java</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><code>public class NumberPattern {
+    public static void main(String[] args) {
+        int rows = 4;
+        
+        for (int i = 1; i <= rows; i++) {
+            for (int j = 1; j <= i; j++) {
+                System.out.print(j + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+
+// Output:
+// 1 
+// 1 2 
+// 1 2 3 
+// 1 2 3 4</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <section id="practice">
+            <h2>Practice Set</h2>
+            
+            <div class="quiz-section">
+                <div class="quiz-item card">
+                    <h3>Quick Quiz 1:</h3>
+                    <p>What will be the output of this code?</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span class="file-name">Quiz1.java</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code>for (int i = 0; i < 5; i++) {
+    if (i == 3) {
+        continue;
+    }
+    System.out.print(i + " ");
+}</code></pre>
+                    </div>
+                    <div class="answer-box">
+                        <p><strong>Answer:</strong> 0 1 2 4 (3 is skipped due to continue)</p>
+                    </div>
+                </div>
+                
+                <div class="quiz-item card">
+                    <h3>Quick Quiz 2:</h3>
+                    <p>How many times will "Hello" be printed?</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span class="file-name">Quiz2.java</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><code>for (int i = 1; i <= 3; i++) {
+    for (int j = 1; j <= 2; j++) {
+        System.out.println("Hello");
+    }
+}</code></pre>
+                    </div>
+                    <div class="answer-box">
+                        <p><strong>Answer:</strong> 6 times (3 × 2 = 6)</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="practice-set">
+                <h3>Chapter 5 - Practice Set</h3>
+                <div class="practice-problems grid grid-2">
+                    <div class="problem-item card">
+                        <h4>1. Pattern Printing</h4>
+                        <p>Write a program to print the following pattern:</p>
+                        <pre>****
+***
+**
+*</pre>
+                    </div>
+                    
+                    <div class="problem-item card">
+                        <h4>2. Sum of Even Numbers</h4>
+                        <p>Write a program to sum first n even numbers using a while loop.</p>
+                    </div>
+                    
+                    <div class="problem-item card">
+                        <h4>3. Multiplication Table</h4>
+                        <p>Write a program to print multiplication table of 10 in reverse order.</p>
+                    </div>
+                    
+                    <div class="problem-item card">
+                        <h4>4. Factorial</h4>
+                        <p>Write a program to find factorial of a given number using for loops.</p>
+                    </div>
+                    
+                    <div class="problem-item card">
+                        <h4>5. Prime Numbers</h4>
+                        <p>Write a program to print all prime numbers between 1 and 50.</p>
+                    </div>
+                    
+                    <div class="problem-item card">
+                        <h4>6. Fibonacci Series</h4>
+                        <p>Write a program to print first n terms of Fibonacci series.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="chapter-nav">
+            <a href="chapter4.html" class="btn btn-secondary">← Previous: Conditionals</a>
+            <a href="chapter6.html" class="btn btn-primary">Array →</a>
+        </div>
+    </main>
+
+  
+    <script src="script.js"></script>
+</body>
+</html>

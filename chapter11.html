@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 11: Abstract Classes & Interfaces - Java Tutorial</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="topnav">
+        <div class="nav-container">
+           <div class="logo">Java Tutorial</div><br>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="chapter1.html">Variables</a>
+                <a href="chapter2.html">Operators</a>
+                <a href="chapter3.html">Strings</a>
+                <a href="chapter4.html">Conditionals</a>
+                <a href="chapter5.html">Loops</a>
+                <a href="chapter6.html">Arrays</a>
+                <a href="chapter7.html">Methods</a>
+                <a href="chapter8.html">OOPs Intro</a>
+                <a href="chapter9.html">Constructors</a>
+                <a href="chapter10.html">Inheritance</a>
+                <a href="chapter11.html" class="active">Abstract & Interfaces</a>
+                <a href="chapter12.html">Packages</a>
+                <a href="chapter13.html">Multithreading</a>
+                <a href="chapter14.html">Exceptions</a>
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-section">
+            <div class="sidebar-title">Chapter 11 Topics</div>
+            <a href="#abstract-intro" class="active">Abstract Classes</a>
+            <a href="#abstract-methods">Abstract Methods</a>
+            <a href="#interfaces">Interfaces</a>
+            <a href="#multiple-inheritance">Multiple Inheritance</a>
+            <a href="#default-methods">Default Methods</a>
+            <a href="#interface-inheritance">Interface Inheritance</a>
+            <a href="#practice">Practice Set</a>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <h1>Chapter 11: Abstract Classes & Interfaces</h1>
+        
+        <section id="abstract-intro">
+            <h2>What does Abstract mean?</h2>
+            <div class="definition-box">
+                <p><strong>Abstract in English means → existing in thought or as an idea without concrete existence.</strong></p>
+                <p>In Java, abstract classes and methods provide a way to achieve abstraction - hiding implementation details while showing only essential features.</p>
+            </div>
+            
+            <h3>Abstract Method</h3>
+            <div class="syntax-box">
+                <p><strong>A method that is declared without an implementation.</strong></p>
+                <code>abstract void moveTo(double x, double y);</code>
+            </div>
+
+            <h3>Abstract Class</h3>
+            <div class="definition-box">
+                <p><strong>If a class includes abstract methods, then the class itself must be declared abstract.</strong></p>
+            </div>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <span class="file-name">AbstractExample.java</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                </div>
+                <pre><code>public abstract class PhoneModel {
+    String brand;
+    String model;
+    
+    // Concrete method
+    public void displayInfo() {
+        System.out.println("Brand: " + brand + ", Model: " + model);
+    }
+    
+    // Abstract method - must be implemented by subclasses
+    abstract void switchOff();
+    abstract void makeCall(String number);
+}
+
+class SmartPhone extends PhoneModel {
+    @Override
+    void switchOff() {
+        System.out.println("Smart phone is switching off with animation");
+    }
+    
+    @Override
+    void makeCall(String number) {
+        System.out.println("Calling " + number + " using touch interface");
+    }
+    
+    // Additional method specific to smartphone
+    void browseInternet() {
+        System.out.println("Browsing internet on smartphone");
+    }
+}
+
+class BasicPhone extends PhoneModel {
+    @Override
+    void switchOff() {
+        System.out.println("Basic phone is switching off");
+    }
+    
+    @Override
+    void makeCall(String number) {
+        System.out.println("Calling " + number + " using keypad");
+    }
+}</code></pre>
+            </div>
+
+            <div class="tree card">
+                <h4>Abstract Class Example</h4>
+                <div class="parent">Shape (Abstract)</div>
+                <div class="children">
+                    <div class="child">Circle</div>
+                    <div class="child">Rectangle</div>
+                    <div class="child">Triangle</div>
+                </div>
+            </div>
+
+            <div class="note-box">
+                <p><strong>Important Notes:</strong></p>
+             
+                    <li>It is possible to create reference of an abstract class</li>
+                    <li>It is NOT possible to create an object of an abstract class</li>
+                    <li>We can assign reference of an abstract class to the object of a concrete subclass</li>
+                
+            </div>
+        </section>
+
+        <section id="abstract-methods">
+            <h2>Working with Abstract Classes</h2>
+            
+            <div class="code-container">
+                <div class="code-header">
+                    <span class="file-name">ShapeExample.java</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                </div>
+                <pre><code>abstract class Shape {
+    String color;
+    
+    // Constructor in abstract class
+    public Shape(String color) {
+        this.color = color;
+    }
+    
+    // Concrete method
+    public void displayColor() {
+        System.out.println("Color: " + color);
+    }
+    
+    // Abstract methods
+    abstract double calculateArea();
+    abstract double calculatePerimeter();
+    abstract void draw();
+}
+
+class Circle extends Shape {
+    private double radius;
+    
+    public Circle(String color, double radius) {
+        super(color);
+        this.radius = radius;
+    }
+    
+    @Override
+    double calculateArea() {
+        return Math.PI * radius * radius;
+    }
+    
+    @Override
+    double calculatePerimeter() {
+        return 2 * Math.PI * radius;
+    }
+    
+    @Override
+    void draw() {
+        System.out.println("Drawing a circle with radius " + radius);
+    }
+}
+
+class Rectangle extends Shape {
+    private double length, width;
+    
+    public Rectangle(String color, double length, double width) {
+        super(color);
+        this.length = length;
+        this.width = width;
+    }
+    
+    @Override
+    double calculateArea() {
+        return length * width;
+    }
+    
+    @Override
+    double calculatePerimeter() {
+        return 2 * (length + width);
+    }
+    
+    @Override
+    void draw() {
+        System.out.println("Drawing a rectangle " + length + "x" + width);
+    }
+}
+
+public class ShapeExample {
+    public static void main(String[] args) {
+        // Shape shape = new Shape("Red"); // Error - cannot instantiate abstract class
+        
+        Shape circle = new Circle("Red", 5.0);
+        Shape rectangle = new Rectangle("Blue", 4.0, 6.0);
+        
+        circle.displayColor();
+        circle.draw();
+        System.out.println("Area: " + circle.calculateArea());
+        
+        rectangle.displayColor();
+        rectangle.draw();
+        System.out.println("Area: " + rectangle.calculateArea());
+    }
+}</code></pre>
+            </div>
+        </section>
+
+        <section id="interfaces">
+            <h2>Interfaces in Java</h2>
+            <div class="definition-box">
+                <p><strong>Interface in English is a point where two systems meet and interact.</strong></p>
+                <p>In Java, interface is a group of related methods with empty bodies (abstract methods).</p>
+            </div>
+            
+            <div class="interface-concept card">
+                <h3>Interface Concept</h3>
+                <div class="analogy-flow">
+                    <div class="analogy-step">
+                        <h4>TV</h4>
+                        <p>System 1</p>
+                    </div>
+                    <div class="analogy-step">
+                        <h4>Buttons</h4>
+                        <p>Interface</p>
+                    </div>
+                    <div class="analogy-step">
+                        <h4>Human</h4>
+                        <p>System 2</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="code-container">
+                <div class="code-header">
+                    <span class="file-name">InterfaceExample.java</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                </div>
+                <pre><code>interface Bicycle {
+    // All methods in interface are public and abstract by default
+    void applyBrake(int decrement);
+    void speedUp(int increment);
+    
+    // Constants in interface are public, static, final by default
+    int MAX_SPEED = 100;
+}
+
+class AvonCycle implements Bicycle {
+    int speed = 7;
+    
+    @Override
+    public void applyBrake(int decrement) {
+        speed = speed - decrement;
+        System.out.println("Brake applied. Current speed: " + speed);
+    }
+    
+    @Override
+    public void speedUp(int increment) {
+        speed = speed + increment;
+        System.out.println("Speed increased. Current speed: " + speed);
+    }
+    
+    public void displaySpeed() {
+        System.out.println("Current speed: " + speed);
+    }
+}
+
+public class InterfaceExample {
+    public static void main(String[] args) {
+        AvonCycle cycle = new AvonCycle();
+        cycle.displaySpeed();
+        cycle.speedUp(10);
+        cycle.applyBrake(5);
+        
+        System.out.println("Max speed allowed: " + Bicycle.MAX_SPEED);
+    }
+}</code></pre>
+            </div>
+
+            <div class="interface-features grid grid-2">
+                <div class="concept-card card">
+                    <h3>Interface Characteristics</h3>
+                   
+                        <li>All methods are public and abstract by default</li>
+                        <li>All variables are public, static, and final</li>
+                        <li>Cannot have constructors</li>
+                        <li>Cannot be instantiated</li>
+                        <li>Can be implemented by multiple classes</li>
+                    
+                </div>
+                
+                <div class="concept-card card">
+                    <h3>Interface vs Abstract Class</h3>
+                    
+                        <li>Can implement multiple interfaces</li>
+                        <li>Cannot extend multiple abstract classes</li>
+                        <li>Interfaces support dynamic method dispatch</li>
+                        <li>Used for achieving runtime polymorphism</li>
+                    
+                </div>
+            </div>
+        </section>
+
+        <section id="multiple-inheritance">
+            <h2>Multiple Inheritance with Interfaces</h2>
+            <div class="definition-box">
+                <p><strong>Is multiple inheritance allowed in Java?</strong></p>
+                <p>Multiple inheritance faces problems when there exist methods with same signature in both the super classes. Due to such problems, Java does not support multiple inheritance directly but the similar concept can be achieved using Interfaces.</p>
+            </div>
+            
+            <div class="code-container">
+                <div class="code-header">
+                    <span class="file-name">MultipleInheritance.java</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                </div>
+                <pre><code>interface GPS {
+    void showLocation();
+    void navigate(String destination);
+}
+
+interface Camera {
+    void takePhoto();
+    void recordVideo();
+}
+
+interface MediaPlayer {
+    void playMusic();
+    void playVideo();
+}
+
+// A class can implement multiple interfaces
+class SmartPhone implements GPS, Camera, MediaPlayer {
+    String brand;
+    
+    public SmartPhone(String brand) {
+        this.brand = brand;
+    }
+    
+    // GPS interface methods
+    @Override
+    public void showLocation() {
+        System.out.println(brand + " showing current location");
+    }
+    
+    @Override
+    public void navigate(String destination) {
+        System.out.println(brand + " navigating to " + destination);
+    }
+    
+    // Camera interface methods
+    @Override
+    public void takePhoto() {
+        System.out.println(brand + " taking photo");
+    }
+    
+    @Override
+    public void recordVideo() {
+        System.out.println(brand + " recording video");
+    }
+    
+    // MediaPlayer interface methods
+    @Override
+    public void playMusic() {
+        System.out.println(brand + " playing music");
+    }
+    
+    @Override
+    public void playVideo() {
+        System.out.println(brand + " playing video");
+    }
+}
+
+public class MultipleInheritance {
+    public static void main(String[] args) {
+        SmartPhone phone = new SmartPhone("iPhone");
+        
+        // Using GPS functionality
+        phone.showLocation();
+        phone.navigate("New York");
+        
+        // Using Camera functionality
+        phone.takePhoto();
+        phone.recordVideo();
+        
+        // Using MediaPlayer functionality
+        phone.playMusic();
+        phone.playVideo();
+        
+        // Polymorphism with interfaces
+        GPS gps = new SmartPhone("Android");
+        gps.showLocation(); // Can only use GPS methods
+    }
+}</code></pre>
+            </div>
+
+            <div class="note-box">
+                <p><strong>Key Points:</strong></p>
+               
+                    <li>A class can implement multiple interfaces and extend a class at the same time</li>
+                    <li>Interface methods are public by default</li>
+                    <li>You can create a reference of interfaces but not the object</li>
+                    <li>Classes implementing the interface need to declare all the methods (not fields)</li>
+               
+            </div>
+        </section>
+
+        <section id="default-methods">
+            <h2>Default Methods</h2>
+            <div class="definition-box">
+                <p><strong>An interface can have static and default methods.</strong></p>
+                <p>Default methods enable us to add new functionality to existing interfaces. This feature was introduced in Java 8 to ensure backward compatibility while updating an interface.</p>
+            </div>
+            
+            <div class="code-container">
+                <div class="code-header">
+                    <span class="file-name">DefaultMethods.java</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                </div>
+                <pre><code>interface Vehicle {
+    // Abstract method
+    void start();
+    void stop();
+    
+    // Default method (Java 8+)
+    default void honk() {
+        System.out.println("Vehicle is honking");
+    }
+    
+    // Static method (Java 8+)
+    static void checkTraffic() {
+        System.out.println("Checking traffic conditions");
+    }
+    
+    // Private method (Java 9+) - can be used by default methods
+    private void performSafetyCheck() {
+        System.out.println("Performing safety check");
+    }
+    
+    default void startSafely() {
+        performSafetyCheck(); // Using private method
+        start();
+    }
+}
+
+class Car implements Vehicle {
+    @Override
+    public void start() {
+        System.out.println("Car engine started");
+    }
+    
+    @Override
+    public void stop() {
+        System.out.println("Car stopped");
+    }
+    
+    // Can override default method if needed
+    @Override
+    public void honk() {
+        System.out.println("Car horn: Beep! Beep!");
+    }
+}
+
+class Motorcycle implements Vehicle {
+    @Override
+    public void start() {
+        System.out.println("Motorcycle engine started");
+    }
+    
+    @Override
+    public void stop() {
+        System.out.println("Motorcycle stopped");
+    }
+    
+    // Using default honk method (not overriding)
+}
+
+public class DefaultMethods {
+    public static void main(String[] args) {
+        Car car = new Car();
+        Motorcycle bike = new Motorcycle();
+        
+        car.startSafely();
+        car.honk(); // Overridden method
+        
+        bike.startSafely();
+        bike.honk(); // Default method
+        
+        // Static method call
+        Vehicle.checkTraffic();
+    }
+}</code></pre>
+            </div>
+
+            <div class="info-box">
+                <p><strong>Benefits of Default Methods:</strong></p>
+                
+                    <li>Classes implementing the interface need not implement the default methods</li>
+                    <li>Interfaces can also include private methods for default methods to use</li>
+                    <li>Enables backward compatibility when adding new methods to interfaces</li>
+                    <li>Reduces code duplication across implementing classes</li>
+                
+            </div>
+        </section>
+
+        <section id="interface-inheritance">
+            <h2>Inheritance in Interfaces</h2>
+            <div class="definition-box">
+                <p><strong>Interfaces can extend another interfaces.</strong></p>
+                <p>Remember that interface cannot implement another interface, only classes can do that!</p>
+            </div>
+            
+            <div class="code-container">
+                <div class="code-header">
+                    <span class="file-name">InterfaceInheritance.java</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                </div>
+                <pre><code>interface BasicPhone {
+    void makeCall(String number);
+    void receiveCall();
+}
+
+interface SmartPhoneInterface extends BasicPhone {
+    void browseInternet();
+    void takePhoto();
+    void sendEmail(String email);
+}
+
+interface AdvancedSmartPhone extends SmartPhoneInterface {
+    void faceRecognition();
+    void wirelessCharging();
+    void artificialIntelligence();
+}
+
+class iPhone implements AdvancedSmartPhone {
+    @Override
+    public void makeCall(String number) {
+        System.out.println("iPhone calling " + number);
+    }
+    
+    @Override
+    public void receiveCall() {
+        System.out.println("iPhone receiving call");
+    }
+    
+    @Override
+    public void browseInternet() {
+        System.out.println("iPhone browsing internet with Safari");
+    }
+    
+    @Override
+    public void takePhoto() {
+        System.out.println("iPhone taking high-quality photo");
+    }
+    
+    @Override
+    public void sendEmail(String email) {
+        System.out.println("iPhone sending email to " + email);
+    }
+    
+    @Override
+    public void faceRecognition() {
+        System.out.println("iPhone using Face ID");
+    }
+    
+    @Override
+    public void wirelessCharging() {
+        System.out.println("iPhone charging wirelessly");
+    }
+    
+    @Override
+    public void artificialIntelligence() {
+        System.out.println("iPhone using Siri AI");
+    }
+}
+
+public class InterfaceInheritance {
+    public static void main(String[] args) {
+        iPhone phone = new iPhone();
+        
+        // Can use all inherited methods
+        phone.makeCall("123-456-7890");
+        phone.browseInternet();
+        phone.faceRecognition();
+        
+        // Polymorphism with interface hierarchy
+        BasicPhone basicPhone = new iPhone();
+        basicPhone.makeCall("987-654-3210"); // Can only use BasicPhone methods
+        
+        SmartPhoneInterface smartPhone = new iPhone();
+        smartPhone.takePhoto(); // Can use BasicPhone + SmartPhoneInterface methods
+    }
+}</code></pre>
+            </div>
+
+            <div class="polymorphism-example card">
+                <h3>Polymorphism using Interfaces</h3>
+                <div class="analogy-flow">
+                    <div class="analogy-step">
+                        <h4>Cell Phone</h4>
+                        <p>Interface</p>
+                    </div>
+                    <div class="analogy-step">
+                        <h4>GPS</h4>
+                        <p>Interface</p>
+                    </div>
+                    <div class="analogy-step">
+                        <h4>Camera</h4>
+                        <p>Interface</p>
+                    </div>
+                    <div class="analogy-step">
+                        <h4>Media Player</h4>
+                        <p>Interface</p>
+                    </div>
+                </div>
+                <div class="text-center mt-4">
+                    <div class="analogy-step">
+                        <h4>Smart Phone</h4>
+                        <p>Class (implements all)</p>
+                    </div>
+                </div>
+                <p class="text-center mt-4">Similar to Dynamic method dispatch in Inheritance</p>
+            </div>
+        </section>
+
+        <section id="practice">
+            <h2>Practice Set</h2>
+            
+            <div class="practice-set">
+                <h3>Chapter 11 - Practice Set</h3>
+                <div class="practice-problems grid grid-2">
+                    <div class="problem-item card">
+                        <h4>1. Abstract Pen Class</h4>
+                        <p>Create an abstract class Pen with methods write() and refill() as abstract methods.</p>
+                    </div>
+                    
+                    <div class="problem-item card">
+                        <h4>2. Fountain Pen Class</h4>
+                        <p>Use the Pen class from #1 to create a concrete class FountainPen with additional method changeNib().</p>
+                    </div>
+                    
+                    <div class="problem-item card">
+                        <h4>3. Monkey and Human</h4>
+                        <p>Create a class Monkey with jump() and bite() methods. Create a class Human which inherits this Monkey class and implements BasicAnimal interface with eat() and sleep() methods.</p>
+                    </div>
+                    
+                    <div class="problem-item card">
+                        <h4>4. Telephone Classes</h4>
+                        <p>Create a class Telephone with ring(), lift() and disconnect() methods as abstract methods. Create another class SmartTelephone and demonstrate polymorphism.</p>
+                    </div>
+                    
+                    <div class="problem-item card">
+                        <h4>5. Polymorphism Demo</h4>
+                        <p>Demonstrate polymorphism using monkey class from #3.</p>
+                    </div>
+                    
+                    <div class="problem-item card">
+                        <h4>6. TV Remote Interfaces</h4>
+                        <p>Create an interface TVRemote and use it to inherit another interface SmartTVRemote.</p>
+                    </div>
+                    
+                    <div class="problem-item card">
+                        <h4>7. TV Class</h4>
+                        <p>Create a class TV which implements TVRemote interface from #6.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="exercise card">
+                <h3>Solution Example: Abstract Pen and Fountain Pen</h3>
+                <div class="solution-container">
+                    <button class="btn btn-secondary show-solution-btn" onclick="toggleSolution('solution1')">Show Solution</button>
+                    <div id="solution1" class="solution-code" style="display: none;">
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="file-name">PenExample.java</span>
+                                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                            </div>
+                            <pre><code>abstract class Pen {
+    String color;
+    String brand;
+    
+    public Pen(String color, String brand) {
+        this.color = color;
+        this.brand = brand;
+    }
+    
+    // Abstract methods
+    abstract void write();
+    abstract void refill();
+    
+    // Concrete method
+    public void displayInfo() {
+        System.out.println("Pen: " + brand + " (" + color + ")");
+    }
+}
+
+class FountainPen extends Pen {
+    String nibSize;
+    
+    public FountainPen(String color, String brand, String nibSize) {
+        super(color, brand);
+        this.nibSize = nibSize;
+    }
+    
+    @Override
+    void write() {
+        System.out.println("Writing with fountain pen using " + nibSize + " nib");
+    }
+    
+    @Override
+    void refill() {
+        System.out.println("Refilling fountain pen with ink cartridge");
+    }
+    
+    // Additional method specific to FountainPen
+    void changeNib() {
+        System.out.println("Changing nib of fountain pen");
+    }
+}
+
+public class PenExample {
+    public static void main(String[] args) {
+        // Pen pen = new Pen("Blue", "Parker"); // Error - cannot instantiate abstract class
+        
+        FountainPen fountainPen = new FountainPen("Blue", "Parker", "Medium");
+        fountainPen.displayInfo();
+        fountainPen.write();
+        fountainPen.refill();
+        fountainPen.changeNib();
+        
+        // Polymorphism
+        Pen pen = new FountainPen("Black", "Waterman", "Fine");
+        pen.write(); // Calls FountainPen's write method
+        pen.refill(); // Calls FountainPen's refill method
+        // pen.changeNib(); // Error - method not available in Pen reference
+    }
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="chapter-nav">
+            <a href="chapter10.html" class="btn btn-secondary">← Previous: Inheritance</a>
+            <a href="chapter12.html" class="btn btn-primary">Next: Packages →</a>
+        </div>
+    </main>
+
+   
+
+    <script src="script.js"></script>
+</body>
